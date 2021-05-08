@@ -75,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   child: BottomNavigationBar(
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.92),
                     items: [
                       BottomNavigationBarItem(
                         icon: Icon(Icons.dashboard_rounded),
