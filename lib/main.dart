@@ -46,6 +46,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final avatar = 'https://avatars.githubusercontent.com/u/53565118';
+
+  final examinationName = '龙岩市第一中学高一上学期期中质量检测';
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -58,6 +62,59 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: Stack(
           children: [
+            ListView(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Transform.rotate(
+                            // https://api.dart.dev/stable/2.12.2/dart-math/pi-constant.html
+                            angle: 3.1415926535897932 / 2,
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () => {print('你点击了 Menu')},
+                              icon: Icon(Icons.bar_chart_rounded, size: 32),
+                            ),
+                          ),
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[100],
+                              border: Border.all(color: Colors.grey[200]),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100)),
+                            ),
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () => {print('你点击了 头像')},
+                              icon: ClipOval(
+                                child: Image.network(avatar), // 头像
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            examinationName,
+                            textScaleFactor: 1.8,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
