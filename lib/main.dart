@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             angle: 3.1415926535897932 / 2,
                             child: IconButton(
                               padding: EdgeInsets.zero,
+                              tooltip: '考试',
                               onPressed: () => {print('你点击了 Menu')},
                               icon: Icon(Icons.bar_chart_rounded, size: 32),
                             ),
@@ -91,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             child: IconButton(
                               padding: EdgeInsets.zero,
+                              tooltip: '帐号',
                               onPressed: () => {print('你点击了 头像')},
                               icon: ClipOval(
                                 child: Image.network(avatar), // 头像
