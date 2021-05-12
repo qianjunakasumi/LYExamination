@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: EdgeInsets.all(16),
+                margin: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   boxShadow: [
