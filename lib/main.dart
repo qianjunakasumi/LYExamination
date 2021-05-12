@@ -10,18 +10,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '龙岩考试',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -59,6 +47,24 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey[50],
+        elevation: 1,
+        leading: Transform.rotate(
+          // https://api.dart.dev/stable/2.12.2/dart-math/pi-constant.html
+          angle: 3.1415926535897932 / 2,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            tooltip: '考试',
+            onPressed: () => {print('你点击了 Menu')},
+            icon: Icon(
+              Icons.bar_chart_rounded,
+              size: 32,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Stack(
           children: [
@@ -68,39 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Transform.rotate(
-                            // https://api.dart.dev/stable/2.12.2/dart-math/pi-constant.html
-                            angle: 3.1415926535897932 / 2,
-                            child: IconButton(
-                              padding: EdgeInsets.zero,
-                              tooltip: '考试',
-                              onPressed: () => {print('你点击了 Menu')},
-                              icon: Icon(Icons.bar_chart_rounded, size: 32),
-                            ),
-                          ),
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[100],
-                              border: Border.all(color: Colors.grey[200]),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(100)),
-                            ),
-                            child: IconButton(
-                              padding: EdgeInsets.zero,
-                              tooltip: '帐号',
-                              onPressed: () => {print('你点击了 头像')},
-                              icon: ClipOval(
-                                child: Image.network(avatar), // 头像
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                       Container(
                         margin: EdgeInsets.only(top: 20),
                         child: Align(
