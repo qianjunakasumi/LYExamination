@@ -48,8 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.grey[50],
-        elevation: 1,
         leading: Transform.rotate(
           // https://api.dart.dev/stable/2.12.2/dart-math/pi-constant.html
           angle: 3.1415926535897932 / 2,
