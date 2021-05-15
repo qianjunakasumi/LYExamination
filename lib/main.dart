@@ -47,24 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.grey[50],
-        leading: Transform.rotate(
-          // https://api.dart.dev/stable/2.12.2/dart-math/pi-constant.html
-          angle: 3.1415926535897932 / 2,
-          child: IconButton(
-            padding: EdgeInsets.zero,
-            tooltip: '考试',
-            onPressed: () => {print('你点击了 Menu')},
-            icon: Icon(
-              Icons.bar_chart_rounded,
-              size: 32,
-              color: Colors.black87,
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: Stack(
           children: [
