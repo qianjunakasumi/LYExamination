@@ -108,6 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   child: BottomNavigationBar(
                     backgroundColor: Color.fromRGBO(255, 255, 255, 0.92),
+                    selectedItemColor: Colors.black87,
+                    unselectedItemColor: Colors.grey,
                     items: [
                       BottomNavigationBarItem(
                         icon: Icon(Icons.dashboard_rounded),
@@ -120,6 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       BottomNavigationBarItem(
                         icon: Icon(Icons.assistant_photo_rounded),
                         label: '错题',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(Icons.account_circle_rounded),
+                        label: '我的',
                       ),
                     ],
                   ),
