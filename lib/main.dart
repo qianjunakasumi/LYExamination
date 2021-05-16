@@ -36,7 +36,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final avatar = 'https://avatars.githubusercontent.com/u/53565118';
 
-  final examinationName = '龙岩市第一中学高一上学期期中质量检测';
+  final examinationName = '龙岩市第一中学2020-2021高一上学期期中质量检测';
+  int pageIndex = 0;
+
+  void switchPages(int i) {
+    if (i == pageIndex) {
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ListView(
               padding: EdgeInsets.only(top: 8, left: 16, right: 16),
               children: [
-                Container(
-                  margin: EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 20),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            examinationName,
-                            textScaleFactor: 1.8,
-                            style: TextStyle(fontWeight: FontWeight.bold),
                 Column(
                   children: [
                     Container(
@@ -86,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               Icon(Icons.keyboard_arrow_right_rounded),
                             ],
                           ),
-                        ),
                           Divider(),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -98,8 +92,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                       ),
-                    ],
-                  ),
                     ),
                   ],
                 ),
@@ -122,9 +114,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   child: BottomNavigationBar(
-                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.92),
+                    onTap: switchPages,
+                    currentIndex: pageIndex,
+                    type: BottomNavigationBarType.fixed,
+                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.88),
                     selectedItemColor: Colors.black87,
                     unselectedItemColor: Colors.grey,
+                    showUnselectedLabels: false,
                     items: [
                       BottomNavigationBarItem(
                         icon: Icon(Icons.dashboard_rounded),
