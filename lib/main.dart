@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Stack(
           children: [
             ListView(
+              padding: EdgeInsets.only(top: 8, left: 16, right: 16),
               children: [
                 Container(
                   margin: EdgeInsets.all(16),
@@ -64,11 +65,43 @@ class _MyHomePageState extends State<MyHomePage> {
                             examinationName,
                             textScaleFactor: 1.8,
                             style: TextStyle(fontWeight: FontWeight.bold),
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom: 16),
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[50],
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '2021年5月31日',
+                                textScaleFactor: 0.88,
+                              ),
+                              Icon(Icons.keyboard_arrow_right_rounded),
+                            ],
                           ),
                         ),
+                          Divider(),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              examinationName,
+                              textScaleFactor: 1.4,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                    ),
+                  ],
                 ),
               ],
             ),
