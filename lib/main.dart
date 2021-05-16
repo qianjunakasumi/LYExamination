@@ -38,13 +38,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final examinationName = '龙岩市第一中学2020-2021高一上学期期中质量检测';
 
-  int pageIndex = 0;
-  String pageTitle = '速览';
+  static const List<String> pageTitles = ['速览', '试卷', '错题', '我的'];
+
+  static int pageIndex = 0;
+  static String pageTitle = pageTitles[0];
 
   void switchPages(int i) {
     if (i == pageIndex) {
       return;
     }
+
+    setState(() {
+      pageIndex = i;
+      pageTitle = pageTitles[i];
+    });
   }
 
   @override
@@ -98,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        '速览',
+                        pageTitle,
                         textScaleFactor: 2,
                       ),
                     ),
@@ -133,19 +140,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     items: [
                       BottomNavigationBarItem(
                         icon: Icon(Icons.dashboard_rounded),
-                        label: '速览',
+                        label: pageTitles[0],
                       ),
                       BottomNavigationBarItem(
                         icon: Icon(Icons.article_rounded),
-                        label: '试卷',
+                        label: pageTitles[1],
                       ),
                       BottomNavigationBarItem(
                         icon: Icon(Icons.assistant_photo_rounded),
-                        label: '错题',
+                        label: pageTitles[2],
                       ),
                       BottomNavigationBarItem(
                         icon: Icon(Icons.account_circle_rounded),
-                        label: '我的',
+                        label: pageTitles[3],
                       ),
                     ],
                   ),
