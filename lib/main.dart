@@ -37,7 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final avatar = 'https://avatars.githubusercontent.com/u/53565118';
 
   final examinationName = '龙岩市第一中学2020-2021高一上学期期中质量检测';
+
   int pageIndex = 0;
+  String pageTitle = '速览';
 
   void switchPages(int i) {
     if (i == pageIndex) {
@@ -91,6 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '速览',
+                        textScaleFactor: 2,
                       ),
                     ),
                   ],
