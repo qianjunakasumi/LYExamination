@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Stack(
           children: [
@@ -121,9 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.08),
-                      offset: Offset(0, -6),
-                      blurRadius: 16,
+                      color: Color.fromRGBO(0, 0, 0, 0.12),
+                      offset: Offset(0, 3),
+                      blurRadius: 6,
+                      spreadRadius: -4,
                     ),
                   ],
                 ),
@@ -133,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: switchPages,
                     currentIndex: pageIndex,
                     type: BottomNavigationBarType.fixed,
-                    backgroundColor: Color.fromRGBO(255, 255, 255, 0.88),
+                    backgroundColor: Colors.white,
                     selectedItemColor: Colors.black87,
                     unselectedItemColor: Colors.grey,
                     showUnselectedLabels: false,
