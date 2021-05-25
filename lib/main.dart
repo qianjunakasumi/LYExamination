@@ -5,6 +5,7 @@ import 'package:lyexamination/welcome.dart';
 
 void main() async {
   rootCheck();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(LYExaminationApp());
 }
 
