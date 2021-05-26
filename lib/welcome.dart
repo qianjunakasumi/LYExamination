@@ -48,7 +48,7 @@ class WelcomePage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.message_outlined),
+              Image.asset('assets/icons/wechat.png', width: 20),
               Text('微信登录'),
             ],
           ),
