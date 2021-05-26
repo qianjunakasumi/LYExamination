@@ -15,8 +15,8 @@ class LYExaminationApp extends StatelessWidget {
     return MaterialApp(
       title: '龙岩考试',
       routes: {
-        '/': (context) => MyHomePage(),
-        '/welcome': (context) => WelcomePage(),
+        '/': (context) => WelcomePage(),
+        '/home': (context) => MyHomePage(),
       },
     );
   }
