@@ -10,19 +10,17 @@ class WelcomePage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 48, bottom: 24),
-                child: Image.asset(
-                  'assets/lighthouse.png',
-                  width: 280,
-                ),
+                margin: EdgeInsets.only(bottom: 16),
+                child: Image.asset('assets/lighthouse.png', width: 200),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 48),
                 child: Text(
                   '龙岩考试',
-                  textScaleFactor: 2.2,
+                  textScaleFactor: 2,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     letterSpacing: 4,
