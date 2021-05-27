@@ -15,11 +15,11 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ButtonStyle _style = ButtonStyle(
       elevation: MaterialStateProperty.all(0),
-      shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-      ),
       padding: MaterialStateProperty.all(
         EdgeInsets.only(top: 12, left: 32, right: 16, bottom: 12),
+      ),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
       ),
     );
 
