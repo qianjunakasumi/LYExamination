@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lyexamination/common/safety/root_check.dart';
 import 'package:lyexamination/home.dart';
 import 'package:lyexamination/welcome.dart';
 
 void main() async {
-  rootCheck();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(LYExaminationApp());
 }
