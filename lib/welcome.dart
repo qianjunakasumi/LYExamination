@@ -77,7 +77,10 @@ class WelcomePage extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.only(bottom: 8),
-                child: Image.asset('assets/lighthouse.png', width: 200),
+                child: Image.asset(
+                  'assets/background/lighthouse.png',
+                  width: 200,
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 32),
