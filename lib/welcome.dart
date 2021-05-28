@@ -1,18 +1,32 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lyexamination/dao/student.dart';
+import 'package:lyexamination/model/database/table/student.dart';
+import 'package:lyexamination/route/terms.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WelcomePage extends StatelessWidget {
   static const String _license =
       'https://github.com/qianjunakasumi/LYExamination/blob/main/LICENSE';
 
-
+  void _skip(BuildContext context, List<Student> stu) {
+    if (stu.length != 0) {
+      // Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      // TODO 登录
+    }
+  }
 
   void _next(BuildContext context, String m) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => TermsPage(m)),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    retrieveStudents().then((stu) => _skip(context, stu));
+
     final ButtonStyle _style = ButtonStyle(
       elevation: MaterialStateProperty.all(0),
       padding: MaterialStateProperty.all(
