@@ -17,7 +17,7 @@ class TermsPage extends StatelessWidget {
               padding: EdgeInsets.only(left: 24, right: 24, bottom: 80),
               children: [
                 SizedBox(height: 16),
-                Image.asset('assets/background/terms.png', height: 184),
+                Image.asset('assets/background/quick_chat.png', height: 96),
                 SizedBox(height: 16),
                 Center(
                   child: Text(
@@ -77,7 +77,7 @@ class TermsPage extends StatelessWidget {
                       Fluttertoast.showToast(msg: 'Remote Server Failed'),
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(
-                      EdgeInsets.only(top: 12, left: 64, right: 64, bottom: 12),
+                      EdgeInsets.only(top: 12, left: 88, right: 88, bottom: 12),
                     ),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
