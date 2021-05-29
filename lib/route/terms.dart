@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lyexamination/common/app/config.dart';
-import 'package:lyexamination/widget/qa.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TermsPage extends StatelessWidget {
@@ -15,58 +14,58 @@ class TermsPage extends StatelessWidget {
         child: Stack(
           children: [
             ListView(
-              padding: EdgeInsets.only(left: 32, right: 32, bottom: 80),
+              padding: EdgeInsets.only(left: 24, right: 24, bottom: 80),
               children: [
-                Container(
-                  margin: EdgeInsets.only(top: 40, bottom: 32),
-                  child:
-                      Image.asset('assets/background/terms.png', height: 200),
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 32),
-                  child: Center(
-                    child: Text(
-                      '条款',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                      textScaleFactor: 2,
-                    ),
+                SizedBox(height: 16),
+                Image.asset('assets/background/terms.png', height: 184),
+                SizedBox(height: 16),
+                Center(
+                  child: Text(
+                    '客官且慢',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                    textScaleFactor: 2,
                   ),
                 ),
-                Text('理解您要跳过这些内容，但为了维护您的权益，仍请花些时间了解'),
-                Container(
-                  margin: EdgeInsets.only(top: 32, bottom: 16),
-                  child: ElevatedButton(
-                    onPressed: () => launch(config.githubAddr),
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(0),
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.only(top: 12, bottom: 12),
-                      ),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                      ),
+                SizedBox(height: 16),
+                Text('理解您要跳过这些内容，但是为了维护您的权益，仍请花些时间了解'),
+                SizedBox(height: 24),
+                Text('谁提供服务', textScaleFactor: 1.32),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () => launch(config.githubAddr),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.only(top: 12, bottom: 12),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('服务提供方：', textScaleFactor: 1.2),
-                        Text('${config.sponsor} <${config.email}>'),
-                      ],
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(32),
+                      ),
                     ),
                   ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('服务提供方：', textScaleFactor: 1.2),
+                      Text('${config.sponsor} <${config.email}>'),
+                    ],
+                  ),
                 ),
-                Text('服务器地址：' + config.apiAddr),
+                SizedBox(height: 8),
+                Text('服务器：' + config.apiAddr),
                 Divider(color: Colors.grey),
-                QAWidget(
-                  '为什么需要了解服务信息？',
-                  '为促进自由软件发展，我们已将其开源。这意味着任何人都可取得该软件原始代码的副本。为保护您的个人信息安全，需要对服务器身份验证，以确保信息不被存储、披露、贩卖。',
+                Text(
+                  '我们倡导自由软件运动，因此每个人都可以为您提供服务。有且仅有 “api-lyexamination.qianjunakasumi.ren”（官方）服务器受保护。不受保护的服务器可能存储、披露或贩卖您的个人信息。',
                 ),
-                QAWidget(
-                  '如何验证该软件受官方背书/信任？',
-                  '除非您自行构建，否则有且仅有以下服务器被信任：api-lyexamination.qianjunakasumi.ren',
-                ),
+                SizedBox(height: 16),
+                Text('著作权信息', textScaleFactor: 1.32),
+                SizedBox(height: 16),
+                Text('Copyright (c) 2021-现在 千橘 雫霞'),
+                SizedBox(height: 16),
+                Text('许可证', textScaleFactor: 1.32),
+                SizedBox(height: 16),
+                Text('Mozilla 公共许可证 2.0（Mozilla Public License 2.0）'),
               ],
             ),
             Align(
