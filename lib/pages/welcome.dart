@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lyexamination/dao/student.dart';
 import 'package:lyexamination/model/database/table/student.dart';
-import 'package:lyexamination/route/terms.dart';
+import 'package:lyexamination/pages/terms.dart';
 
 class WelcomePage extends StatelessWidget {
   void _skip(BuildContext context, List<Student> stu) {
