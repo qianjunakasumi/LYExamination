@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lyexamination/common/app/config.dart';
+import 'package:lyexamination/boot//app/config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TermsPage extends StatelessWidget {

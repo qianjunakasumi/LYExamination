@@ -1,4 +1,4 @@
-import 'package:lyexamination/common/data/sqflite.dart';
+import 'package:lyexamination/boot//data/sqflite.dart';
 import 'package:lyexamination/model/database/table/student.dart';
 
 Future<List<Student>> retrieveStudents() async {
