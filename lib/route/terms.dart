@@ -16,9 +16,9 @@ class TermsPage extends StatelessWidget {
             ListView(
               padding: EdgeInsets.only(left: 24, right: 24, bottom: 80),
               children: [
-                SizedBox(height: 16),
+                SizedBox(height: 64),
                 Image.asset('assets/background/quick_chat.png', height: 96),
-                SizedBox(height: 16),
+                SizedBox(height: 32),
                 Center(
                   child: Text(
                     '客官且慢',
@@ -26,7 +26,7 @@ class TermsPage extends StatelessWidget {
                     textScaleFactor: 2,
                   ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 32),
                 Text('理解您要跳过这些内容，但是为了维护您的权益，仍请花些时间了解'),
                 SizedBox(height: 24),
                 Text('谁提供服务', textScaleFactor: 1.32),
