@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:lyexamination/boot//app/config.dart';
+import 'package:lyexamination/boot/app/config.dart';
+import 'package:lyexamination/dao/student.dart';
+import 'package:lyexamination/model/database/table/student.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WelcomePage extends StatelessWidget {
+  void _skip(BuildContext context, List<Student> stu) {
+    if (stu.length != 0) {
+      // Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      // TODO 登录
+    }
+  }
+
+  final ButtonStyle _btnStyle = ButtonStyle(
+    elevation: MaterialStateProperty.all(0),
+    padding: MaterialStateProperty.all(
+      EdgeInsets.only(top: 12, bottom: 12),
+    ),
+    shape: MaterialStateProperty.all(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(32),
+      ),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
+    retrieveStudents().then((stu) => _skip(context, stu));
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -32,17 +55,7 @@ class WelcomePage extends StatelessWidget {
                 SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => launch(config.githubAddr),
-                  style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0),
-                    padding: MaterialStateProperty.all(
-                      EdgeInsets.only(top: 12, bottom: 12),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32),
-                      ),
-                    ),
-                  ),
+                  style: _btnStyle,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
