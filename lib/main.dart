@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lyexamination/pages/create.dart';
 import 'package:lyexamination/pages/home.dart';
 import 'package:lyexamination/pages/welcome.dart';
 
@@ -32,6 +33,7 @@ class LYExaminationApp extends StatelessWidget {
       routes: {
         '/welcome': (context) => WelcomePage(),
         '/home': (context) => MyHomePage(),
+        '/create': (context) => CreatePage(),
       },
     );
   }
