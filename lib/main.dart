@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lyexamination/pages/create.dart';
 import 'package:lyexamination/pages/home.dart';
-import 'package:lyexamination/pages/welcome.dart';
+import 'package:lyexamination/pages/privacy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,9 +29,9 @@ class LYExaminationApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '龙岩考试',
-      initialRoute: '/welcome',
+      initialRoute: '/privacy',
       routes: {
-        '/welcome': (context) => WelcomePage(),
+        '/privacy': (context) => PrivacyPage(),
         '/home': (context) => MyHomePage(),
         '/create': (context) => CreatePage(),
       },
