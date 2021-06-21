@@ -10,6 +10,21 @@ void main() async {
   soak();
 }
 
+class LYExaminationApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: '龙岩考试',
+      initialRoute: '/privacy',
+      routes: {
+        '/privacy': (context) => Wrapper(PrivacyPage()),
+        '/home': (context) => Wrapper(MyHomePage()),
+        '/create': (context) => Wrapper(CreatePage()),
+      },
+    );
+  }
+}
+
 /// 沉浸式状态栏
 void soak() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -24,17 +39,21 @@ void soak() async {
   );
 }
 
-class LYExaminationApp extends StatelessWidget {
+class Wrapper extends StatelessWidget {
+  const Wrapper(this.child);
+
+  final Widget child;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '龙岩考试',
-      initialRoute: '/privacy',
-      routes: {
-        '/privacy': (context) => PrivacyPage(),
-        '/home': (context) => MyHomePage(),
-        '/create': (context) => CreatePage(),
-      },
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24, right: 24),
+          child: child,
+        ),
+      ),
     );
   }
 }
