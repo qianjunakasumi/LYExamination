@@ -2,6 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CreatePage extends StatelessWidget {
+  final _k = GlobalKey<FormState>();
+
+  int _phone;
+  String _pwd;
+
+  void _onSubmit() {
+    print('想要登录');
+    if (_k.currentState.validate() != true) {
+      print('请检查');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +50,19 @@ class CreatePage extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Form(
+                key: _k,
                 autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   children: [
                     TextFormField(
                       decoration: InputDecoration(labelText: '手机号'),
+                      keyboardType: TextInputType.number,
                       autofocus: true,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      onSaved: (v) => _phone = v as int,
                       validator: (v) {
-                        if (v.isEmpty) {
-                          return '请输入手机号';
+                        if (v.isEmpty || v.length != 11) {
+                          return '请输入有效的手机号';
                         } else {
                           return null;
                         }
@@ -57,38 +72,39 @@ class CreatePage extends StatelessWidget {
                     TextFormField(
                       decoration: InputDecoration(labelText: '密码'),
                       obscureText: true,
+                      onSaved: (v) => _pwd = v,
                       validator: (v) {
-                        if (v.isEmpty) {
-                          return '请输入密码';
+                        if (v.isEmpty || v.length < 6 || v.length > 20) {
+                          return '请输入有效的密码';
                         } else {
                           return null;
                         }
                       },
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 32),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () => print('登录'),
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(0),
-                        padding: MaterialStateProperty.all(
-                          EdgeInsets.only(top: 12, bottom: 12),
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32),
+                    ),
+                    SizedBox(height: 32),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () => _onSubmit(),
+                            style: ButtonStyle(
+                              elevation: MaterialStateProperty.all(0),
+                              padding: MaterialStateProperty.all(
+                                EdgeInsets.only(top: 12, bottom: 12),
+                              ),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32),
+                                ),
+                              ),
+                            ),
+                            child: Text('登录'),
                           ),
                         ),
-                      ),
-                      child: Text('登录'),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
