@@ -4,13 +4,12 @@ import 'package:flutter/services.dart';
 class CreatePage extends StatelessWidget {
   final _k = GlobalKey<FormState>();
 
-  int _phone;
+  String _phone;
   String _pwd;
 
-  void _onSubmit() {
-    print('想要登录');
+  void _onSubmit() async {
     if (_k.currentState.validate() != true) {
-      print('请检查');
+      return;
     }
   }
 
@@ -51,7 +50,7 @@ class CreatePage extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 autofocus: true,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                onSaved: (v) => _phone = v as int,
+                onSaved: (v) => _phone = v,
                 validator: (v) {
                   if (v.isEmpty || v.length != 11) {
                     return '请输入有效的手机号';
