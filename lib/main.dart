@@ -29,12 +29,10 @@ class LYExaminationApp extends StatelessWidget {
 void soak() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      systemNavigationBarColor: Color(0xFF000000),
-      systemNavigationBarDividerColor: null,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.dark,
       statusBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
     ),
   );
 }
