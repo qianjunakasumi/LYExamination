@@ -31,7 +31,7 @@ class PrivacyPage extends StatelessWidget {
     retrieveStudents().then((stu) => _skip(context, stu));
 
     return ListView(
-      padding: EdgeInsets.only(bottom: 32),
+      physics: BouncingScrollPhysics(),
       children: [
         SizedBox(height: 64),
         Row(
@@ -184,6 +184,7 @@ class PrivacyPage extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 64),
       ],
     );
   }
