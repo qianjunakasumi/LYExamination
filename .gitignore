@@ -47,5 +47,5 @@ app.*.map.json
 
 # LYExamination
 pubspec.lock
-lib/boot/app/config.dart
+lib/boot/config.dart
 *.jks
