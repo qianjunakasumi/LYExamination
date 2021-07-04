@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:grpc/grpc.dart';
-import 'package:lyexamination/boot/app/config.dart';
-import 'package:lyexamination/protobuf/lyexamination.pbgrpc.dart';
+import 'package:http/http.dart' as http;
+import 'package:lyexamination/boot/snackbar.dart';
 
 class CreatePage extends StatelessWidget {
   final _k = GlobalKey<FormState>();
@@ -20,34 +21,38 @@ class CreatePage extends StatelessWidget {
 
     _k.currentState.save();
 
-    var channel = ClientChannel(
-      config.apiAddr,
-      port: 443,
-      options: ChannelOptions(credentials: ChannelCredentials.insecure()),
+    final rsp = await http.post(
+      Uri.parse('https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin'),
+      body: <String, String>{
+        'Login_phone': _phone.toString(),
+        'parpwd': _pwd,
+      },
     );
 
-    var stub = LYExaminationClient(channel);
+    final msg = json.decode(rsp.body)['msg'] as String;
 
-    try {
-      final res = await stub.login(LoginReq(
-        phone: _phone.toString(),
-        pwd: _pwd,
-      ));
+    switch (msg) {
+      case 'ok':
+        showSnackBar(context, '登录成功');
+        break;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('登录成功')),
-      );
+      case 'mimacuowu':
+        showSnackBar(context, '错误的密码');
+        break;
 
-      // TODO 保存帐号到数据库
+      case 'shangweizhuce':
+        showSnackBar(context, '错误的帐号');
+        break;
 
-      // TODO 跳转至身份选择页面
-
-    } catch (e) {
-      final err = e as GrpcError;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(err.message)),
-      );
+      default:
+        showSnackBarWithFeedback(context, '未知错误。原始消息：' + msg);
     }
+
+    // TODO 获取 session
+
+    // TODO 保存帐号到数据库
+
+    // TODO 跳转至身份选择页面
   }
 
   @override
