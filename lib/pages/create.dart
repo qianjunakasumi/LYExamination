@@ -5,7 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:lyexamination/boot/snackbar.dart';
 
-class CreatePage extends StatelessWidget {
+class CreatePage extends StatefulWidget {
+  @override
+  _CreatePageState createState() => _CreatePageState();
+}
+
+class _CreatePageState extends State<CreatePage> {
   final _k = GlobalKey<FormState>();
 
   String _phone;
@@ -47,7 +52,6 @@ class CreatePage extends StatelessWidget {
       default:
         showSnackBarWithFeedback(context, '未知错误。原始消息：' + msg);
     }
-
     // TODO 获取 session
 
     // TODO 保存帐号到数据库

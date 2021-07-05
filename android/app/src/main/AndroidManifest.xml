@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ren.qianjunakasumi.lyexamination">
-   <application
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
         android:label="龙岩考试"
         android:icon="@mipmap/ic_launcher">
         <activity
