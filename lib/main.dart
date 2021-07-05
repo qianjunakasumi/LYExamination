@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lyexamination/pages/create.dart';
-import 'package:lyexamination/pages/home.dart';
-import 'package:lyexamination/pages/privacy.dart';
+import 'package:lyexamination/router/root.dart';
 
 void main() async {
+  soak();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(LYExaminationApp());
-  soak();
 }
 
 class LYExaminationApp extends StatelessWidget {
@@ -16,11 +14,7 @@ class LYExaminationApp extends StatelessWidget {
     return MaterialApp(
       title: '龙岩考试',
       initialRoute: '/privacy',
-      routes: {
-        '/privacy': (context) => Wrapper(PrivacyPage()),
-        '/home': (context) => Wrapper(MyHomePage()),
-        '/create': (context) => Wrapper(CreatePage()),
-      },
+      routes: routes,
     );
   }
 }
@@ -35,23 +29,4 @@ void soak() async {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-}
-
-class Wrapper extends StatelessWidget {
-  const Wrapper(this.child);
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 24, right: 24),
-          child: child,
-        ),
-      ),
-    );
-  }
 }
