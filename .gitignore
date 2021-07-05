@@ -49,3 +49,4 @@ app.*.map.json
 pubspec.lock
 lib/boot/config.dart
 *.jks
+android/app/google-services.json
