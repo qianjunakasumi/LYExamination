@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:lyexamination/boot/snackbar.dart';
+import 'package:lyexamination/messenger.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -18,11 +18,11 @@ class _CreatePageState extends State<CreatePage> {
 
   void _onSubmit(BuildContext context) async {
     if (_k.currentState.validate() != true) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('请按提示输入正确的内容')),
-      );
+      Messenger().snackBar('请按提示输入正确的内容');
       return;
     }
+
+    Messenger().process();
 
     _k.currentState.save();
 
@@ -36,21 +36,23 @@ class _CreatePageState extends State<CreatePage> {
 
     final msg = json.decode(rsp.body)['msg'] as String;
 
+    Messenger().completeProcess();
+
     switch (msg) {
       case 'ok':
-        showSnackBar(context, '登录成功');
+        Messenger().snackBar('登录成功');
         break;
 
       case 'mimacuowu':
-        showSnackBar(context, '错误的密码');
+        Messenger().snackBar('错误的密码');
         break;
 
       case 'shangweizhuce':
-        showSnackBar(context, '错误的帐号');
+        Messenger().snackBar('错误的帐号');
         break;
 
       default:
-        showSnackBarWithFeedback(context, '未知错误。原始消息：' + msg);
+        Messenger().snackBar('未知错误。原始消息：' + msg, feedback: true);
     }
     // TODO 获取 session
 
