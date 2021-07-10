@@ -1,19 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lyexamination/boot/network.dart';
+import 'package:lyexamination/boot/shared_preferences.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 
 class ProfileService extends ChangeNotifier {
   void fileAccount(AccountModel a) async {
-    await loginAccount(a);
+    if (!await loginAccount(a)) {
+      return;
+    }
 
-    // TODO 保存帐号到数据库
+    prefs.setString(a.phone, a.password);
 
     // TODO 跳转至身份选择页面
   }
 
-  void loginAccount(AccountModel a) async {
+  /// ## 登录帐号
+  /// 返回值释义：登录成功与否
+  Future<bool> loginAccount(AccountModel a) async {
     Response<dynamic> rsp;
     try {
       rsp = await http.post(
@@ -32,8 +37,7 @@ class ProfileService extends ChangeNotifier {
     switch (msg) {
       case 'ok':
         Messenger().snackBar('登录成功');
-        // TODO 获取 session
-        break;
+        return true;
 
       case 'mimacuowu':
         Messenger().snackBar('错误的密码');
@@ -46,5 +50,7 @@ class ProfileService extends ChangeNotifier {
       default:
         Messenger().snackBar('未知错误。原始消息：' + msg, feedback: true);
     }
+
+    return false;
   }
 }
