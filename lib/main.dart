@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lyexamination/boot/network.dart' as network;
 import 'package:lyexamination/router/root.dart';
 
 void main() async {
   soak();
+  network.init();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(LYExaminationApp());
 }

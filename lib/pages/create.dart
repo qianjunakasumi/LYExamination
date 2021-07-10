@@ -1,8 +1,7 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
+import 'package:lyexamination/boot/network.dart';
 import 'package:lyexamination/messenger.dart';
 
 class CreatePage extends StatefulWidget {
@@ -26,15 +25,20 @@ class _CreatePageState extends State<CreatePage> {
 
     _k.currentState.save();
 
-    final rsp = await http.post(
-      Uri.parse('https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin'),
-      body: <String, String>{
-        'Login_phone': _phone.toString(),
-        'parpwd': _pwd,
-      },
-    );
+    Response<dynamic> rsp;
+    try {
+      rsp = await http.post(
+        'https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin',
+        data: FormData.fromMap({
+          'Login_phone': _phone.toString(),
+          'parpwd': _pwd,
+        }),
+      );
+    } catch (e) {
+      Messenger().snackBar(e, feedback: true);
+    }
 
-    final msg = json.decode(rsp.body)['msg'] as String;
+    final msg = rsp.data['msg'];
 
     Messenger().completeProcess();
 
