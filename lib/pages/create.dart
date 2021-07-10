@@ -1,8 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lyexamination/boot/network.dart';
 import 'package:lyexamination/messenger.dart';
+import 'package:lyexamination/model/profile.dart';
+import 'package:lyexamination/service/profile.dart';
+import 'package:provider/provider.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -10,59 +11,22 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  final _k = GlobalKey<FormState>();
+  final k = GlobalKey<FormState>();
 
-  String _phone;
-  String _pwd;
+  AccountModel a = AccountModel();
 
   void _onSubmit(BuildContext context) async {
-    if (_k.currentState.validate() != true) {
+    if (k.currentState.validate() != true) {
       Messenger().snackBar('请按提示输入正确的内容');
       return;
     }
 
     Messenger().process();
 
-    _k.currentState.save();
-
-    Response<dynamic> rsp;
-    try {
-      rsp = await http.post(
-        'https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin',
-        data: FormData.fromMap({
-          'Login_phone': _phone.toString(),
-          'parpwd': _pwd,
-        }),
-      );
-    } catch (e) {
-      Messenger().snackBar(e, feedback: true);
-    }
-
-    final msg = rsp.data['msg'];
+    k.currentState.save();
+    Provider.of<ProfileService>(context, listen: false).fileAccount(a);
 
     Messenger().completeProcess();
-
-    switch (msg) {
-      case 'ok':
-        Messenger().snackBar('登录成功');
-        break;
-
-      case 'mimacuowu':
-        Messenger().snackBar('错误的密码');
-        break;
-
-      case 'shangweizhuce':
-        Messenger().snackBar('错误的帐号');
-        break;
-
-      default:
-        Messenger().snackBar('未知错误。原始消息：' + msg, feedback: true);
-    }
-    // TODO 获取 session
-
-    // TODO 保存帐号到数据库
-
-    // TODO 跳转至身份选择页面
   }
 
   @override
@@ -93,7 +57,7 @@ class _CreatePageState extends State<CreatePage> {
         Text('您可随时取消登录', style: TextStyle(color: Colors.grey)),
         SizedBox(height: 8),
         Form(
-          key: _k,
+          key: k,
           autovalidateMode: AutovalidateMode.always,
           child: Column(
             children: [
@@ -102,7 +66,7 @@ class _CreatePageState extends State<CreatePage> {
                 keyboardType: TextInputType.number,
                 autofocus: true,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                onSaved: (v) => _phone = v,
+                onSaved: (v) => a.phone = v,
                 validator: (v) {
                   if (v.isEmpty || v.length != 11) {
                     return '请输入有效的手机号';
@@ -115,7 +79,7 @@ class _CreatePageState extends State<CreatePage> {
               TextFormField(
                 decoration: InputDecoration(labelText: '密码'),
                 obscureText: true,
-                onSaved: (v) => _pwd = v,
+                onSaved: (v) => a.password = v,
                 validator: (v) {
                   if (v.isEmpty || v.length < 6 || v.length > 20) {
                     return '请输入有效的密码';

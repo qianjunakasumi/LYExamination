@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lyexamination/service/profile.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 BuildContext _instance;
@@ -10,8 +12,6 @@ class MessengerWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('初始化成功......=====');
-
     _instance = context;
 
     return Scaffold(
@@ -19,7 +19,12 @@ class MessengerWrapper extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 24, right: 24),
-          child: _child,
+          child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => ProfileService()),
+            ],
+            child: _child,
+          ),
         ),
       ),
     );
