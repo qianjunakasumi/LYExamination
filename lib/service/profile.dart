@@ -6,7 +6,7 @@ import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 
 class ProfileService extends ChangeNotifier {
-  void fileAccount(AccountModel a) async {
+  Future<void> fileAccount(AccountModel a) async {
     if (!await loginAccount(a)) {
       return;
     }

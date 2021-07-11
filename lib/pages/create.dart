@@ -24,7 +24,7 @@ class _CreatePageState extends State<CreatePage> {
     Messenger().process();
 
     k.currentState.save();
-    Provider.of<ProfileService>(context, listen: false).fileAccount(a);
+    await Provider.of<ProfileService>(context, listen: false).fileAccount(a);
 
     Messenger().completeProcess();
   }
