@@ -17,16 +17,19 @@ class _CreatePageState extends State<CreatePage> {
 
   void _onSubmit(BuildContext context) async {
     if (k.currentState.validate() != true) {
-      Messenger().snackBar('请按提示输入正确的内容');
+      Messenger.snackBar('请按提示输入正确的内容');
       return;
     }
 
-    Messenger().process();
+    Messenger.process();
 
     k.currentState.save();
     await Provider.of<ProfileService>(context, listen: false).fileAccount(a);
 
-    Messenger().completeProcess();
+    Messenger.completeProcess();
+
+    // TODO 跳转至档案选择页面
+    Messenger.navigator().pushReplacementNamed('/');
   }
 
   @override

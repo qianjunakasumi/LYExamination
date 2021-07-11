@@ -12,8 +12,6 @@ class ProfileService extends ChangeNotifier {
     }
 
     prefs.setString(a.phone, a.password);
-
-    // TODO 跳转至身份选择页面
   }
 
   /// ## 登录帐号
@@ -29,26 +27,26 @@ class ProfileService extends ChangeNotifier {
         }),
       );
     } catch (e) {
-      Messenger().snackBar(e, feedback: true);
+      Messenger.snackBar(e, feedback: true);
     }
 
     final msg = rsp.data['msg'];
 
     switch (msg) {
       case 'ok':
-        Messenger().snackBar('登录成功');
+        Messenger.snackBar('登录成功');
         return true;
 
       case 'mimacuowu':
-        Messenger().snackBar('错误的密码');
+        Messenger.snackBar('错误的密码');
         break;
 
       case 'shangweizhuce':
-        Messenger().snackBar('错误的帐号');
+        Messenger.snackBar('错误的帐号');
         break;
 
       default:
-        Messenger().snackBar('未知错误。原始消息：' + msg, feedback: true);
+        Messenger.snackBar('未知错误。原始消息：' + msg, feedback: true);
     }
 
     return false;

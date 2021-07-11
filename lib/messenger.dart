@@ -6,11 +6,11 @@ import 'package:url_launcher/url_launcher.dart';
 BuildContext _instance;
 
 class Messenger {
-  NavigatorState navigator() {
+  static NavigatorState navigator() {
     return Navigator.of(_instance);
   }
 
-  void snackBar(String content, {bool feedback}) {
+  static void snackBar(String content, {bool feedback}) {
     SnackBar b = SnackBar(content: Text(content));
 
     if (feedback == true) {
@@ -28,7 +28,7 @@ class Messenger {
     ScaffoldMessenger.of(_instance).showSnackBar(b);
   }
 
-  void process() {
+  static void process() {
     showDialog(
       context: _instance,
       builder: (_) => Center(
@@ -40,7 +40,7 @@ class Messenger {
     );
   }
 
-  void completeProcess() {
+  static void completeProcess() {
     Navigator.pop(_instance);
   }
 }
