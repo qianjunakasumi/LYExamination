@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lyexamination/boot/config.dart';
 import 'package:lyexamination/dao/student.dart';
+import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/database/table/student.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -145,7 +146,7 @@ class PrivacyPage extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/create'),
+                onPressed: () => Messenger().navigator().pushNamed('/create'),
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(

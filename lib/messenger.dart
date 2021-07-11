@@ -5,33 +5,11 @@ import 'package:url_launcher/url_launcher.dart';
 
 BuildContext _instance;
 
-class MessengerWrapper extends StatelessWidget {
-  MessengerWrapper(this._child);
-
-  final Widget _child;
-
-  @override
-  Widget build(BuildContext context) {
-    _instance = context;
-
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 24, right: 24),
-          child: MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => ProfileService()),
-            ],
-            child: _child,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class Messenger {
+  NavigatorState navigator() {
+    return Navigator.of(_instance);
+  }
+
   void snackBar(String content, {bool feedback}) {
     SnackBar b = SnackBar(content: Text(content));
 
@@ -64,5 +42,31 @@ class Messenger {
 
   void completeProcess() {
     Navigator.pop(_instance);
+  }
+}
+
+class MessengerWrapper extends StatelessWidget {
+  MessengerWrapper(this._child);
+
+  final Widget _child;
+
+  @override
+  Widget build(BuildContext context) {
+    _instance = context;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24, right: 24),
+          child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => ProfileService()),
+            ],
+            child: _child,
+          ),
+        ),
+      ),
+    );
   }
 }
