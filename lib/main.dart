@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lyexamination/boot/network.dart' as network;
 import 'package:lyexamination/boot/shared_preferences.dart' as prefs;
+import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/router/root.dart';
 
 void main() async {
@@ -16,6 +17,7 @@ class LYExaminationApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: globalNavKey,
       title: '龙岩考试',
       initialRoute: '/privacy',
       routes: routes,

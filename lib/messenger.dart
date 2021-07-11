@@ -4,10 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 BuildContext _instance;
+GlobalKey<NavigatorState> globalNavKey = GlobalKey();
 
 class Messenger {
   static NavigatorState navigator() {
-    return Navigator.of(_instance);
+    return globalNavKey.currentState;
   }
 
   static void snackBar(String content, {bool feedback}) {
