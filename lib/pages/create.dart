@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
+import 'package:lyexamination/pages/create/_components/title.dart';
 import 'package:lyexamination/service/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,6 @@ class _CreatePageState extends State<CreatePage> {
     Messenger.completeProcess();
 
     // TODO 跳转至档案选择页面
-    Messenger.navigator().pushReplacementNamed('/');
   }
 
   @override
@@ -37,15 +37,7 @@ class _CreatePageState extends State<CreatePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 64),
-        Text(
-          '欢迎登录',
-          textScaleFactor: 2.16,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 24),
-        Divider(),
-        SizedBox(height: 24),
+        TitleComponent('欢迎登录'),
         Text('龙岩考试  申请'),
         SizedBox(height: 8),
         Text(
