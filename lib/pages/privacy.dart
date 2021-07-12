@@ -146,7 +146,8 @@ class PrivacyPage extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () => Messenger.navigator().pushNamed('/create'),
+                onPressed: () =>
+                    Messenger.navigator().pushNamed('/create/account'),
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(

@@ -5,7 +5,7 @@ import 'package:lyexamination/pages/home.dart';
 import 'package:lyexamination/pages/privacy.dart';
 
 final Map<String, Widget Function(BuildContext)> routes = {
-  '/privacy': (context) => MessengerWrapper(PrivacyPage()),
-  '/home': (context) => MessengerWrapper(MyHomePage()),
-  '/create': (context) => MessengerWrapper(CreatePage()),
+  '/privacy': (_) => MessengerWrapper(PrivacyPage()),
+  '/home': (_) => MessengerWrapper(MyHomePage()),
+  '/create/account': (_) => MessengerWrapper(CreatePage()),
 };
