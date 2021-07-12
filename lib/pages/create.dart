@@ -25,11 +25,17 @@ class _CreatePageState extends State<CreatePage> {
     Messenger.process();
 
     k.currentState.save();
-    await Provider.of<ProfileService>(context, listen: false).fileAccount(a);
+
+    final isOK = await Provider.of<ProfileService>(context, listen: false)
+        .fileAccount(a);
 
     Messenger.completeProcess();
 
-    // TODO 跳转至档案选择页面
+    if (!isOK) {
+      return;
+    }
+
+    Messenger.navigator().pushReplacementNamed('/create/profile');
   }
 
   @override

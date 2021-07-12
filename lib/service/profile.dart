@@ -6,12 +6,17 @@ import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 
 class ProfileService extends ChangeNotifier {
-  Future<void> fileAccount(AccountModel a) async {
+  /// ## 保存帐号
+  /// 返回值释义：保存成功与否
+  Future<bool> fileAccount(AccountModel a) async {
     if (!await loginAccount(a)) {
-      return;
+      return false;
     }
 
     prefs.setString(a.phone, a.password);
+
+    return true;
+  }
   }
 
   /// ## 登录帐号
