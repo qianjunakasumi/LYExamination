@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Messenger {
-  static void snackBar(String content, {bool feedback}) {
-    SnackBar b = SnackBar(content: Text(content));
+  static void snackBar(String content, {bool? feedback}) {
+    late SnackBar b;
 
     if (feedback == true) {
       b = SnackBar(
@@ -16,9 +16,11 @@ class Messenger {
           ),
         ),
       );
+    } else {
+      b = SnackBar(content: Text(content));
     }
 
-    ScaffoldMessenger.of(Get.context).showSnackBar(b);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(b);
   }
 
   static void process() {

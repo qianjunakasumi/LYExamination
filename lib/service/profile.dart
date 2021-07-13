@@ -23,8 +23,10 @@ class ProfileService extends GetxService {
   Future<void> addProfile(ProfileModel p) async {
   }
 
-  Future<List<ProfileModel>> fetchProfileFromRemote() async {
-    dio.Response<dynamic> rsp;
+  /// ## 拉取远程档案
+  /// 返回值释义：拉取成功与否
+  Future<bool> fetchProfileFromRemote() async {
+    late dio.Response<dynamic> rsp;
     try {
       rsp = await http.get(
         'https://mic.fjjxhl.com/Jx/index.php/Home/User/ajax_SelectStudent_upCallback',
@@ -33,13 +35,13 @@ class ProfileService extends GetxService {
         },
       );
     } catch (e) {
-      Messenger.snackBar(e, feedback: true);
+      Messenger.snackBar(e.toString(), feedback: true);
     }
 
     final d = rsp.data['rows'];
     if (d == null) {
       Messenger.snackBar('您还没有在龙岩家校中绑定学生', feedback: true);
-      return null;
+      return false;
     }
 
     List<ProfileModel> profiles = [];
@@ -50,13 +52,13 @@ class ProfileService extends GetxService {
     }
 
     profileList.value = profiles;
-    return profiles;
+    return true;
   }
 
   /// ## 登录帐号
   /// 返回值释义：登录成功与否
   Future<bool> loginAccount(AccountModel a) async {
-    dio.Response<dynamic> rsp;
+    late dio.Response<dynamic> rsp;
     try {
       rsp = await http.post(
         'https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin',
@@ -66,7 +68,7 @@ class ProfileService extends GetxService {
         }),
       );
     } catch (e) {
-      Messenger.snackBar(e, feedback: true);
+      Messenger.snackBar(e.toString(), feedback: true);
     }
 
     final msg = rsp.data['msg'];

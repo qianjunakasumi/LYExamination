@@ -13,22 +13,22 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   final ProfileService profile = Get.find();
-
   final k = GlobalKey<FormState>();
 
-  AccountModel a = AccountModel();
+  late String phone;
+  late String password;
 
   void _onSubmit(BuildContext context) async {
-    if (k.currentState.validate() != true) {
+    if (k.currentState!.validate() != true) {
       Messenger.snackBar('请按提示输入正确的内容');
       return;
     }
 
     Messenger.process();
 
-    k.currentState.save();
+    k.currentState!.save();
 
-    final isOK = await profile.fileAccount(a);
+    final isOK = await profile.fileAccount(AccountModel(phone, password));
 
     Messenger.completeProcess();
 
@@ -68,9 +68,9 @@ class _CreatePageState extends State<CreatePage> {
                 keyboardType: TextInputType.number,
                 autofocus: true,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                onSaved: (v) => a.phone = v,
+                onSaved: (v) => phone = v!,
                 validator: (v) {
-                  if (v.isEmpty || v.length != 11) {
+                  if (v!.isEmpty || v.length != 11) {
                     return '请输入有效的手机号';
                   } else {
                     return null;
@@ -81,9 +81,9 @@ class _CreatePageState extends State<CreatePage> {
               TextFormField(
                 decoration: InputDecoration(labelText: '密码'),
                 obscureText: true,
-                onSaved: (v) => a.password = v,
+                onSaved: (v) => password = v!,
                 validator: (v) {
-                  if (v.isEmpty || v.length < 6 || v.length > 20) {
+                  if (v!.isEmpty || v.length < 6 || v.length > 20) {
                     return '请输入有效的密码';
                   } else {
                     return null;

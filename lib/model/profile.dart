@@ -1,8 +1,8 @@
 class AccountModel {
-  String phone;
-  String password;
+  final String phone;
+  final String password;
 
-  AccountModel({this.phone, this.password});
+  AccountModel(this.phone, this.password);
 }
 
 class ProfileModel {

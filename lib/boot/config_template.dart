@@ -4,8 +4,8 @@ class Config {
   final String githubAddr; // GitHub 地址
 
   Config({
-    this.sponsor,
-    this.email,
-    this.githubAddr,
+    required this.sponsor,
+    required this.email,
+    required this.githubAddr,
   });
 }
