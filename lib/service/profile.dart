@@ -20,6 +20,9 @@ class ProfileService extends GetxService {
     return true;
   }
 
+  Future<void> addProfile(ProfileModel p) async {
+  }
+
   Future<List<ProfileModel>> fetchProfileFromRemote() async {
     dio.Response<dynamic> rsp;
     try {
