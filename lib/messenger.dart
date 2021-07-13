@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lyexamination/service/profile.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-BuildContext _instance;
-GlobalKey<NavigatorState> globalNavKey = GlobalKey();
-
 class Messenger {
-  static NavigatorState navigator() {
-    return globalNavKey.currentState;
-  }
-
   static void snackBar(String content, {bool feedback}) {
     SnackBar b = SnackBar(content: Text(content));
 
@@ -26,12 +18,12 @@ class Messenger {
       );
     }
 
-    ScaffoldMessenger.of(_instance).showSnackBar(b);
+    ScaffoldMessenger.of(Get.context).showSnackBar(b);
   }
 
   static void process() {
     showDialog(
-      context: _instance,
+      context: Get.context,
       builder: (_) => Center(
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -42,30 +34,23 @@ class Messenger {
   }
 
   static void completeProcess() {
-    Navigator.pop(_instance);
+    Navigator.pop(Get.context);
   }
 }
 
 class MessengerWrapper extends StatelessWidget {
-  MessengerWrapper(this._child);
-
   final Widget _child;
+
+  MessengerWrapper(this._child);
 
   @override
   Widget build(BuildContext context) {
-    _instance = context;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 24, right: 24),
-          child: MultiProvider(
-            providers: [
-              ChangeNotifierProvider(create: (_) => ProfileService()),
-            ],
-            child: _child,
-          ),
+          child: _child,
         ),
       ),
     );

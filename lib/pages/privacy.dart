@@ -1,20 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lyexamination/boot/config.dart';
-import 'package:lyexamination/dao/student.dart';
-import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/database/table/student.dart';
+import 'package:lyexamination/service/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PrivacyPage extends StatelessWidget {
-  void _skip(BuildContext context, List<Student> stu) {
-    if (stu.length != 0) {
-      // Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-      // TODO 登录
-    }
-  }
-
   final ButtonStyle _btnStyle = ButtonStyle(
     elevation: MaterialStateProperty.all(0),
     padding: MaterialStateProperty.all(
@@ -27,9 +20,18 @@ class PrivacyPage extends StatelessWidget {
     ),
   );
 
+  final ProfileService profile = Get.put(ProfileService());
+
+  void _skip(BuildContext context, List<Student> stu) {
+    if (stu.length != 0) {
+      // Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      // TODO 登录
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    retrieveStudents().then((stu) => _skip(context, stu));
+    //retrieveStudents().then((stu) => _skip(context, stu));
 
     return ListView(
       physics: BouncingScrollPhysics(),
@@ -146,8 +148,7 @@ class PrivacyPage extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () =>
-                    Messenger.navigator().pushNamed('/create/account'),
+                onPressed: () => Get.toNamed('/create/account'),
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
                   padding: MaterialStateProperty.all(

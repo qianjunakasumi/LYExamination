@@ -1,11 +1,11 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:get/get.dart';
 import 'package:lyexamination/boot/network.dart';
 import 'package:lyexamination/boot/shared_preferences.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 
-class ProfileService extends ChangeNotifier {
+class ProfileService extends GetxService {
   /// ## 保存帐号
   /// 返回值释义：保存成功与否
   Future<bool> fileAccount(AccountModel a) async {
@@ -17,16 +17,15 @@ class ProfileService extends ChangeNotifier {
 
     return true;
   }
-  }
 
   /// ## 登录帐号
   /// 返回值释义：登录成功与否
   Future<bool> loginAccount(AccountModel a) async {
-    Response<dynamic> rsp;
+    dio.Response<dynamic> rsp;
     try {
       rsp = await http.post(
         'https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin',
-        data: FormData.fromMap({
+        data: dio.FormData.fromMap({
           'Login_phone': a.phone,
           'parpwd': a.password,
         }),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/create/_components/title.dart';
 import 'package:lyexamination/service/profile.dart';
-import 'package:provider/provider.dart';
 
 class CreatePage extends StatefulWidget {
   @override
@@ -12,6 +12,8 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+  final ProfileService profile = Get.find();
+
   final k = GlobalKey<FormState>();
 
   AccountModel a = AccountModel();
@@ -26,8 +28,7 @@ class _CreatePageState extends State<CreatePage> {
 
     k.currentState.save();
 
-    final isOK = await Provider.of<ProfileService>(context, listen: false)
-        .fileAccount(a);
+    final isOK = await profile.fileAccount(a);
 
     Messenger.completeProcess();
 
@@ -35,7 +36,7 @@ class _CreatePageState extends State<CreatePage> {
       return;
     }
 
-    Messenger.navigator().pushReplacementNamed('/create/profile');
+    Get.toNamed('/create/profile');
   }
 
   @override
