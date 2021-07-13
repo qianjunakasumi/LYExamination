@@ -6,6 +6,8 @@ import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 
 class ProfileService extends GetxService {
+  var profileList = [].obs;
+
   /// ## 保存帐号
   /// 返回值释义：保存成功与否
   Future<bool> fileAccount(AccountModel a) async {
@@ -16,6 +18,36 @@ class ProfileService extends GetxService {
     prefs.setString(a.phone, a.password);
 
     return true;
+  }
+
+  Future<List<ProfileModel>> fetchProfileFromRemote() async {
+    dio.Response<dynamic> rsp;
+    try {
+      rsp = await http.get(
+        'https://mic.fjjxhl.com/Jx/index.php/Home/User/ajax_SelectStudent_upCallback',
+        queryParameters: {
+          'size': 1024,
+        },
+      );
+    } catch (e) {
+      Messenger.snackBar(e, feedback: true);
+    }
+
+    final d = rsp.data['rows'];
+    if (d == null) {
+      Messenger.snackBar('您还没有在龙岩家校中绑定学生', feedback: true);
+      return null;
+    }
+
+    List<ProfileModel> profiles = [];
+
+    for (var p in d) {
+      profiles.add(ProfileModel(
+          p['unum'], p['stuname'], p['school'], p['grade'], p['class']));
+    }
+
+    profileList.value = profiles;
+    return profiles;
   }
 
   /// ## 登录帐号
