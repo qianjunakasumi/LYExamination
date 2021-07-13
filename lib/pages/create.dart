@@ -36,7 +36,7 @@ class _CreatePageState extends State<CreatePage> {
       return;
     }
 
-    Get.toNamed('/create/profile');
+    Get.offNamed('/create/profile');
   }
 
   @override

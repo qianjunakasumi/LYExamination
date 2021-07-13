@@ -7,9 +7,9 @@ import 'package:lyexamination/router/root.dart';
 
 void main() async {
   soak();
+  WidgetsFlutterBinding.ensureInitialized();
   await prefs.init();
   network.init();
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(LYExaminationApp());
 }
 

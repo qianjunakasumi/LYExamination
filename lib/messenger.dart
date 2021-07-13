@@ -22,9 +22,8 @@ class Messenger {
   }
 
   static void process() {
-    showDialog(
-      context: Get.context,
-      builder: (_) => Center(
+    Get.dialog(
+      Center(
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
@@ -34,7 +33,7 @@ class Messenger {
   }
 
   static void completeProcess() {
-    Navigator.pop(Get.context);
+    Get.back();
   }
 }
 
