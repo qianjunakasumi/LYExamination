@@ -6,12 +6,12 @@ import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/create/_components/title.dart';
 import 'package:lyexamination/service/profile.dart';
 
-class CreatePage extends StatefulWidget {
+class CreateAccountPage extends StatefulWidget {
   @override
-  _CreatePageState createState() => _CreatePageState();
+  _CreateAccountPageState createState() => _CreateAccountPageState();
 }
 
-class _CreatePageState extends State<CreatePage> {
+class _CreateAccountPageState extends State<CreateAccountPage> {
   final ProfileService profile = Get.find();
   final k = GlobalKey<FormState>();
 

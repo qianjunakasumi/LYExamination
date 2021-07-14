@@ -4,7 +4,7 @@ import 'package:lyexamination/pages/create/_components/title.dart';
 import 'package:lyexamination/pages/create/profile/list.dart';
 import 'package:lyexamination/service/profile.dart';
 
-class ProfilePage extends StatelessWidget {
+class CreateProfilePage extends StatelessWidget {
   final ProfileService profile = Get.find();
 
   @override
