@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
 import 'package:lyexamination/boot/network.dart';
-import 'package:lyexamination/boot/shared_preferences.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 
@@ -15,7 +14,7 @@ class ProfileService extends GetxService {
       return false;
     }
 
-    prefs.setString(a.phone, a.password);
+    // TODO 保存到文件
 
     return true;
   }
