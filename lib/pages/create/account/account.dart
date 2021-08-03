@@ -7,6 +7,7 @@ import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/create/_components/title.dart';
 import 'package:lyexamination/service/api.dart';
+import 'package:lyexamination/service/hive.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -43,6 +44,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     } finally {
       Messenger.completeProcess();
     }
+
+    final HiveService h = Get.find(tag: 'hive');
+    h.fileAccount(acc);
 
     Get.offNamed('/create/profile');
   }
