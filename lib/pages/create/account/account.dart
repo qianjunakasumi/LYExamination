@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
+
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/create/_components/title.dart';
-import 'package:lyexamination/service/profile.dart';
+import 'package:lyexamination/service/api.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -12,7 +14,6 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
-  final ProfileService profile = Get.find();
   final k = GlobalKey<FormState>();
 
   late String phone;
@@ -28,12 +29,19 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
     k.currentState!.save();
 
-    final isOK = await profile.fileAccount(AccountModel(phone, password));
+    final acc = AccountModel(phone, password);
 
-    Messenger.completeProcess();
-
-    if (!isOK) {
+    final APIService a = Get.find(tag: 'api');
+    try {
+      await a.loginAccount(acc);
+    } on APIError catch (e) {
+      Messenger.snackBar(e.message, feedback: e.feedback);
       return;
+    } catch (e) {
+      Messenger.snackBar(e.toString(), feedback: true);
+      return;
+    } finally {
+      Messenger.completeProcess();
     }
 
     Get.offNamed('/create/profile');

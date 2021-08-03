@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/boot/network.dart' as network;
 import 'package:lyexamination/router.dart';
+import 'package:lyexamination/service/api.dart';
 
 void main() async {
-  network.init();
+  Get.put(APIService(), tag: 'api');
   runApp(LYExaminationApp());
 }
 

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/boot/config.dart';
-import 'package:lyexamination/service/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PrivacyPage extends StatelessWidget {
@@ -18,8 +17,6 @@ class PrivacyPage extends StatelessWidget {
       ),
     ),
   );
-
-  final ProfileService profile = Get.put(ProfileService());
 
   @override
   Widget build(BuildContext context) {

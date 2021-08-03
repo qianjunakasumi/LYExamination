@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lyexamination/model/profile.dart';
-import 'package:lyexamination/service/profile.dart';
 
 class ProfileList extends StatelessWidget {
-  final ProfileService profile = Get.find();
 
   @override
   Widget build(BuildContext context) {

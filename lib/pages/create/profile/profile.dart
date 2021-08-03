@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
+import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/create/_components/title.dart';
 import 'package:lyexamination/pages/create/profile/list.dart';
-import 'package:lyexamination/service/profile.dart';
+import 'package:lyexamination/service/api.dart';
 
 class CreateProfilePage extends StatelessWidget {
   final ProfileService profile = Get.find();
