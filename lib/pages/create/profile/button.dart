@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/service/hive.dart';
 
@@ -21,8 +22,19 @@ class _ButtonComponentState extends State<ButtonComponent> {
 
   bool isPressed = false;
 
-  void check() {
-    h.fileProfile(p);
+  void add() async {
+    final b = h.isProfilesEmpty();
+
+    try {
+      final key = await h.fileProfile(p);
+      if (b) {
+        h.setDefaultProfile(key);
+        Messenger.snackBar('已设为默认档案。如需修改请稍后转到设置');
+      }
+    } catch (e) {
+      Messenger.snackBar(e.toString(), feedback: true);
+    }
+
     setState(() {
       isPressed = true;
     });
@@ -44,7 +56,7 @@ class _ButtonComponentState extends State<ButtonComponent> {
       style: ButtonStyle(
         elevation: MaterialStateProperty.all(0),
       ),
-      onPressed: check,
+      onPressed: add,
       child: Text('选择'),
     );
   }

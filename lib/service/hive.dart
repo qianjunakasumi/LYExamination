@@ -32,13 +32,37 @@ class HiveService extends GetxService {
   }
 
   /// ## 保存档案
-  void fileProfile(ProfileModel p) {
-    _profiles.add({
+  /// 返回值：键
+  Future<int> fileProfile(ProfileModel p) async {
+    return await _profiles.add({
       'number': p.number,
       'name': p.name,
       'school': p.school,
       'grade': p.grade,
       'classNum': p.classNum
     });
+  }
+
+  /// ## 设置默认档案
+  void setDefaultProfile(int k) {
+    _currentProfile.put('defaultProfile', k);
+  }
+
+  /// ## 获取默认档案
+  ProfileModel getDefaultProfile() {
+    final int? key = _currentProfile.get('defaultProfile');
+    if (key == null) {
+      throw '无法获取默认档案键值';
+    }
+
+    final Map profile = _profiles.get(key);
+
+    return ProfileModel(
+      profile['number'],
+      profile['name'],
+      profile['school'],
+      profile['grade'],
+      profile['classNum'],
+    );
   }
 }
