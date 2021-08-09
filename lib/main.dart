@@ -17,8 +17,7 @@ class LYExaminationApp extends StatelessWidget {
       return '/create/privacy';
     } else {
       // TODO 请求登录
-      print('请求网络服务登录...');
-      return '/home';
+      return '/exam/list';
     }
   }
 

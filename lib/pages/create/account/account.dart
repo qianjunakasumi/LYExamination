@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lyexamination/pages/create/_components/title.dart';
+import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/create/account/form.dart';
 
 class CreateAccountPage extends StatelessWidget {

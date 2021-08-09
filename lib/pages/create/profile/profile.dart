@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
-import 'package:lyexamination/pages/create/_components/title.dart';
+import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/create/profile/list.dart';
 import 'package:lyexamination/service/api.dart';
 import 'package:lyexamination/service/hive.dart';
@@ -44,7 +44,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
       return;
     }
 
-    Get.offAllNamed('/home');
+    Get.offAllNamed('/exam/list');
   }
 
   @override
