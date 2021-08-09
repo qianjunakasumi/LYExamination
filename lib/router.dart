@@ -4,8 +4,13 @@ import 'package:lyexamination/pages/create/account/account.dart';
 import 'package:lyexamination/pages/create/privacy.dart';
 import 'package:lyexamination/pages/create/profile/profile.dart';
 import 'package:lyexamination/pages/exam/list/list.dart';
+import 'package:lyexamination/pages/progress/login.dart';
 
 List<GetPage> routes = [
+  GetPage(
+    name: '/progress/login',
+    page: () => MessengerWrapper(ProgressLoginPage()),
+  ),
   GetPage(
     name: '/exam/list',
     page: () => MessengerWrapper(ExamListPage()),

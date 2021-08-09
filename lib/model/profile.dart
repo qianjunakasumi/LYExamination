@@ -12,5 +12,16 @@ class ProfileModel {
   final String grade;
   final String classNum;
 
-  ProfileModel(this.number, this.name, this.school, this.grade, this.classNum);
+  final String phone;
+  final String password;
+
+  ProfileModel(
+    this.number,
+    this.name,
+    this.school,
+    this.grade,
+    this.classNum, {
+    this.phone = '',
+    this.password = '',
+  });
 }

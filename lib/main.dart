@@ -11,14 +11,13 @@ void main() async {
 }
 
 class LYExaminationApp extends StatelessWidget {
+  final HiveService h = Get.find(tag: 'hive');
+
   String initialRoute() {
-    final HiveService h = Get.find(tag: 'hive');
     if (h.isProfilesEmpty()) {
       return '/create/privacy';
-    } else {
-      // TODO 请求登录
-      return '/exam/list';
     }
+    return '/progress/login';
   }
 
   @override

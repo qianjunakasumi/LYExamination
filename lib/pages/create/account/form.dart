@@ -45,7 +45,7 @@ class _FormComponentState extends State<FormComponent> {
     }
 
     final HiveService h = Get.find(tag: 'hive');
-    h.fileAccount(acc);
+    h.setLoginInfo(acc);
 
     Get.offNamed('/create/profile');
   }

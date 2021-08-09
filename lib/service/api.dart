@@ -46,19 +46,22 @@ class APIService extends Get.GetxService {
       queryParameters: {'size': 1024},
     );
 
-    print(rsp.data);
-
-    final d = rsp.data['rows'];
+    final List? d = rsp.data['rows'];
     if (d == null) {
       throw APIError('您还没有在龙岩家校中绑定学生', false);
     }
 
     List<ProfileModel> profiles = [];
 
-    for (var p in d) {
+    d.forEach((p) {
       profiles.add(ProfileModel(
-          p['unum'], p['stuname'], p['school'], p['grade'], p['class']));
-    }
+        p['unum'],
+        p['stuname'],
+        p['school'],
+        p['grade'],
+        p['class'],
+      ));
+    });
 
     return profiles;
   }
@@ -70,4 +73,9 @@ class APIError {
   final bool feedback;
 
   APIError(this.message, this.feedback);
+
+  @override
+  String toString() {
+    return message;
+  }
 }
