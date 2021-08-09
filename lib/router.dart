@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/pages/create/account/account.dart';
+import 'package:lyexamination/pages/create/privacy.dart';
 import 'package:lyexamination/pages/create/profile/profile.dart';
 import 'package:lyexamination/pages/home.dart';
-import 'package:lyexamination/pages/privacy.dart';
 
 List<GetPage> routes = [
   GetPage(
@@ -11,8 +11,8 @@ List<GetPage> routes = [
     page: () => MessengerWrapper(MyHomePage()),
   ),
   GetPage(
-    name: '/privacy',
-    page: () => MessengerWrapper(PrivacyPage()),
+    name: '/create/privacy',
+    page: () => MessengerWrapper(CreatePrivacyPage()),
   ),
   GetPage(
     name: '/create/account',

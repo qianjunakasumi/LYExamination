@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:lyexamination/boot/config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class PrivacyPage extends StatelessWidget {
+class CreatePrivacyPage extends StatelessWidget {
   final ButtonStyle _btnStyle = ButtonStyle(
     elevation: MaterialStateProperty.all(0),
     padding: MaterialStateProperty.all(
@@ -20,8 +20,6 @@ class PrivacyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //retrieveStudents().then((stu) => _skip(context, stu));
-
     return ListView(
       physics: BouncingScrollPhysics(),
       children: [

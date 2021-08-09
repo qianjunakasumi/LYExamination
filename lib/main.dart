@@ -14,7 +14,7 @@ class LYExaminationApp extends StatelessWidget {
   String initialRoute() {
     final HiveService h = Get.find(tag: 'hive');
     if (h.isProfilesEmpty()) {
-      return '/privacy';
+      return '/create/privacy';
     } else {
       // TODO 请求登录
       print('请求网络服务登录...');
