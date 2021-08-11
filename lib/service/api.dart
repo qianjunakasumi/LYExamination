@@ -65,6 +65,17 @@ class APIService extends Get.GetxService {
 
     return profiles;
   }
+
+  /// ## 切换档案
+  Future<void> switchProfile(ProfileModel p) async {
+    await _dio.post(
+      'https://mic.fjjxhl.com/Jx/index.php/Home/User/switchStudent',
+      data: FormData.fromMap({
+        'num': p.number,
+        'name': p.name,
+      }),
+    );
+  }
 }
 
 /// ## API 错误

@@ -16,6 +16,7 @@ class ProgressLoginPage extends StatelessWidget {
     try {
       await a.loginAccount(acc);
       h.setLoginInfo(acc);
+      await a.switchProfile(p);
       Get.offAllNamed('/exam/list');
     } catch (e, s) {
       Get.offAll(ProgressErrorPage(e.toString(), s));
