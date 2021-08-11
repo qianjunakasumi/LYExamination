@@ -31,15 +31,9 @@ class HiveService extends GetxService {
   /// ## 保存档案
   /// 返回值：键
   Future<int> fileProfile(ProfileModel p) async {
-    return await _profiles.add({
-      'number': p.number,
-      'name': p.name,
-      'school': p.school,
-      'grade': p.grade,
-      'classNum': p.classNum,
-      'phone': _settings.get('current_phone'),
-      'password': _settings.get('current_password'),
-    });
+    p.phone = _settings.get('current_phone');
+    p.password = _settings.get('current_password');
+    return await _profiles.add(p.toHiveJson());
   }
 
   /// ## 设置默认档案
@@ -50,16 +44,7 @@ class HiveService extends GetxService {
   /// ## 获取档案
   ProfileModel _getProfile(int k) {
     final Map p = _profiles.get(k);
-
-    return ProfileModel(
-      p['number'],
-      p['name'],
-      p['school'],
-      p['grade'],
-      p['classNum'],
-      phone: p['phone'],
-      password: p['password'],
-    );
+    return ProfileModel.fromHive(p);
   }
 
   /// ## 获取默认档案
@@ -82,5 +67,9 @@ class HiveService extends GetxService {
     return _getProfile(k);
   }
 
+  void fileExamList(List<ExamAbstractModel> es) {
+    es.forEach((e) {
+      _exams.put(e.id, {'name': e.name, 'date': e.date});
+    });
   }
 }

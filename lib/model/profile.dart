@@ -6,14 +6,14 @@ class AccountModel {
 }
 
 class ProfileModel {
-  final String number;
-  final String name;
-  final String school;
-  final String grade;
-  final String classNum;
+  String number;
+  String name;
+  String school;
+  String grade;
+  String classNum;
 
-  final String phone;
-  final String password;
+  String phone;
+  String password;
 
   ProfileModel(
     this.number,
@@ -24,4 +24,25 @@ class ProfileModel {
     this.phone = '',
     this.password = '',
   });
+
+  ProfileModel.fromHive(Map m)
+      : number = m['number'],
+        name = m['name'],
+        school = m['school'],
+        grade = m['grade'],
+        classNum = m['class_num'],
+        phone = m['phone'],
+        password = m['password'];
+
+  Map toHiveJson() {
+    return {
+      'number': number,
+      'name': name,
+      'school': school,
+      'grade': grade,
+      'class_num': classNum,
+      'phone': phone,
+      'password': password,
+    };
+  }
 }
