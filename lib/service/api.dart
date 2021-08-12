@@ -29,13 +29,13 @@ class APIService extends Get.GetxService {
         return;
 
       case 'mimacuowu':
-        throw APIError('错误的密码', false);
+        throw APIError('错误的密码');
 
       case 'shangweizhuce':
-        throw APIError('错误的帐号', false);
+        throw APIError('错误的帐号');
 
       default:
-        throw APIError('未知错误。原始消息：' + msg, true);
+        throw APIError('未知错误。原始消息：' + msg, feedback: true);
     }
   }
 
@@ -48,7 +48,7 @@ class APIService extends Get.GetxService {
 
     final List? d = rsp.data['rows'];
     if (d == null) {
-      throw APIError('您还没有在龙岩家校中绑定学生', false);
+      throw APIError('您还没有在龙岩家校中绑定学生');
     }
 
     List<ProfileModel> profiles = [];
@@ -83,7 +83,7 @@ class APIError {
   final String message;
   final bool feedback;
 
-  APIError(this.message, this.feedback);
+  APIError(this.message, {this.feedback = false});
 
   @override
   String toString() {

@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Messenger {
-  static void snackBar(String content, {bool? feedback}) {
+  static void snackBar(String content, {bool feedback = false}) {
     late SnackBar b;
 
-    if (feedback == true) {
+    if (feedback) {
       b = SnackBar(
         content: Text(content),
         action: SnackBarAction(
