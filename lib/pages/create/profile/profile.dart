@@ -44,7 +44,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
       return;
     }
 
-    Get.offAllNamed('/exam/list');
+    Get.offAllNamed('/exam/summary');
   }
 
   @override
