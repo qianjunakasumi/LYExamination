@@ -72,14 +72,14 @@ class CreatePrivacyPage extends StatelessWidget {
         Text('本软件的发行方是：'),
         SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () => launch(config.githubAddr),
+          onPressed: () => launch(RealConfig.githubAddr),
           style: _btnStyle,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.launch, size: 16),
               SizedBox(width: 8),
-              Text('${config.sponsor} <${config.email}>'),
+              Text('${RealConfig.sponsor} <${RealConfig.email}>'),
             ],
           ),
         ),

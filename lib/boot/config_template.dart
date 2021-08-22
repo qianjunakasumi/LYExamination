@@ -1,17 +1,11 @@
 class Config {
-  final String sponsor;
-
   /// 服务提供方
-  final String email;
+  static String get sponsor => '未署名';
 
   /// 电子邮件
-  final String githubAddr;
+  static String get email => 'undefined@example.com';
 
   /// GitHub 地址
-
-  Config({
-    required this.sponsor,
-    required this.email,
-    required this.githubAddr,
-  });
+  static String get githubAddr =>
+      'https://github.com/LYExamination/LYExamination';
 }
