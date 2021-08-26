@@ -2,6 +2,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:get/get.dart' as Get;
+import 'package:lyexamination/model/exam.dart';
 import 'package:lyexamination/model/profile.dart';
 
 class APIService extends Get.GetxService {
@@ -75,6 +76,32 @@ class APIService extends Get.GetxService {
         'name': p.name,
       }),
     );
+  }
+
+  /// ## 获取考试列表
+  Future<List<ExamInfoModel>> fetchExamList({int range = 114514}) async {
+    final Response rsp = await _dio.get(
+      'https://mic.fjjxhl.com/Jx/index.php/Home/Achievement/ajax_showmark_upCallback',
+      queryParameters: {'size': range},
+    );
+
+    final int count = rsp.data['count'];
+    if (count < 1) {
+      throw APIError('没有历次考试数据');
+    }
+
+    var es = <ExamInfoModel>[];
+
+    final List o = rsp.data['title'];
+    o.forEach((e) {
+      es.add(ExamInfoModel(
+        e['id'],
+        e['name'],
+        DateTime.parse(e['cdate']),
+      ));
+    });
+
+    return es;
   }
 }
 
