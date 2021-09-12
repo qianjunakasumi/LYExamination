@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lyexamination/model/exam_summary.dart';
 import 'package:lyexamination/pages/exam/summary/actions.dart';
-import 'package:lyexamination/pages/exam/summary/header.dart';
-import 'package:lyexamination/pages/exam/summary/subject.dart';
+import 'package:lyexamination/pages/exam/summary/table.dart';
 
 class ExamSummaryPage extends StatelessWidget {
   const ExamSummaryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final ExamSummary data = Get.arguments!;
+
     return ListView(
       physics: BouncingScrollPhysics(),
       children: [
@@ -17,10 +20,10 @@ class ExamSummaryPage extends StatelessWidget {
           style: TextStyle(color: Colors.black38),
           textScaleFactor: 0.8,
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 6),
         Text(
-          '我是本次 2021~2022 考试名名称我是本次考试名称我是',
-          style: TextStyle(color: Colors.black87),
+          data.name,
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
           textScaleFactor: 1.48,
         ),
         SizedBox(height: 16),
@@ -30,41 +33,63 @@ class ExamSummaryPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '总分  750',
+              '总分  ${data.result}',
               style: TextStyle(color: Colors.black87),
               textScaleFactor: 1.8,
             ),
             ActionsComponent(),
           ],
         ),
-        SizedBox(height: 32),
-        Table(
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+        SizedBox(height: 16),
+        Row(
           children: [
-            TableRow(
-              children: [
-                HeaderComponent('考试科目'),
-                HeaderComponent('你的分数'),
-                HeaderComponent('平均分数'),
-                HeaderComponent('最高分数'),
-              ],
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Color(0xFF36cfc9),
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('平\n均', style: TextStyle(color: Colors.white)),
+                    Text(data.average,
+                        textScaleFactor: 1.72,
+                        style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
             ),
-            SubjectScoreRow('语文', '120', '90', '150').to(),
-            SubjectScoreRow('数学', '120', '90', '150').to(),
-            SubjectScoreRow('英语', '120', '90', '150').to(),
-            SubjectScoreRow('物理', '85', '60', '100').to(),
-            SubjectScoreRow('生物', '80', '50', '100').to(),
-            SubjectScoreRow('地理', '90', '60', '100').to(),
+            SizedBox(width: 8),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Color(0xFF36cfc9),
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('最\n高', style: TextStyle(color: Colors.white)),
+                    Text(data.maximum,
+                        textScaleFactor: 1.72,
+                        style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
-        SizedBox(height: 8),
-        Divider(),
-        Table(
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: [
-            SubjectScoreRow('总分', '750', '660', '800').to(),
-          ],
+        SizedBox(height: 32),
+        Text(
+          '学科分数',
+          textScaleFactor: 1.48,
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
+        SizedBox(height: 24),
+        SubjectTableComponent(data.subject),
         SizedBox(height: 32),
         ElevatedButton(
           onPressed: () => print('即将到来'),
@@ -81,6 +106,23 @@ class ExamSummaryPage extends StatelessWidget {
             ),
           ),
           child: Text('查看详情'),
+        ),
+        SizedBox(height: 64),
+        ElevatedButton(
+          onPressed: () => Get.toNamed('/exam/list'),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.black87),
+            elevation: MaterialStateProperty.all(0),
+            padding: MaterialStateProperty.all(
+              EdgeInsets.only(top: 12, bottom: 12),
+            ),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(32),
+              ),
+            ),
+          ),
+          child: Text('测试，请勿使用'),
         ),
         SizedBox(height: 64),
       ],
