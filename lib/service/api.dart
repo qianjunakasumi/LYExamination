@@ -7,7 +7,7 @@ import 'package:lyexamination/model/profile.dart';
 
 class APIService extends Get.GetxService {
   final Dio _dio = Dio();
-  final CookieJar _cookieJar = CookieJar();
+  final CookieJar _cookieJar = PersistCookieJar(ignoreExpires: true);
 
   APIService() {
     _dio.interceptors.add(CookieManager(_cookieJar));
