@@ -5,26 +5,27 @@ import 'package:lyexamination/service/api.dart';
 import 'package:lyexamination/service/hive.dart';
 
 void main() async {
-  Get.put(APIService(), tag: 'api');
-  await Get.putAsync(() => HiveService().init(), tag: 'hive');
-  runApp(LYExaminationApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(await LYExaminationApp().init());
 }
 
 class LYExaminationApp extends StatelessWidget {
-  final HiveService h = Get.find(tag: 'hive');
+  Future<LYExaminationApp> init() async {
+    await Future.wait([
+      Get.putAsync(() => APIService().init(), tag: 'api'),
+      Get.putAsync(() => HiveService().init(), tag: 'hive'),
+    ]);
 
-  String initialRoute() {
-    if (h.isProfilesEmpty()) {
-      return '/create/privacy';
-    }
-    return '/progress/login';
+    return this;
   }
 
   @override
   Widget build(BuildContext context) {
+    final HiveService h = Get.find(tag: 'hive');
+
     return GetMaterialApp(
       title: '龙岩考试',
-      initialRoute: initialRoute(),
+      initialRoute: h.isProfilesEmpty() ? '/create/privacy' : '/progress/login',
       getPages: routes,
     );
   }

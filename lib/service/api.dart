@@ -2,15 +2,22 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:get/get.dart' as Get;
+import 'package:lyexamination/apis/profile/fetch.dart';
 import 'package:lyexamination/model/exam.dart';
 import 'package:lyexamination/model/profile.dart';
+import 'package:path_provider/path_provider.dart';
 
 class APIService extends Get.GetxService {
-  final Dio _dio = Dio();
-  final CookieJar _cookieJar = PersistCookieJar(ignoreExpires: true);
+  late final _dio = Dio();
+  late final _cookie;
 
-  APIService() {
-    _dio.interceptors.add(CookieManager(_cookieJar));
+  Future<APIService> init() async {
+    _cookie = PersistCookieJar(
+      ignoreExpires: true,
+      storage: FileStorage((await getTemporaryDirectory()).path + '/cookies/'),
+    );
+    _dio.interceptors.add(CookieManager(_cookie));
+    return this;
   }
 
   /// ## 登录帐号
