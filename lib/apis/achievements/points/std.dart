@@ -6,9 +6,9 @@ class APIACHVsPointsReq {
 }
 
 class APIACHVsPointsRsp {
-  final double points;
-  final double average;
-  final double highest;
+  final String points;
+  final String average;
+  final String highest;
   final List<APIACHVsPointsRspSData> subjects;
   final int participants;
 
@@ -16,8 +16,8 @@ class APIACHVsPointsRsp {
       this.participants);
 
   APIACHVsPointsRsp.fromJSON(Map<String, dynamic> d, String z)
-      : this(d['my_allscore'], d['zongfenpingjunfen'], d['zuigaofen'],
-            toList(d['geke'], z), d['kaoshirenshu']);
+      : this(d['my_allscore'].toString(), d['zongfenpingjunfen'].toString(),
+            d['zuigaofen'].toString(), toList(d['geke'], z), d['kaoshirenshu']);
 
   static List<APIACHVsPointsRspSData> toList(List<dynamic> d, String z) {
     List<APIACHVsPointsRspSData> l = [];
