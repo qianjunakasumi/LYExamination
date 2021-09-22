@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/model/profile.dart';
+import 'package:lyexamination/apis/accounts/login/login.dart';
+import 'package:lyexamination/apis/accounts/login/std.dart';
+import 'package:lyexamination/apis/accounts/roles/switch/std.dart';
+import 'package:lyexamination/apis/accounts/roles/switch/switch.dart';
+import 'package:lyexamination/apis/achievements/get/get.dart';
+import 'package:lyexamination/apis/achievements/get/std.dart';
+import 'package:lyexamination/apis/achievements/points/points.dart';
+import 'package:lyexamination/apis/achievements/points/std.dart';
+import 'package:lyexamination/apis/exception/api.dart';
+import 'package:lyexamination/model/exam_summary.dart';
 import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/progress/error.dart';
-import 'package:lyexamination/service/api.dart';
 import 'package:lyexamination/service/hive.dart';
 
 class ProgressLoginPage extends StatelessWidget {
   final HiveService h = Get.find(tag: 'hive');
-  final APIService a = Get.find(tag: 'api');
 
   void login() async {
     final p = h.getCurrentProfile();
-    final acc = AccountModel(p.phone, p.password);
+    final acc = p.account;
+
+    final sa = APIAccountsLogin(APIAccountsLoginReq(acc.phone, acc.password));
+    final saa = APIACCNTsRolesSwitch(APIACCNTsRolesSwitchReq(p.number, p.name));
     try {
-      await a.loginAccount(acc);
+      await sa.wait();
       h.setLoginInfo(acc);
-      await a.switchProfile(p);
-      Get.offAllNamed('/exam/summary');
+      await saa.wait();
     } catch (e, s) {
       Get.offAll(ProgressErrorPage(e.toString(), s));
     }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lyexamination/apis/accounts/roles/get/get.dart';
+import 'package:lyexamination/apis/accounts/roles/get/std.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/create/profile/list.dart';
-import 'package:lyexamination/service/api.dart';
 import 'package:lyexamination/service/hive.dart';
 
 class CreateProfilePage extends StatefulWidget {
@@ -13,7 +14,6 @@ class CreateProfilePage extends StatefulWidget {
 }
 
 class _CreateProfilePageState extends State<CreateProfilePage> {
-  final APIService a = Get.find(tag: 'api');
   final HiveService h = Get.find(tag: 'hive');
 
   List<ProfileModel> profiles = [];
@@ -23,12 +23,14 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   }
 
   void fetchProfiles() async {
-    late List<ProfileModel> p;
+    List<ProfileModel> p = [];
 
+    final a = APIACCNTsRolesGet(APIACCNTsRolesGetReq());
     try {
-      p = await a.fetchProfiles();
-    } on APIError catch (e) {
-      Messenger.snackBar(e.message, feedback: e.feedback);
+      await a.wait();
+      a.rsp.roles.forEach((d) {
+        p.add(ProfileModel(d.id, d.name, d.school, d.grade, d.c));
+      });
     } catch (e) {
       Messenger.snackBar(e.toString(), feedback: true);
     }
@@ -44,7 +46,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
       return;
     }
 
-    Get.offAllNamed('/exam/summary');
+    Get.offAllNamed('/progress/login');
   }
 
   @override
