@@ -1,6 +1,7 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:dio_http2_adapter/dio_http2_adapter.dart';
 import 'package:get/get.dart' as Get;
 import 'package:path_provider/path_provider.dart';
 
@@ -16,6 +17,7 @@ class APIService extends Get.GetxService {
 
     _dio = Dio()
       ..interceptors.add(CookieManager(_cookie))
+      ..httpClientAdapter = Http2Adapter(ConnectionManager(idleTimeout: 30000));
 
     return _dio;
   }
