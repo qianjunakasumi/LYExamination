@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lyexamination/apis/accounts/login/login.dart';
+import 'package:lyexamination/apis/accounts/login/std.dart';
+import 'package:lyexamination/apis/exception/bad_respond.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
-import 'package:lyexamination/service/api.dart';
 import 'package:lyexamination/service/hive.dart';
 
 class FormComponent extends StatefulWidget {
@@ -28,14 +30,12 @@ class _FormComponentState extends State<FormComponent> {
     Messenger.process();
 
     k.currentState!.save();
-
-    final acc = AccountModel(phone, password);
-
-    final APIService a = Get.find(tag: 'api');
+    final a = APIAccountsLogin(APIAccountsLoginReq(phone, password));
     try {
-      await a.loginAccount(acc);
-    } on APIError catch (e) {
-      Messenger.snackBar(e.message, feedback: e.feedback);
+      await a.wait();
+    } on APIBadRespondException catch (e) {
+      Messenger.snackBar(e.message, feedback: e.panic);
+      //if (e.panic) rethrow; panic 应进入 Error 页面
       return;
     } catch (e) {
       Messenger.snackBar(e.toString(), feedback: true);
@@ -45,7 +45,7 @@ class _FormComponentState extends State<FormComponent> {
     }
 
     final HiveService h = Get.find(tag: 'hive');
-    h.setLoginInfo(acc);
+    h.setLoginInfo(AccountModel(phone, password));
 
     Get.offNamed('/create/profile');
   }
