@@ -32,6 +32,7 @@ dependencies:
   cookie_jar: ^3.0.1
   dio_cookie_manager: ^2.0.0
   dio_http2_adapter: ^2.0.0
+  html: ^0.15.0
   dotted_border: ^2.0.0+1
 
 dev_dependencies:
