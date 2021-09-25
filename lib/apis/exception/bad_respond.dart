@@ -7,7 +7,7 @@ class APIBadRespondException extends APIException implements Exception {
 
   final bool panic;
 
-  APIBadRespondException(Response rsp, this.message,
+  const APIBadRespondException(Response rsp, this.message,
       {this.panic = false, this.testament = ''})
       : super(rsp);
 }

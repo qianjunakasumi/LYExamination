@@ -11,7 +11,7 @@ class AchievementPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final APIAchievementsGetRspEData d = Get.arguments!;
+    final APIAchievementsGetREData d = Get.arguments!;
 
     final ACHVPController c = Get.put(ACHVPController(d.id, d.name, d.date));
 

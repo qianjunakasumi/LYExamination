@@ -1,4 +1,5 @@
 import 'package:html/dom.dart';
+import 'package:lyexamination/apis/util.dart';
 
 class APIACHVsRankingsReq {
   final String id;
@@ -9,7 +10,7 @@ class APIACHVsRankingsReq {
 class APIACHVsRankingsRsp {
   final String gradeRanking;
   final String classRanking;
-  final List<APIACHVsRankingsRspSubjectsRanking> subjectRankings;
+  final List<APIACHVsRankingsRSRData> subjectRankings;
 
   const APIACHVsRankingsRsp(
       this.gradeRanking, this.classRanking, this.subjectRankings);
@@ -26,28 +27,22 @@ class APIACHVsRankingsRsp {
                   'body > div > div.big > div > div.con__top.column.box-shadow > div > span:nth-child(7)')!
               .innerHtml
               .substring(5),
-          (() {
-            List<APIACHVsRankingsRspSubjectsRanking> t = [];
-            d.querySelectorAll(
-                'body > div > div.big > div > div.con-item.box-shadow.column > div.con__table > table > tbody > tr')
-              ..removeAt(0) // 删除总分行
-              ..forEach((dd) {
-                t.add(APIACHVsRankingsRspSubjectsRanking.fromHTML(dd));
-              });
-            return t;
-          })(),
+          dynamicToTypeList<APIACHVsRankingsRSRData>(
+              d.querySelectorAll(
+                  'body > div > div.big > div > div.con-item.box-shadow.column > div.con__table > table > tbody > tr')
+                ..removeAt(0), // 删除总分行
+              (dd) => APIACHVsRankingsRSRData.fromHTML(dd)),
         );
 }
 
-class APIACHVsRankingsRspSubjectsRanking {
+class APIACHVsRankingsRSRData {
   final String name;
   final String gradePlace;
   final String classPlace;
 
-  const APIACHVsRankingsRspSubjectsRanking(
-      this.name, this.classPlace, this.gradePlace);
+  const APIACHVsRankingsRSRData(this.name, this.classPlace, this.gradePlace);
 
-  APIACHVsRankingsRspSubjectsRanking.fromHTML(Element d)
+  APIACHVsRankingsRSRData.fromHTML(Element d)
       : this(
             d.querySelector('td:nth-child(1)')!.innerHtml,
             d.querySelector('td:nth-child(7)')!.innerHtml,

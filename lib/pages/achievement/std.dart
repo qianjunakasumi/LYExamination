@@ -23,7 +23,7 @@ class ACHVPSubjectCardData {
       this.mostPoints = ' --- ',
       this.classRanking = ' --- '});
 
-  void updatePoints(APIACHVsPointsRspSData d) {
+  void updatePoints(APIACHVsPointsRSData d) {
     this
       ..points = d.points
       ..averageZone = '年段'
@@ -32,7 +32,7 @@ class ACHVPSubjectCardData {
       ..mostPoints = d.highest;
   }
 
-  void updateRankings(APIACHVsRankingsRspSubjectsRanking d) {
+  void updateRankings(APIACHVsRankingsRSRData d) {
     this
       ..name = d.name
       ..rankingZone = '年段'
@@ -40,7 +40,7 @@ class ACHVPSubjectCardData {
       ..classRanking = d.classPlace;
   }
 
-  ACHVPSubjectCardData.futurePoints(APIACHVsPointsRspSData d)
+  ACHVPSubjectCardData.futurePoints(APIACHVsPointsRSData d)
       : this(
             name: d.name,
             points: d.points,
@@ -49,7 +49,7 @@ class ACHVPSubjectCardData {
             mostZone: '年段',
             mostPoints: d.highest);
 
-  ACHVPSubjectCardData.futureRankings(APIACHVsRankingsRspSubjectsRanking d)
+  ACHVPSubjectCardData.futureRankings(APIACHVsRankingsRSRData d)
       : this(
             name: d.name,
             rankingZone: '年段',
