@@ -49,7 +49,7 @@ class MessengerWrapper extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        minimum: EdgeInsets.only(left: 24, right: 24),
+        minimum: EdgeInsets.only(left: 16, right: 16),
         child: _child,
       ),
     );

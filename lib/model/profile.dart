@@ -45,4 +45,6 @@ class ProfileModel {
       'password': password,
     };
   }
+
+  AccountModel get account => AccountModel(phone, password);
 }

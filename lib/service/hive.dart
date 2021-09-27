@@ -66,10 +66,4 @@ class HiveService extends GetxService {
 
     return _getProfile(k);
   }
-
-  void fileExamList(List<ExamAbstractModel> es) {
-    es.forEach((e) {
-      _exams.put(e.id, {'name': e.name, 'date': e.date});
-    });
-  }
 }
