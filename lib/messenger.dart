@@ -47,7 +47,6 @@ class MessengerWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         minimum: EdgeInsets.only(left: 16, right: 16),
         child: _child,

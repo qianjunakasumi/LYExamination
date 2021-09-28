@@ -17,26 +17,20 @@ class AchievementPage extends StatelessWidget {
 
     c.loadAchievement();
 
+    final fixed = Colors.white.withOpacity(0.85);
+    TextStyle headline3 = Get.textTheme.headline3!.copyWith(color: fixed);
+    TextStyle headline6 = Get.textTheme.headline6!.copyWith(color: fixed);
+
     return ListView(
       physics: BouncingScrollPhysics(),
       children: [
         SizedBox(height: 64),
-        Text(
-          d.name,
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
-          textScaleFactor: 1.48,
-        ),
-        SizedBox(height: 16),
-        Divider(),
-        SizedBox(height: 24),
+        Text(d.name, style: Get.theme.textTheme.headline3),
+        SizedBox(height: 48),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Obx(() => Text(
-                  '总分  ${c.points}',
-                  style: TextStyle(color: Colors.black87),
-                  textScaleFactor: 1.8,
-                )),
+            Obx(() => Text('总分  ${c.points}', style: Get.textTheme.headline4)),
             ActionsComponent(),
           ],
         ),
@@ -47,18 +41,14 @@ class AchievementPage extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Color(0xFF36cfc9),
+                  color: Get.theme.primaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text('平\n均', style: TextStyle(color: Colors.white)),
-                    Obx(() => Text(
-                          c.averagePoints.string,
-                          textScaleFactor: 1.72,
-                          style: TextStyle(color: Colors.white),
-                        )),
+                    Text('平\n均', style: headline6),
+                    Obx(() => Text(c.averagePoints.string, style: headline3)),
                   ],
                 ),
               ),
@@ -68,18 +58,14 @@ class AchievementPage extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Color(0xFF36cfc9),
+                  color: Get.theme.primaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text('最\n高', style: TextStyle(color: Colors.white)),
-                    Obx(() => Text(
-                          c.mostPoints.string,
-                          textScaleFactor: 1.72,
-                          style: TextStyle(color: Colors.white),
-                        )),
+                    Text('最\n高', style: headline6),
+                    Obx(() => Text(c.mostPoints.string, style: headline3)),
                   ],
                 ),
               ),
@@ -87,11 +73,7 @@ class AchievementPage extends StatelessWidget {
           ],
         ),
         SizedBox(height: 32),
-        Text(
-          '学科',
-          textScaleFactor: 1.32,
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
-        ),
+        Text('学科', style: Get.theme.textTheme.headline5),
         SizedBox(height: 24),
         Obx(() => Column(
               children: [

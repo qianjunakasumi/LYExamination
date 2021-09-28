@@ -10,11 +10,17 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fixed = Colors.white.withOpacity(0.85);
+    TextStyle headline2 = Get.textTheme.headline2!.copyWith(color: fixed);
+    TextStyle headline3 = Get.textTheme.headline3!.copyWith(color: fixed);
+    TextStyle headline6 = Get.textTheme.headline6!
+        .copyWith(color: fixed, fontWeight: FontWeight.bold);
+
     return Container(
       padding: EdgeInsets.all(12),
       margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Color(0xFF36CFC9),
+        color: Get.theme.primaryColor,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -23,16 +29,9 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                d.value.name,
-                textScaleFactor: 1.64,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(d.value.name, style: headline3),
               ElevatedButton(
-                  onPressed: () => Messenger.snackBar('先想好，我没时间写'),
+                  onPressed: () => Messenger.snackBar('在写了在写了'),
                   style: ButtonStyle(
                     textStyle: MaterialStateProperty.all(
                         TextStyle(fontWeight: FontWeight.bold)),
@@ -58,12 +57,7 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Obx(() => Text(
-                        d.value.points,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                        textScaleFactor: 3,
-                      )),
+                  Obx(() => Text(d.value.points, style: headline2)),
                   Text(
                     '分',
                     style: TextStyle(
@@ -80,12 +74,7 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
                             fontWeight: FontWeight.bold, color: Colors.white),
                         textScaleFactor: 0.88,
                       )),
-                  Obx(() => Text(
-                        d.value.ranking,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                        textScaleFactor: 3,
-                      )),
+                  Obx(() => Text(d.value.ranking, style: headline2)),
                   Text(
                     '名',
                     style: TextStyle(
@@ -104,48 +93,33 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
                 children: [
                   Obx(() => Text(
                         d.value.averageZone + '\n平均',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                        style: headline6,
                         textScaleFactor: 0.88,
                       )),
                   SizedBox(width: 12),
-                  Obx(() => Text(
-                        d.value.averagePoints,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      )),
+                  Obx(() => Text(d.value.averagePoints, style: headline6)),
                 ],
               ),
               Row(
                 children: [
                   Obx(() => Text(
                         d.value.mostZone + '\n最高',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                        style: headline6,
                         textScaleFactor: 0.88,
                       )),
                   SizedBox(width: 12),
-                  Obx(() => Text(
-                        d.value.mostPoints,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      )),
+                  Obx(() => Text(d.value.mostPoints, style: headline6)),
                 ],
               ),
               Row(
                 children: [
                   Text(
                     '班级\n名次',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                    style: headline6,
                     textScaleFactor: 0.88,
                   ),
                   SizedBox(width: 12),
-                  Obx(() => Text(
-                        d.value.classRanking,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
-                      )),
+                  Obx(() => Text(d.value.classRanking, style: headline6)),
                 ],
               ),
             ],
