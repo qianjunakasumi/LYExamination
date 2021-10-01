@@ -11,6 +11,8 @@ void main() async {
 }
 
 class LYExaminationApp extends StatelessWidget {
+  const LYExaminationApp({Key? key}) : super(key: key);
+
   Future<LYExaminationApp> init() async {
     await Future.wait([
       Get.putAsync(() => APIService().init(), tag: 'api'),

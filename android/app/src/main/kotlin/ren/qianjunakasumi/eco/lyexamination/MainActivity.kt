@@ -1,4 +1,4 @@
-package ren.qianjunakasumi.lyexamination
+package ren.qianjunakasumi.eco.lyexamination
 
 import io.flutter.embedding.android.FlutterActivity
 
