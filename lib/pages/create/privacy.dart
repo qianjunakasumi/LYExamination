@@ -43,7 +43,7 @@ class CreatePrivacyPage extends StatelessWidget {
                 ),
               ],
             ),
-            Image.asset('assets/icon/privacy.png', width: 64),
+            SizedBox(),
             SizedBox(),
           ],
         ),
