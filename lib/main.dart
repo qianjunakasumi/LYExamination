@@ -28,7 +28,7 @@ class LYExaminationApp extends StatelessWidget {
 
     return GetMaterialApp(
       title: '龙岩考试',
-      initialRoute: h.isProfilesEmpty() ? '/create/privacy' : '/progress/login',
+      initialRoute: h.isProfilesEmpty() ? '/create/account' : '/progress/login',
       theme: lightTheme,
       darkTheme: darkTheme,
       getPages: pages,
