@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/boot/pages.dart';
 import 'package:lyexamination/boot/themes.dart';
@@ -7,7 +8,7 @@ import 'package:lyexamination/service/hive.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp().init());
+  runApp(await const LYExaminationApp().init());
 }
 
 class LYExaminationApp extends StatelessWidget {
@@ -22,8 +23,30 @@ class LYExaminationApp extends StatelessWidget {
     return this;
   }
 
+  void setSystemUI() async {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      Get.isDarkMode
+          ? const SystemUiOverlayStyle(
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarDividerColor: Colors.transparent,
+              systemNavigationBarIconBrightness: Brightness.light,
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.light,
+            )
+          : const SystemUiOverlayStyle(
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarDividerColor: Colors.transparent,
+              systemNavigationBarIconBrightness: Brightness.dark,
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark,
+            ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    setSystemUI();
     final HiveService h = Get.find(tag: 'hive');
 
     return GetMaterialApp(
