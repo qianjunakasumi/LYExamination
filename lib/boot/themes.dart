@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 
-ThemeData get lightTheme => ThemeData(
+ThemeData get lightTheme => ThemeData.light().copyWith(
       primaryColor: Color(0xFF36CFC9),
-      scaffoldBackgroundColor: Colors.white.withOpacity(0.96),
-      textTheme: TextTheme(
-        headline2: headline2(false),
-        headline3: headline3(false),
-        headline4: headline4(false),
-        headline5: headline5(false),
-        headline6: headline6(false),
-      ),
+      textTheme: ThemeData.light().textTheme.copyWith(
+            headline2: headline2(false),
+            headline3: headline3(false),
+            headline4: headline4(false),
+            headline5: headline5(false),
+            headline6: headline6(false),
+          ),
     );
 
-ThemeData get darkTheme => ThemeData(
+ThemeData get darkTheme => ThemeData.dark().copyWith(
       primaryColor: Color(0xDD36CFC9),
-      scaffoldBackgroundColor: Colors.white.withOpacity(0.08),
-      textTheme: TextTheme(
-        headline2: headline2(true),
-        headline3: headline3(true),
-        headline4: headline4(true),
-        headline5: headline5(true),
-        headline6: headline6(true),
-      ),
+      textTheme: ThemeData.dark().textTheme.copyWith(
+            headline2: headline2(true),
+            headline3: headline3(true),
+            headline4: headline4(true),
+            headline5: headline5(true),
+            headline6: headline6(true),
+          ),
     );
 
 headline2(bool d) => TextStyle(
