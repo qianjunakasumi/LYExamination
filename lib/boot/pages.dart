@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/pages/achievement/achievement.dart';
-import 'package:lyexamination/pages/create/account/account.dart';
 import 'package:lyexamination/pages/create/profile/profile.dart';
 import 'package:lyexamination/pages/exam/list/list.dart';
 import 'package:lyexamination/pages/progress/login.dart';
+import 'package:lyexamination/pages/welcome/login/login.dart';
 
 List<GetPage> get pages => [
       GetPage(
@@ -20,8 +20,8 @@ List<GetPage> get pages => [
         page: () => MessengerWrapper(ExamListPage()),
       ),
       GetPage(
-        name: '/create/account',
-        page: () => MessengerWrapper(CreateAccountPage()),
+        name: '/welcome/login',
+        page: () => WelcomeLoginPage(),
       ),
       GetPage(
         name: '/create/profile',
