@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lyexamination/apis/service.dart';
 import 'package:lyexamination/boot/pages.dart';
 import 'package:lyexamination/boot/themes.dart';
-import 'package:lyexamination/service/api.dart';
 import 'package:lyexamination/service/hive.dart';
 
 void main() async {
