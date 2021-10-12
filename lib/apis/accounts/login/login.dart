@@ -12,10 +12,12 @@ class APIAccountsLogin extends APIs with HTTPPost {
   APIAccountsLogin(this.req)
       : super(url, {'Login_phone': req.phone, 'parpwd': req.password});
 
+  @override
   void parse() {
     rsp = APIAccountsLoginRsp.fromJSON(httpRSP.data);
   }
 
+  @override
   void verify() {
     switch (rsp.message) {
       case 'ok':

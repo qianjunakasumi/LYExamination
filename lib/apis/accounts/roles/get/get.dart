@@ -10,6 +10,7 @@ class APIACCNTsRolesGet extends APIs with HTTPGet {
 
   APIACCNTsRolesGet(this.req) : super(url, {'size': req.length});
 
+  @override
   void parse() {
     rsp = APIACCNTsRolesGetRsp.fromJSON(httpRSP.data);
   }

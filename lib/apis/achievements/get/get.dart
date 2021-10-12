@@ -11,6 +11,7 @@ class APIAchievementsGet extends APIs with HTTPGet {
   APIAchievementsGet(this.req)
       : super(url, {'num': req.offset, 'size': req.limit});
 
+  @override
   void parse() {
     rsp = APIAchievementsGetRsp.fromJSON(httpRSP.data);
   }

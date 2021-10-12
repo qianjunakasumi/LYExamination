@@ -31,12 +31,14 @@ class APIs {
 }
 
 mixin HTTPGet on APIs {
+  @override
   Future<void> fetch() async {
     httpRSP = await http.get(_url, queryParameters: httpREQ);
   }
 }
 
 mixin HTTPPost on APIs {
+  @override
   Future<void> fetch() async {
     httpRSP = await http.post(_url, data: HTTP.FormData.fromMap(httpREQ));
   }

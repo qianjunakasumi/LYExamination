@@ -12,6 +12,7 @@ class APIACHVsRankings extends APIs with HTTPGet {
                 req.id,
             {});
 
+  @override
   void parse() {
     rsp = APIACHVsRankingsRsp.fromHTML(HTML.parse(httpRSP.data));
   }

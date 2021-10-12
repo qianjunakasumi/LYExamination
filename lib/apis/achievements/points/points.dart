@@ -11,6 +11,7 @@ class APIACHVsPoints extends APIs with HTTPPost {
   APIACHVsPoints(this.req)
       : super(url, {'item_id': req.id, 'leixing': req.zone});
 
+  @override
   void parse() {
     rsp = APIACHVsPointsRsp.fromJSON(httpRSP.data, req.zone);
   }
