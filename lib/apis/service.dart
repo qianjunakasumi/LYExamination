@@ -6,8 +6,8 @@ import 'package:get/get.dart' as Get;
 import 'package:path_provider/path_provider.dart';
 
 class APIService extends Get.GetxService {
-  late final _dio;
-  late final _cookie;
+  late final Dio _dio;
+  late final PersistCookieJar _cookie;
 
   Future<Dio> init() async {
     _cookie = PersistCookieJar(
