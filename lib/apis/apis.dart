@@ -1,16 +1,16 @@
-import 'package:dio/dio.dart' as HTTP;
+import 'package:dio/dio.dart' as network;
 import 'package:get/get.dart';
 import 'package:lyexamination/apis/exception/bad_status.dart';
 
 class APIs {
-  final HTTP.Dio http = Get.find(tag: 'api');
+  final network.Dio http = Get.find(tag: 'api');
 
   final String _url;
   final Map<String, dynamic> httpREQ;
 
   APIs(this._url, this.httpREQ);
 
-  late final HTTP.Response httpRSP;
+  late final network.Response httpRSP;
 
   Future<void> fetch() async {}
 
@@ -40,6 +40,6 @@ mixin HTTPGet on APIs {
 mixin HTTPPost on APIs {
   @override
   Future<void> fetch() async {
-    httpRSP = await http.post(_url, data: HTTP.FormData.fromMap(httpREQ));
+    httpRSP = await http.post(_url, data: network.FormData.fromMap(httpREQ));
   }
 }

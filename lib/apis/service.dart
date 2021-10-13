@@ -2,10 +2,10 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:dio_http2_adapter/dio_http2_adapter.dart';
-import 'package:get/get.dart' as Get;
+import 'package:get/get.dart' as getx;
 import 'package:path_provider/path_provider.dart';
 
-class APIService extends Get.GetxService {
+class APIService extends getx.GetxService {
   late final Dio _dio;
   late final PersistCookieJar _cookie;
 
