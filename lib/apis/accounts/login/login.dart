@@ -7,7 +7,7 @@ class APIAccountsLogin extends APIs with HTTPPost {
   late final APIAccountsLoginRsp rsp;
 
   static const url =
-      'https://mic.fjjxhl.com/pcnews/index.php/Home/User/parlogin';
+      'https://mic.fjjxhl.com/Jx/index.php/Home/User/ajax_parlogin';
 
   APIAccountsLogin(this.req)
       : super(url, {'Login_phone': req.phone, 'parpwd': req.password});
@@ -19,12 +19,12 @@ class APIAccountsLogin extends APIs with HTTPPost {
 
   @override
   void verify() {
-    switch (rsp.message) {
-      case 'ok':
+    switch (rsp.status) {
+      case 100:
         return;
 
-      case 'mimacuowu':
-      case 'shangweizhuce':
+      case 401: // 密码错误
+      case 402: // 帐号未注册
         throw APIBadRespondException(httpRSP, '帐号或密码错误');
 
       default:

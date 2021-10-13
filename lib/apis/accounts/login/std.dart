@@ -6,9 +6,11 @@ class APIAccountsLoginReq {
 }
 
 class APIAccountsLoginRsp {
+  final int status;
   final String message;
 
-  const APIAccountsLoginRsp(this.message);
+  const APIAccountsLoginRsp(this.status, this.message);
 
-  APIAccountsLoginRsp.fromJSON(Map<String, dynamic> d) : this(d['msg']);
+  APIAccountsLoginRsp.fromJSON(Map<String, dynamic> d)
+      : this(d['code'], d['msg']);
 }
