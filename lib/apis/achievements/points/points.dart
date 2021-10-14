@@ -5,8 +5,7 @@ class APIACHVsPoints extends APIs with HTTPPost {
   final APIACHVsPointsReq req;
   late final APIACHVsPointsRsp rsp;
 
-  static const url =
-      'https://mic.fjjxhl.com/Jx/index.php/Home/Newscore/ajaxxqscore';
+  static const url = '/Home/Newscore/ajaxxqscore';
 
   APIACHVsPoints(this.req)
       : super(url, {'item_id': req.id, 'leixing': req.zone});

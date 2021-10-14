@@ -6,8 +6,7 @@ class APIAccountsLogin extends APIs with HTTPPost {
   final APIAccountsLoginReq req;
   late final APIAccountsLoginRsp rsp;
 
-  static const url =
-      'https://mic.fjjxhl.com/Jx/index.php/Home/User/ajax_parlogin';
+  static const url = '/Home/User/ajax_parlogin';
 
   APIAccountsLogin(this.req)
       : super(url, {'Login_phone': req.phone, 'parpwd': req.password});
