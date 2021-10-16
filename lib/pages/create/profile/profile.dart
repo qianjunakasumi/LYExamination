@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/apis/accounts/roles/get/get.dart';
 import 'package:lyexamination/apis/accounts/roles/get/std.dart';
+import 'package:lyexamination/hives/roles/roles.dart';
+import 'package:lyexamination/hives/settings/settings.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
 import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/create/profile/list.dart';
-import 'package:lyexamination/service/hive.dart';
 
 class CreateProfilePage extends StatefulWidget {
   @override
@@ -14,8 +15,6 @@ class CreateProfilePage extends StatefulWidget {
 }
 
 class _CreateProfilePageState extends State<CreateProfilePage> {
-  final HiveService h = Get.find(tag: 'hive');
-
   List<ProfileModel> profiles = [];
 
   _CreateProfilePageState() {
@@ -28,8 +27,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
     final a = APIACCNTsRolesGet(APIACCNTsRolesGetReq());
     try {
       await a.wait();
+      final ph = hiveSettingsGetCurrentAccount();
       a.rsp.roles.forEach((d) {
-        p.add(ProfileModel(d.id, d.name, d.school, d.grade, d.c));
+        p.add(ProfileModel(d.id, d.name, d.school, d.grade, d.c, phone: ph));
       });
     } catch (e) {
       Messenger.snackBar(e.toString(), feedback: true);
@@ -41,7 +41,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   }
 
   void checked() {
-    if (h.isProfilesEmpty()) {
+    if (hiveRolesIsEmpty()) {
       Messenger.snackBar('您尚未选择档案');
       return;
     }

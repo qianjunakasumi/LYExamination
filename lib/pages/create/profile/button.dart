@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lyexamination/apis/accounts/roles/switch/std.dart';
 import 'package:lyexamination/apis/accounts/roles/switch/switch.dart';
+import 'package:lyexamination/hives/roles/roles.dart';
+import 'package:lyexamination/hives/roles/std.dart';
+import 'package:lyexamination/hives/settings/settings.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/model/profile.dart';
-import 'package:lyexamination/service/hive.dart';
 
 class ButtonComponent extends StatefulWidget {
   final ProfileModel p;
@@ -20,8 +21,6 @@ class _ButtonComponentState extends State<ButtonComponent> {
 
   _ButtonComponentState(this.p);
 
-  final HiveService h = Get.find(tag: 'hive');
-
   bool isPressed = false;
 
   void add() async {
@@ -29,12 +28,22 @@ class _ButtonComponentState extends State<ButtonComponent> {
       isPressed = true;
     });
 
-    final b = h.isProfilesEmpty();
+    final b = hiveRolesIsEmpty();
 
     try {
-      final key = await h.fileProfile(p);
+      await hiveRolesAddA(
+        p.number,
+        HiveRole(
+          id: p.number,
+          name: p.name,
+          school: p.school,
+          grade: p.grade,
+          classNum: p.classNum,
+          phone: p.phone,
+        ),
+      );
       if (b) {
-        h.setDefaultProfile(key);
+        hiveSettingsSetDefaultRole(p.number);
         Messenger.snackBar('已设为默认档案。如需修改请稍后转到设置');
         await APIACCNTsRolesSwitch(APIACCNTsRolesSwitchReq(p.number, p.name))
             .wait();

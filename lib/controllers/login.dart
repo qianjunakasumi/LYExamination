@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:lyexamination/apis/accounts/login/login.dart';
 import 'package:lyexamination/apis/accounts/login/std.dart';
 import 'package:lyexamination/apis/exception/bad_respond.dart';
+import 'package:lyexamination/hives/accounts/accounts.dart';
+import 'package:lyexamination/hives/settings/settings.dart';
 import 'package:lyexamination/messenger.dart';
-import 'package:lyexamination/model/profile.dart';
-import 'package:lyexamination/service/hive.dart';
 
 class LoginFormController extends GetxController {
   final key = GlobalKey<FormState>();
@@ -29,13 +29,13 @@ class LoginFormController extends GetxController {
       return;
     } catch (e) {
       Messenger.snackBar(e.toString(), feedback: true);
-      return;
+      rethrow;
     } finally {
       Messenger.completeProcess();
     }
 
-    final HiveService h = Get.find(tag: 'hive');
-    h.setLoginInfo(AccountModel(phone, password));
+    hiveAccountsAddA(phone, password);
+    hiveSettingsSetCurrentAccount(phone);
 
     // 身为独立的控制器不应该这样，计划日后改进
     Get.toNamed('/create/profile');

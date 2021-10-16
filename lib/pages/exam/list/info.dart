@@ -1,14 +1,13 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:lyexamination/hives/settings/settings.dart';
 import 'package:lyexamination/messenger.dart';
-import 'package:lyexamination/service/hive.dart';
 
 class InfoComponent extends StatelessWidget {
-  final HiveService h = Get.find(tag: 'hive');
-
   @override
   Widget build(BuildContext context) {
+    final r = hiveSettingsGetCurrentRole();
+
     return Row(
       children: [
         Expanded(
@@ -19,7 +18,7 @@ class InfoComponent extends StatelessWidget {
             padding: EdgeInsets.all(18),
             radius: Radius.circular(8),
             child: Text(
-              '${h.getCurrentProfile().name}   ${h.getCurrentProfile().grade}（${h.getCurrentProfile().classNum}）班',
+              '${r.name}   ${r.grade}（${r.classNum}）班',
               style: TextStyle(color: Colors.grey),
             ),
           ),

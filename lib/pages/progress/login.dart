@@ -6,13 +6,12 @@ import 'package:lyexamination/apis/accounts/roles/switch/std.dart';
 import 'package:lyexamination/apis/accounts/roles/switch/switch.dart';
 import 'package:lyexamination/apis/achievements/get/get.dart';
 import 'package:lyexamination/apis/achievements/get/std.dart';
+import 'package:lyexamination/hives/accounts/accounts.dart';
+import 'package:lyexamination/hives/settings/settings.dart';
 import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/progress/error.dart';
-import 'package:lyexamination/service/hive.dart';
 
 class ProgressLoginPage extends StatelessWidget {
-  final HiveService h = Get.find(tag: 'hive');
-
   ProgressLoginPage() {
     run();
   }
@@ -40,14 +39,17 @@ class ProgressLoginPage extends StatelessWidget {
   }
 
   Future<void> login() async {
-    final p = h.getCurrentProfile();
-    final acc = p.account;
+    final role = hiveSettingsGetDefaultRole();
+    final phone = role.phone;
+    final password = hiveAccountsGetPassword(phone);
 
-    final sa = APIAccountsLogin(APIAccountsLoginReq(acc.phone, acc.password));
-    final saa = APIACCNTsRolesSwitch(APIACCNTsRolesSwitchReq(p.number, p.name));
+    final sa = APIAccountsLogin(APIAccountsLoginReq(phone, password));
+    final saa =
+        APIACCNTsRolesSwitch(APIACCNTsRolesSwitchReq(role.id, role.name));
     try {
       await sa.wait();
-      h.setLoginInfo(acc);
+      hiveSettingsSetCurrentAccount(phone);
+      hiveSettingsSetCurrentRole(role.id);
       await saa.wait();
     } catch (e, s) {
       Get.offAll(ProgressErrorPage(e.toString(), s));
