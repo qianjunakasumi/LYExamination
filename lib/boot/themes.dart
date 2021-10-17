@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ThemeData get lightTheme => ThemeData.light().copyWith(
-      primaryColor: Color(0xFF36CFC9),
+      primaryColor: const Color(0xFF36CFC9),
       textTheme: ThemeData.light().textTheme.copyWith(
             headline2: headline2(false),
             headline3: headline3(false),
@@ -12,7 +13,7 @@ ThemeData get lightTheme => ThemeData.light().copyWith(
     );
 
 ThemeData get darkTheme => ThemeData.dark().copyWith(
-      primaryColor: Color(0xDD36CFC9),
+      primaryColor: const Color(0xDD36CFC9),
       textTheme: ThemeData.dark().textTheme.copyWith(
             headline2: headline2(true),
             headline3: headline3(true),
@@ -48,6 +49,22 @@ headline6(bool d) => TextStyle(
       color: d ? primaryColorDark : primaryColorLight,
       fontSize: 14,
     );
+
+const uiLight = SystemUiOverlayStyle(
+  systemNavigationBarColor: Colors.transparent,
+  systemNavigationBarDividerColor: Colors.transparent,
+  systemNavigationBarIconBrightness: Brightness.dark,
+  statusBarColor: Colors.transparent,
+  statusBarIconBrightness: Brightness.dark,
+);
+
+const uiDark = SystemUiOverlayStyle(
+  systemNavigationBarColor: Colors.transparent,
+  systemNavigationBarDividerColor: Colors.transparent,
+  systemNavigationBarIconBrightness: Brightness.light,
+  statusBarColor: Colors.transparent,
+  statusBarIconBrightness: Brightness.light,
+);
 
 const titleColorLight = Color.fromRGBO(0, 0, 0, 0.85);
 const titleColorDark = Color.fromRGBO(255, 255, 255, 0.85);

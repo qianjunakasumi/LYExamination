@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/apis/service.dart';
 import 'package:lyexamination/boot/pages.dart';
 import 'package:lyexamination/boot/themes.dart';
 import 'package:lyexamination/hives/roles/roles.dart';
 import 'package:lyexamination/hives/service.dart';
+import 'package:lyexamination/service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,34 +20,16 @@ class LYExaminationApp extends StatelessWidget {
       Get.putAsync(() => APIService().init(), tag: 'api'),
       Get.putAsync(() => HiveService().init(), tag: 'hive'),
     ]);
+    final a = Get.put(AppGlobeService(), tag: 'app');
+    a.setSystemUI();
+
+    WidgetsBinding.instance!.addObserver(AppWidgetsObserver());
 
     return this;
   }
 
-  void setSystemUI() async {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    SystemChrome.setSystemUIOverlayStyle(
-      Get.isDarkMode
-          ? const SystemUiOverlayStyle(
-              systemNavigationBarColor: Colors.transparent,
-              systemNavigationBarDividerColor: Colors.transparent,
-              systemNavigationBarIconBrightness: Brightness.light,
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.light,
-            )
-          : const SystemUiOverlayStyle(
-              systemNavigationBarColor: Colors.transparent,
-              systemNavigationBarDividerColor: Colors.transparent,
-              systemNavigationBarIconBrightness: Brightness.dark,
-              statusBarColor: Colors.transparent,
-              statusBarIconBrightness: Brightness.dark,
-            ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    setSystemUI();
     return GetMaterialApp(
       title: '龙岩考试',
       initialRoute: hiveRolesIsEmpty() ? '/welcome/login' : '/progress/login',
@@ -55,5 +37,13 @@ class LYExaminationApp extends StatelessWidget {
       darkTheme: darkTheme,
       getPages: pages,
     );
+  }
+}
+
+class AppWidgetsObserver with WidgetsBindingObserver {
+  @override
+  void didChangePlatformBrightness() {
+    final AppGlobeService a = Get.find(tag: 'app');
+    a.changeTheme();
   }
 }
