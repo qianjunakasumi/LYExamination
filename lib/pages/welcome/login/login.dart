@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/controllers/login.dart';
 import 'package:lyexamination/messenger.dart';
+import 'package:lyexamination/pages/welcome/common/welcome.dart';
 import 'package:lyexamination/pages/welcome/login/form.dart';
 
 class WelcomeLoginPage extends StatelessWidget {
@@ -14,37 +15,17 @@ class WelcomeLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 64),
-          SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: main,
-            ),
-          ),
+          SafeArea(child: WelcomeComponent()),
+          tip,
+          form,
+          buttons,
         ],
       ),
     );
   }
-
-  List<Widget> get main => [
-        logo,
-        welcome,
-        tip,
-        form,
-        buttons,
-      ];
-
-  Widget get logo => Container(
-        margin: const EdgeInsets.only(left: 16),
-        child: Image.asset('assets/images/logo_transparent.png',
-            width: 48, height: 48),
-      );
-
-  Widget get welcome => Container(
-        margin: const EdgeInsets.only(top: 8, left: 16),
-        child: Text('欢迎使用龙岩考试', style: Get.textTheme.headline3),
-      );
 
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
