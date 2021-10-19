@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/controllers/login.dart';
+import 'package:lyexamination/controllers/welcome/login.dart';
 
 class FormComponent extends StatelessWidget {
   FormComponent({Key? key}) : super(key: key);
 
-  final LoginFormController c = Get.find(tag: 'WelcomeLoginForm');
+  final LoginFormController c = Get.find(tag: loginFormControllerName);
 
   @override
   Widget build(BuildContext context) {

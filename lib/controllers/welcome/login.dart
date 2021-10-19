@@ -7,42 +7,43 @@ import 'package:lyexamination/hives/accounts/accounts.dart';
 import 'package:lyexamination/hives/settings/settings.dart';
 import 'package:lyexamination/messenger.dart';
 
+const loginFormControllerName = 'WelcomeLoginForm';
+
+class LoginFormControllerValidateFailed implements Exception {}
+
 class LoginFormController extends GetxController {
   final key = GlobalKey<FormState>();
 
   late String phone;
   late String password;
 
-  void go() async {
+  Future<void> go() async {
     if (key.currentState!.validate() != true) {
-      return;
+      throw LoginFormControllerValidateFailed();
     }
 
     Messenger.process();
     key.currentState!.save();
 
     try {
-      await login();
-    } on APIBadRespondException catch (e) {
-      Messenger.snackBar(e.message, feedback: e.panic);
-      //if (e.panic) rethrow; panic 应进入 Error 页面
-      return;
-    } catch (e) {
-      Messenger.snackBar(e.toString(), feedback: true);
-      rethrow;
+      await _login();
     } finally {
       Messenger.completeProcess();
     }
-
-    hiveAccountsAddA(phone, password);
-    hiveSettingsSetCurrentAccount(phone);
-
-    // 身为独立的控制器不应该这样，计划日后改进
-    Get.toNamed('/create/profile');
   }
 
-  Future<void> login() async {
+  void saveStatus() {
+    hiveAccountsAddA(phone, password);
+    hiveSettingsSetCurrentAccount(phone);
+  }
+
+  Future<void> _login() async {
     final a = APIAccountsLogin(APIAccountsLoginReq(phone, password));
-    await a.wait();
+    try {
+      await a.wait();
+    } on APIBadRespondException catch (e) {
+      Messenger.snackBar(e.message, feedback: e.panic);
+      rethrow;
+    }
   }
 }
