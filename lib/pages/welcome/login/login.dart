@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/controllers/login.dart';
+import 'package:lyexamination/controllers/welcome/welcome.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/pages/welcome/common/welcome.dart';
 import 'package:lyexamination/pages/welcome/login/form.dart';
+import 'package:lyexamination/service.dart';
 
 class WelcomeLoginPage extends StatelessWidget {
   WelcomeLoginPage({Key? key}) : super(key: key);
 
-  final LoginFormController c =
-      Get.put(LoginFormController(), tag: 'WelcomeLoginForm');
+  final AppGlobeService a = Get.find(tag: 'app');
+  final WelcomeController w = Get.put(WelcomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +30,8 @@ class WelcomeLoginPage extends StatelessWidget {
 
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
-        child: Text('请使用您的\u9F99\u5CA9\u5BB6\u6821帐号登录',
-            style: Get.textTheme.headline6),
+        child: Obx(() => Text('请使用您的\u9F99\u5CA9\u5BB6\u6821帐号登录',
+            style: a.theme.value.textTheme.headline6)),
       );
 
   Widget get form => Container(
@@ -55,14 +56,14 @@ class WelcomeLoginPage extends StatelessWidget {
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
 
   Widget get aboutButton => OutlinedButton(
-        onPressed: () => Messenger.snackBar('这个功能尚未准备好哦'),
+        onPressed: () => Messenger.snackBar('正在开发中哦'),
         style:
             OutlinedButton.styleFrom(padding: buttonEdge, shape: buttonShape),
         child: const Text('了解详情'),
       );
 
   Widget get nextButton => ElevatedButton(
-        onPressed: () => c.go(),
+        onPressed: () => w.go(),
         style: ElevatedButton.styleFrom(
             elevation: 0, padding: buttonEdge, shape: buttonShape),
         child: const Text('下一步'),
