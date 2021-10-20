@@ -13,9 +13,12 @@ class WelcomeComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: welcomeComponentHeroName,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [logo, welcome],
+      child: Material(
+        type: MaterialType.transparency,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [logo, welcome],
+        ),
       ),
     );
   }
