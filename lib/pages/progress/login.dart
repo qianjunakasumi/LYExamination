@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/apis/accounts/login/login.dart';
-import 'package:lyexamination/apis/accounts/login/std.dart';
-import 'package:lyexamination/apis/accounts/roles/switch/std.dart';
-import 'package:lyexamination/apis/accounts/roles/switch/switch.dart';
-import 'package:lyexamination/apis/achievements/get/get.dart';
-import 'package:lyexamination/apis/achievements/get/std.dart';
-import 'package:lyexamination/hives/accounts/accounts.dart';
-import 'package:lyexamination/hives/settings/settings.dart';
+import 'package:lyexamination/data/apis/accounts/login/login.dart';
+import 'package:lyexamination/data/apis/accounts/login/std.dart';
+import 'package:lyexamination/data/apis/accounts/roles/switch/std.dart';
+import 'package:lyexamination/data/apis/accounts/roles/switch/switch.dart';
+import 'package:lyexamination/data/apis/achievements/get/get.dart';
+import 'package:lyexamination/data/apis/achievements/get/std.dart';
+import 'package:lyexamination/data/hives/accounts/accounts.dart';
+import 'package:lyexamination/data/hives/settings/settings.dart';
 import 'package:lyexamination/pages/_components/title.dart';
 import 'package:lyexamination/pages/progress/error.dart';
 

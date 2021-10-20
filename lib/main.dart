@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/apis/service.dart';
 import 'package:lyexamination/boot/pages.dart';
 import 'package:lyexamination/boot/themes.dart';
-import 'package:lyexamination/hives/roles/roles.dart';
-import 'package:lyexamination/hives/service.dart';
+import 'package:lyexamination/data/apis/service.dart';
+import 'package:lyexamination/data/hives/roles/roles.dart';
+import 'package:lyexamination/data/hives/service.dart';
 import 'package:lyexamination/service.dart';
 
 void main() async {

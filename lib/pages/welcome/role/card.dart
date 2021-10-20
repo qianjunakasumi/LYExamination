@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/apis/accounts/roles/switch/std.dart';
-import 'package:lyexamination/apis/accounts/roles/switch/switch.dart';
-import 'package:lyexamination/hives/roles/roles.dart';
-import 'package:lyexamination/hives/roles/std.dart';
-import 'package:lyexamination/hives/settings/settings.dart';
+import 'package:lyexamination/data/apis/accounts/roles/switch/std.dart';
+import 'package:lyexamination/data/apis/accounts/roles/switch/switch.dart';
+import 'package:lyexamination/data/hives/roles/roles.dart';
+import 'package:lyexamination/data/hives/roles/std.dart';
+import 'package:lyexamination/data/hives/settings/settings.dart';
 import 'package:lyexamination/pages/welcome/role/std.dart';
 import 'package:lyexamination/service.dart';
 

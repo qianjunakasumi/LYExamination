@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/controllers/welcome/welcome.dart';
 import 'package:lyexamination/messenger.dart';
-import 'package:lyexamination/pages/welcome/common/welcome.dart';
+import 'package:lyexamination/pages/welcome/components/welcome.dart';
+import 'package:lyexamination/pages/welcome/controller.dart';
 import 'package:lyexamination/pages/welcome/login/form.dart';
 import 'package:lyexamination/service.dart';
 

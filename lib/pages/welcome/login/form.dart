@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/controllers/welcome/login.dart';
+import 'package:lyexamination/pages/welcome/login/controller.dart';
 
 class FormComponent extends StatelessWidget {
   FormComponent({Key? key}) : super(key: key);

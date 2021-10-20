@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/apis/achievements/get/std.dart';
+import 'package:lyexamination/data/apis/achievements/get/std.dart';
 import 'package:lyexamination/pages/achievement/card.dart';
 import 'package:lyexamination/pages/achievement/controller.dart';
 import 'package:lyexamination/pages/achievement/std.dart';

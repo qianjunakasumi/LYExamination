@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/messenger.dart';
 import 'package:lyexamination/pages/achievement/achievement.dart';
@@ -8,7 +9,12 @@ import 'package:lyexamination/pages/welcome/role/role.dart';
 List<GetPage> get pages => [
       GetPage(
         name: '/progress/login',
-        page: () => MessengerWrapper(ProgressLoginPage()),
+        page: () => Scaffold(
+          body: SafeArea(
+            minimum: const EdgeInsets.only(left: 16, right: 16),
+            child: ProgressLoginPage(),
+          ),
+        ),
       ),
       GetPage(
         name: '/achievement',

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:lyexamination/apis/achievements/points/points.dart';
-import 'package:lyexamination/apis/achievements/points/std.dart';
-import 'package:lyexamination/apis/achievements/rankings/rankings.dart';
-import 'package:lyexamination/apis/achievements/rankings/std.dart';
-import 'package:lyexamination/apis/exception/api.dart';
+import 'package:lyexamination/data/apis/achievements/points/points.dart';
+import 'package:lyexamination/data/apis/achievements/points/std.dart';
+import 'package:lyexamination/data/apis/achievements/rankings/rankings.dart';
+import 'package:lyexamination/data/apis/achievements/rankings/std.dart';
+import 'package:lyexamination/data/apis/exception/api.dart';
 import 'package:lyexamination/pages/achievement/std.dart';
 
 class ACHVPController extends GetxController {

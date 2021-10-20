@@ -1,5 +1,5 @@
-import 'package:lyexamination/apis/achievements/points/std.dart';
-import 'package:lyexamination/apis/achievements/rankings/std.dart';
+import 'package:lyexamination/data/apis/achievements/points/std.dart';
+import 'package:lyexamination/data/apis/achievements/rankings/std.dart';
 
 class ACHVPSubjectCardData {
   String name;
