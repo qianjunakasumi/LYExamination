@@ -18,8 +18,8 @@ class WelcomeRolePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 64),
-          SafeArea(child: WelcomeComponent()),
+          const SafeArea(child: SizedBox(height: 32)),
+          WelcomeComponent(),
           tip,
           Expanded(child: list),
         ],
@@ -30,7 +30,7 @@ class WelcomeRolePage extends StatelessWidget {
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
         child: Obx(() =>
-            Text('请选择您欲登录学生角色', style: a.theme.value.textTheme.headline6)),
+            Text('请选择您欲登录的学生角色', style: a.theme.value.textTheme.headline6)),
       );
 
   Widget get list => Obx(() => ListView(

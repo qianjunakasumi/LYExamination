@@ -18,8 +18,8 @@ class WelcomeLoginPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 64),
-          SafeArea(child: WelcomeComponent()),
+          const SafeArea(child: SizedBox(height: 32)),
+          WelcomeComponent(),
           tip,
           form,
           buttons,
