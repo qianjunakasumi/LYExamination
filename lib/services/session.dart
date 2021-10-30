@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 import '/data/apis/accounts/login/login.dart';
@@ -34,7 +36,6 @@ class SessionService extends GetxService {
     await a.wait();
   }
 
-  /// 使用默认的学生角色登录。
   /// 调用前必须确保默认的学生角色已指定。
   /// 已登录学生角色时立刻返回
   Future<void> loginWithDefaultRole() async {
@@ -44,9 +45,10 @@ class SessionService extends GetxService {
   }
 
   Future<void> loginWithAssignedRole(HiveRole r, String password) async {
-    _login(APIAccountsLoginReq(r.phone, password));
-    _switch(APIACCNTsRolesSwitchReq(r.id, r.name));
+    await _login(APIAccountsLoginReq(r.phone, password));
+    await _switch(APIACCNTsRolesSwitchReq(r.id, r.name));
     _markLoggedInWithRole(r);
+    sessionKeeper = Timer(_sessionExpireRange, keepLoggedIn);
   }
 
   Future<void> loginWithAssignedAccount(APIAccountsLoginReq r) async {
@@ -59,10 +61,20 @@ class SessionService extends GetxService {
     _markLoggedInWithRole(r);
   }
 
-  /// TODO 状态持续控制器
+  static const Duration _sessionExpireRange = Duration(minutes: 45);
+  late Timer sessionKeeper;
+
+  DateTime get sessionExpire => hiveSettingsGetSessionExpire();
+
+  set sessionExpire(DateTime d) => hiveSettingsSetSessionExpire(d);
+
+  void keepLoggedIn() {
+    sessionExpire = DateTime.now().add(_sessionExpireRange);
+    status.value = SessionStatus.offline;
+    loginWithAssignedRole(role, hiveAccountsGetPassword(role.phone));
+  }
 }
 
-/// 会话状态
 enum SessionStatus {
   offline,
 
