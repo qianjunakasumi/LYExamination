@@ -64,12 +64,8 @@ class SessionService extends GetxService {
   static const Duration _sessionExpireRange = Duration(minutes: 45);
   late Timer sessionKeeper;
 
-  DateTime get sessionExpire => hiveSettingsGetSessionExpire();
-
-  set sessionExpire(DateTime d) => hiveSettingsSetSessionExpire(d);
-
   void keepLoggedIn() {
-    sessionExpire = DateTime.now().add(_sessionExpireRange);
+    HiveSettingsSession.expire = DateTime.now().add(_sessionExpireRange);
     status.value = SessionStatus.offline;
     loginWithAssignedRole(role, hiveAccountsGetPassword(role.phone));
   }
