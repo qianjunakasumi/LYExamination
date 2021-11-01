@@ -30,7 +30,7 @@ class WelcomeComponent extends StatelessWidget {
       );
 
   Widget get welcome => Container(
-        margin: const EdgeInsets.only(top: 8, left: 16),
+        margin: const EdgeInsets.only(top: 16, left: 16),
         child: Obx(
             () => Text('欢迎使用龙岩考试', style: a.theme.value.textTheme.headline3)),
       );
