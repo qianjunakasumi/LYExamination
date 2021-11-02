@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData get lightTheme => ThemeData.light().copyWith(
+      appBarTheme: AppBarTheme(
+        backgroundColor: Color(0xccfafafa),
+        foregroundColor: titleColorLight,
+        elevation: 0,
+      ),
       primaryColor: const Color(0xFF36CFC9),
       textTheme: ThemeData.light().textTheme.copyWith(
             headline2: headline2(false),
@@ -13,6 +18,11 @@ ThemeData get lightTheme => ThemeData.light().copyWith(
     );
 
 ThemeData get darkTheme => ThemeData.dark().copyWith(
+      appBarTheme: AppBarTheme(
+        backgroundColor: Color(0xcc303030),
+        foregroundColor: titleColorDark,
+        elevation: 0,
+      ),
       primaryColor: const Color(0xDD36CFC9),
       textTheme: ThemeData.dark().textTheme.copyWith(
             headline2: headline2(true),
