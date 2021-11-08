@@ -1,38 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/boot/pages.dart';
-import 'package:lyexamination/boot/themes.dart';
-import 'package:lyexamination/data/apis/service.dart';
-import 'package:lyexamination/data/hives/roles/roles.dart';
-import 'package:lyexamination/data/hives/service.dart';
-import 'package:lyexamination/service.dart';
+
+import '/boot/pages.dart';
+import '/boot/themes.dart';
+import '/data/apis/service.dart';
+import '/data/hives/roles/roles.dart';
+import '/data/hives/service.dart';
+import '/pages/home/controller.dart';
+import '/service.dart';
+import '/services/session.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(await const LYExaminationApp().init());
+  runApp(await LYExaminationApp.run());
 }
 
 class LYExaminationApp extends StatelessWidget {
-  const LYExaminationApp({Key? key}) : super(key: key);
-
-  Future<LYExaminationApp> init() async {
+  static Future<LYExaminationApp> run() async {
     await Future.wait([
       Get.putAsync(() => APIService().init(), tag: 'api'),
       Get.putAsync(() => HiveService().init(), tag: 'hive'),
     ]);
-    final a = Get.put(AppGlobeService(), tag: 'app');
-    a.setSystemUI();
+    Get.put(SessionService());
+    Get.put(AppGlobeService(), tag: 'app').setSystemUI();
 
     WidgetsBinding.instance!.addObserver(AppWidgetsObserver());
 
-    return this;
+    return !hiveRolesIsEmpty()
+        ? rise()
+        : const LYExaminationApp(route: '/welcome/login');
   }
+
+  static LYExaminationApp rise() {
+    Get.put(HomeController());
+    return const LYExaminationApp();
+  }
+
+  final String route;
+
+  const LYExaminationApp({this.route = '/home', Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: '龙岩考试',
-      initialRoute: hiveRolesIsEmpty() ? '/welcome/login' : '/progress/login',
+      initialRoute: route,
       theme: lightTheme,
       darkTheme: darkTheme,
       getPages: pages,
