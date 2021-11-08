@@ -48,8 +48,6 @@ class ProgressLoginPage extends StatelessWidget {
         APIACCNTsRolesSwitch(APIACCNTsRolesSwitchReq(role.id, role.name));
     try {
       await sa.wait();
-      hiveSettingsSetCurrentAccount(phone);
-      hiveSettingsSetCurrentRole(role.id);
       await saa.wait();
     } catch (e, s) {
       Get.offAll(ProgressErrorPage(e.toString(), s));
