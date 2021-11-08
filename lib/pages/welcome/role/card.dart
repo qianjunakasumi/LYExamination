@@ -1,36 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/data/apis/accounts/roles/switch/std.dart';
-import 'package:lyexamination/data/apis/accounts/roles/switch/switch.dart';
-import 'package:lyexamination/data/hives/roles/roles.dart';
-import 'package:lyexamination/data/hives/roles/std.dart';
-import 'package:lyexamination/data/hives/settings/settings.dart';
-import 'package:lyexamination/pages/welcome/role/std.dart';
-import 'package:lyexamination/service.dart';
+
+import '/data/hives/roles/std.dart';
+import '/pages/welcome/role/controller.dart';
+import '/service.dart';
 
 class CardComponent extends StatelessWidget {
-  final CardComponentModel d;
+  final HiveRole d;
 
   CardComponent(this.d, {Key? key}) : super(key: key);
 
   final AppGlobeService a = Get.find(tag: 'app');
-
-  void save() async {
-    await hiveRolesAddA(
-      d.id,
-      HiveRole(
-        id: d.id,
-        name: d.name,
-        school: d.school,
-        grade: d.grade,
-        classNum: d.classNum,
-        phone: hiveSettingsGetCurrentAccount(),
-      ),
-    );
-    hiveSettingsSetDefaultRole(d.id);
-    await APIACCNTsRolesSwitch(APIACCNTsRolesSwitchReq(d.id, d.name)).wait();
-    Get.offAllNamed('/progress/login');
-  }
+  final RoleListController r = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +25,7 @@ class CardComponent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             info,
-            TextButton(onPressed: () => save(), child: const Text('下一步')),
+            TextButton(onPressed: () => r.go(d), child: const Text('下一步')),
           ],
         ),
       ),

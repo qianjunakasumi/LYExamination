@@ -5,7 +5,7 @@ import 'package:lyexamination/pages/welcome/role/controller.dart';
 
 class WelcomeController extends GetxController {
   final lc = Get.put(LoginFormController(), tag: loginFormControllerName);
-  final rc = Get.put(RoleListController(), tag: roleListControllerName);
+  final rc = Get.put(RoleListController());
 
   void go() async {
     try {

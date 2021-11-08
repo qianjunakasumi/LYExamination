@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/pages/welcome/components/welcome.dart';
-import 'package:lyexamination/pages/welcome/role/card.dart';
-import 'package:lyexamination/pages/welcome/role/controller.dart';
-import 'package:lyexamination/pages/welcome/role/std.dart';
-import 'package:lyexamination/service.dart';
+
+import '/data/hives/roles/std.dart';
+import '/pages/welcome/components/welcome.dart';
+import '/pages/welcome/role/card.dart';
+import '/pages/welcome/role/controller.dart';
+import '/service.dart';
 
 class WelcomeRolePage extends StatelessWidget {
   WelcomeRolePage({Key? key}) : super(key: key);
 
   final AppGlobeService a = Get.find(tag: 'app');
-  final RoleListController r = Get.find(tag: roleListControllerName);
+  final RoleListController r = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class WelcomeRolePage extends StatelessWidget {
   Widget get list => Obx(() => ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          for (CardComponentModel d in r.role()) CardComponent(d),
+          for (HiveRole d in r.role()) CardComponent(d),
         ],
       ));
 }
