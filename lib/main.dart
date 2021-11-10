@@ -18,22 +18,19 @@ void main() async {
 class LYExaminationApp extends StatelessWidget {
   static Future<LYExaminationApp> run() async {
     await Future.wait([
-      Get.putAsync(() => APIService().init(), tag: 'api'),
-      Get.putAsync(() => HiveService().init(), tag: 'hive'),
+      Get.putAsync(() => APIService().init()),
+      Get.putAsync(() => HiveService().init()),
     ]);
     Get.put(SessionService());
-    Get.put(AppGlobeService(), tag: 'app').setSystemUI();
+    Get.put(AppGlobeService()).setSystemUI();
+
+    Get.lazyPut(() => HomeController.rise());
 
     WidgetsBinding.instance!.addObserver(AppWidgetsObserver());
 
     return !hiveRolesIsEmpty()
-        ? rise()
+        ? const LYExaminationApp()
         : const LYExaminationApp(route: '/welcome/login');
-  }
-
-  static LYExaminationApp rise() {
-    Get.put(HomeController());
-    return const LYExaminationApp();
   }
 
   final String route;
@@ -55,7 +52,7 @@ class LYExaminationApp extends StatelessWidget {
 class AppWidgetsObserver with WidgetsBindingObserver {
   @override
   void didChangePlatformBrightness() {
-    final AppGlobeService a = Get.find(tag: 'app');
+    final AppGlobeService a = Get.find();
     a.changeTheme();
   }
 }

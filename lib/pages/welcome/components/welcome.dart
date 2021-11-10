@@ -7,7 +7,7 @@ const welcomeComponentHeroName = 'WelcomeComponent';
 class WelcomeComponent extends StatelessWidget {
   WelcomeComponent({Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find(tag: 'app');
+  final AppGlobeService a = Get.find();
 
   @override
   Widget build(BuildContext context) {

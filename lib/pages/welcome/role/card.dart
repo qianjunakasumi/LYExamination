@@ -10,7 +10,7 @@ class CardComponent extends StatelessWidget {
 
   CardComponent(this.d, {Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find(tag: 'app');
+  final AppGlobeService a = Get.find();
   final RoleListController r = Get.find();
 
   @override

@@ -34,6 +34,6 @@ class RoleListController extends GetxController {
     await hiveRolesAddA(r.id, r);
     hiveSettingsSetDefaultRole(r.id);
     await s.assigningRole(r);
-    Get.offAllNamed('/progress/login');
+    Get.offAllNamed('/home');
   }
 }

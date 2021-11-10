@@ -38,19 +38,3 @@ class Messenger {
     Get.back();
   }
 }
-
-class MessengerWrapper extends StatelessWidget {
-  final Widget _child;
-
-  MessengerWrapper(this._child);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        minimum: EdgeInsets.only(left: 16, right: 16),
-        child: _child,
-      ),
-    );
-  }
-}

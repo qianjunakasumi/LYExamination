@@ -1,34 +1,105 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
+import '/data/apis/achievements/get/get.dart';
+import '/data/apis/achievements/get/std.dart';
+import '/data/apis/achievements/points/points.dart';
+import '/data/apis/achievements/points/std.dart';
+import '/data/apis/achievements/rankings/rankings.dart';
+import '/data/apis/achievements/rankings/std.dart';
+import '/data/apis/exception/api.dart';
 import '/services/session.dart';
+import 'achievement/std.dart';
 
 class HomeController extends GetxController {
-  HomeController() {
-    run();
-  }
+  HomeController();
+
+  factory HomeController.rise() => HomeController()..run();
 
   final SessionService s = Get.find();
 
-  void run() async {
-    print('[LYEX] Call to login');
+  Rx<String> id = ''.obs;
+  Rx<String> name = '龙岩考试正在为您查询中，请喝口茶~'.obs;
+  Rx<DateTime> date = DateTime(0, 0, 0).obs;
+  Rx<String> points = '000'.obs;
+  Rx<String> rankings = '1'.obs;
+  Rx<String> averagePoints = '000'.obs;
+  Rx<String> mostPoints = '000'.obs;
+  RxMap<String, Rx<ACHVPSubjectCardData>> subjectsPoints =
+      <String, Rx<ACHVPSubjectCardData>>{}.obs;
 
-    /// b1
+  void run() async {
+    log('开始登录', name: 'LYEx-DBG');
     try {
       await s.loginWithDefaultRole();
     } catch (e, s) {
-      print(e);
-      print(s);
+      log(e.toString(), name: 'LYEx-ERR', stackTrace: s);
       rethrow;
     }
 
-    /// TODO 启动
-    /// 检验本地是否存在已有的考试数据
-    /// 若存在则加载本地考试数据
-    /// 不存在则加载考试数据加载骨架 (null)
-    ///
-    ///
-    /// b1. 登录并获取最新一场考试
-    /// b2. 若当前的考试数据不是最新则提示是否切换
-    /// b3. 若当前考试数据加载中则装载最新考试数据
+    log('登录成功', name: 'LYEx-DBG');
+
+    final a = APIAchievementsGet(const APIAchievementsGetReq(limit: 1));
+    try {
+      await a.wait();
+    } catch (e, s) {
+      log(e.toString(), name: 'LYEx-ERR', stackTrace: s);
+      rethrow;
+    }
+
+    if (a.rsp.examination.isEmpty) {
+      log('无考试成绩', name: 'LYEx-ERR');
+      return;
+    }
+
+    final e = a.rsp.examination.first;
+    id(e.id);
+    name(e.name);
+    date(DateTime.parse(e.date));
+
+    await Future.wait([updatePoints(), updateRankings()]);
+
+    log('考试数据加载成功', name: 'LYEx-DBG');
+  }
+
+  Future<void> updatePoints() async {
+    final a = APIACHVsPoints(APIACHVsPointsReq(id()));
+    try {
+      await a.wait();
+    } on APIException {
+      rethrow;
+    }
+
+    final rsp = a.rsp;
+    points(rsp.points);
+    averagePoints(rsp.average);
+    mostPoints(rsp.highest);
+    for (var e in rsp.subjects) {
+      if (subjectsPoints[e.name] == null) {
+        subjectsPoints[e.name] = ACHVPSubjectCardData.futurePoints(e).obs;
+      } else {
+        subjectsPoints[e.name]!.update((d) => d!.updatePoints(e));
+      }
+    }
+  }
+
+  Future<void> updateRankings() async {
+    final a = APIACHVsRankings(APIACHVsRankingsReq(id()));
+    try {
+      await a.wait();
+    } on APIException {
+      rethrow;
+    }
+
+    rankings(a.rsp.gradeRanking);
+
+    for (var e in a.rsp.subjectRankings) {
+      if (subjectsPoints[e.name] == null) {
+        subjectsPoints[e.name] = ACHVPSubjectCardData.futureRankings(e).obs;
+      } else {
+        subjectsPoints[e.name]!.update((d) => d!.updateRankings(e));
+      }
+    }
   }
 }

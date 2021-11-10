@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lyexamination/data/apis/exception/bad_status.dart';
 
 class APIs {
-  final network.Dio http = Get.find(tag: 'api');
+  final network.Dio http = Get.find();
 
   final String _url;
   final Map<String, dynamic> httpREQ;

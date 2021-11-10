@@ -9,7 +9,7 @@ import 'package:lyexamination/service.dart';
 class WelcomeLoginPage extends StatelessWidget {
   WelcomeLoginPage({Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find(tag: 'app');
+  final AppGlobeService a = Get.find();
   final WelcomeController w = Get.put(WelcomeController());
 
   @override

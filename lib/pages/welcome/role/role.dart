@@ -10,7 +10,7 @@ import '/service.dart';
 class WelcomeRolePage extends StatelessWidget {
   WelcomeRolePage({Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find(tag: 'app');
+  final AppGlobeService a = Get.find();
   final RoleListController r = Get.find();
 
   @override

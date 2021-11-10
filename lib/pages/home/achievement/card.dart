@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lyexamination/messenger.dart';
-import 'package:lyexamination/pages/achievement/std.dart';
+import 'package:lyexamination/pages/home/achievement/std.dart';
 
 class ACHVPSubjectCardComponent extends StatelessWidget {
   final Rx<ACHVPSubjectCardData> d;
