@@ -16,35 +16,40 @@ class HomeAchievementPage extends StatelessWidget {
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
-        Container(
-          padding: const EdgeInsets.only(bottom: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              name,
-              quick,
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            name,
+            quick,
+          ],
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
+          padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               info,
-              const SizedBox(height: 32),
-              Obx(() => Text('学科', style: a.textTheme().headline5)),
               const SizedBox(height: 24),
+              Obx(() => Text('学科', style: a.textTheme().headline5)),
+              const SizedBox(height: 16),
               Obx(() => Column(
                     children: [
                       for (var d in h.subjectsPoints().values)
                         ACHVPSubjectCardComponent(d),
                     ],
                   )),
-              const SizedBox(height: 24),
             ],
           ),
         ),
+        const SizedBox(height: 24),
+        Obx(() => Center(
+              child: Text('·    你已看完所有的啦    ·',
+                  style: a
+                      .textTheme()
+                      .headline6!
+                      .copyWith(color: Colors.grey[400])),
+            )),
+        const SizedBox(height: 24),
       ],
     );
   }
@@ -55,7 +60,7 @@ class HomeAchievementPage extends StatelessWidget {
       );
 
   Widget get quick => Container(
-        margin: const EdgeInsets.only(left: 16, right: 16),
+        margin: const EdgeInsets.only(left: 16, top: 8, right: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -85,7 +90,7 @@ class HomeAchievementPage extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Get.theme.primaryColor,
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -112,7 +117,7 @@ class HomeAchievementPage extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Get.theme.primaryColor,
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
