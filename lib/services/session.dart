@@ -41,7 +41,7 @@ class SessionService extends GetxService {
   Future<void> loginWithDefaultRole() async {
     if (status() == SessionStatus.online) return;
     final r = hiveSettingsGetDefaultRole();
-    loginWithAssignedRole(r, hiveAccountsGetPassword(r.phone));
+    await loginWithAssignedRole(r, hiveAccountsGetPassword(r.phone));
   }
 
   Future<void> loginWithAssignedRole(HiveRole r, String password) async {
