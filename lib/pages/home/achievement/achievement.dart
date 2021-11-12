@@ -28,7 +28,22 @@ class HomeAchievementPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
-          child: old,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              info,
+              const SizedBox(height: 32),
+              Text('学科', style: Get.theme.textTheme.headline5),
+              const SizedBox(height: 24),
+              Obx(() => Column(
+                    children: [
+                      for (var d in h.subjectsPoints().values)
+                        ACHVPSubjectCardComponent(d),
+                    ],
+                  )),
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ],
     );
@@ -40,89 +55,86 @@ class HomeAchievementPage extends StatelessWidget {
       );
 
   Widget get quick => Container(
-        margin: EdgeInsets.only(left: 16, right: 16),
+        margin: const EdgeInsets.only(left: 16, right: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-                Text('总\n分'),
-                SizedBox(width: 16),
-                Obx(() => Text(
-                      h.points(),
-                      style: a.theme().textTheme.headline4,
-                    )),
+                const Text('总\n分'),
+                const SizedBox(width: 16),
+                Obx(() =>
+                    Text(h.points(), style: a.theme().textTheme.headline4)),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               children: [
-                Text('年段\n名次'),
-                SizedBox(width: 16),
-                Obx(() => Text(
-                      h.rankings(),
-                      style: a.theme().textTheme.headline4,
-                    )),
+                const Text('年段\n名次'),
+                const SizedBox(width: 16),
+                Obx(() =>
+                    Text(h.rankings(), style: a.theme().textTheme.headline4)),
               ],
             ),
           ],
         ),
       );
 
-  Widget get old => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget get info => Row(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Get.theme.primaryColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Obx(() =>
-                          Text('平\n均', style: a.theme().textTheme.headline6)),
-                      Obx(() => Text(h.averagePoints(),
-                          style: a.theme().textTheme.headline3)),
-                    ],
-                  ),
-                ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Get.theme.primaryColor,
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
               ),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Get.theme.primaryColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Obx(() =>
-                          Text('最\n高', style: a.theme().textTheme.headline6)),
-                      Obx(() => Text(h.mostPoints(),
-                          style: a.theme().textTheme.headline3)),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 32),
-          Text('学科', style: Get.theme.textTheme.headline5),
-          const SizedBox(height: 24),
-          Obx(() => Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  for (var d in h.subjectsPoints().values)
-                    ACHVPSubjectCardComponent(d),
+                  Obx(() => const Text(
+                        '平\n均',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      )),
+                  Obx(() => Text(
+                        h.averagePoints(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      )),
                 ],
-              )),
-          const SizedBox(height: 24),
+              ),
+            ),
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Get.theme.primaryColor,
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Obx(() => const Text(
+                        '最\n高',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      )),
+                  Obx(() => Text(
+                        h.mostPoints(),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      )),
+                ],
+              ),
+            ),
+          ),
         ],
       );
 }
