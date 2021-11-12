@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/messenger.dart';
-import 'package:lyexamination/pages/welcome/components/welcome.dart';
-import 'package:lyexamination/pages/welcome/controller.dart';
-import 'package:lyexamination/pages/welcome/login/form.dart';
-import 'package:lyexamination/service.dart';
+
+import '/messenger.dart';
+import '/pages/welcome/components/welcome.dart';
+import '/pages/welcome/controller.dart';
+import '/pages/welcome/login/form.dart';
+import '/services/app_globe.dart';
 
 class WelcomeLoginPage extends StatelessWidget {
   WelcomeLoginPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class WelcomeLoginPage extends StatelessWidget {
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
         child: Obx(() => Text('请使用您的\u9F99\u5CA9\u5BB6\u6821帐号登录',
-            style: a.theme.value.textTheme.headline6)),
+            style: a.textTheme().headline6)),
       );
 
   Widget get form => Container(

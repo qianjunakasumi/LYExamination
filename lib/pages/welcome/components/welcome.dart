@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/service.dart';
+
+import '/services/app_globe.dart';
 
 const welcomeComponentHeroName = 'WelcomeComponent';
 
@@ -31,7 +32,6 @@ class WelcomeComponent extends StatelessWidget {
 
   Widget get welcome => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
-        child: Obx(
-            () => Text('欢迎使用龙岩考试', style: a.theme.value.textTheme.headline3)),
+        child: Obx(() => Text('欢迎使用龙岩考试', style: a.textTheme().headline3)),
       );
 }

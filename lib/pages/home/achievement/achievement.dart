@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '/pages/home/achievement/card.dart';
 import '/pages/home/controller.dart';
-import '/service.dart';
+import '/services/app_globe.dart';
 
 class HomeAchievementPage extends StatelessWidget {
   HomeAchievementPage({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class HomeAchievementPage extends StatelessWidget {
             children: [
               info,
               const SizedBox(height: 32),
-              Text('学科', style: Get.theme.textTheme.headline5),
+              Obx(() => Text('学科', style: a.textTheme().headline5)),
               const SizedBox(height: 24),
               Obx(() => Column(
                     children: [
@@ -51,7 +51,7 @@ class HomeAchievementPage extends StatelessWidget {
 
   Widget get name => Container(
         margin: const EdgeInsets.all(16),
-        child: Obx(() => Text(h.name(), style: a.theme().textTheme.headline5)),
+        child: Obx(() => Text(h.name(), style: a.textTheme().headline5)),
       );
 
   Widget get quick => Container(
@@ -63,8 +63,7 @@ class HomeAchievementPage extends StatelessWidget {
               children: [
                 const Text('总\n分'),
                 const SizedBox(width: 16),
-                Obx(() =>
-                    Text(h.points(), style: a.theme().textTheme.headline4)),
+                Obx(() => Text(h.points(), style: a.textTheme().headline4)),
               ],
             ),
             const SizedBox(height: 8),
@@ -72,8 +71,7 @@ class HomeAchievementPage extends StatelessWidget {
               children: [
                 const Text('年段\n名次'),
                 const SizedBox(width: 16),
-                Obx(() =>
-                    Text(h.rankings(), style: a.theme().textTheme.headline4)),
+                Obx(() => Text(h.rankings(), style: a.textTheme().headline4)),
               ],
             ),
           ],
@@ -92,11 +90,11 @@ class HomeAchievementPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Obx(() => const Text(
-                        '平\n均',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      )),
+                  const Text(
+                    '平\n均',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                   Obx(() => Text(
                         h.averagePoints(),
                         style: const TextStyle(
@@ -119,11 +117,11 @@ class HomeAchievementPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Obx(() => const Text(
-                        '最\n高',
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      )),
+                  const Text(
+                    '最\n高',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                   Obx(() => Text(
                         h.mostPoints(),
                         style: const TextStyle(

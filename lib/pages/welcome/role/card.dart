@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '/data/hives/roles/std.dart';
 import '/pages/welcome/role/controller.dart';
-import '/service.dart';
+import '../../../services/app_globe.dart';
 
 class CardComponent extends StatelessWidget {
   final HiveRole d;
@@ -35,12 +35,12 @@ class CardComponent extends StatelessWidget {
   Widget get info => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(d.name, style: a.theme.value.textTheme.headline4),
+          Text(d.name, style: a.textTheme().headline4),
           const SizedBox(height: 8),
           Text('${d.school}  ${d.grade}（${d.classNum}）班',
-              style: a.theme.value.textTheme.headline6),
+              style: a.textTheme().headline6),
           const SizedBox(height: 8),
-          Text('学号：${d.id}', style: a.theme.value.textTheme.headline6),
+          Text('学号：${d.id}', style: a.textTheme().headline6),
         ],
       );
 }

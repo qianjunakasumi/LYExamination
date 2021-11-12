@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lyexamination/boot/theme_night.dart';
 
 import '/boot/pages.dart';
-import '/boot/themes.dart';
+import '/boot/theme_light.dart';
 import '/data/apis/service.dart';
 import '/data/hives/roles/roles.dart';
 import '/data/hives/service.dart';
 import '/pages/home/controller.dart';
-import '/service.dart';
 import '/services/session.dart';
+import 'services/app_globe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +43,7 @@ class LYExaminationApp extends StatelessWidget {
       title: '龙岩考试',
       initialRoute: route,
       theme: lightTheme,
-      darkTheme: darkTheme,
+      darkTheme: nightTheme,
       getPages: pages,
     );
   }

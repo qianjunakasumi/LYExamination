@@ -5,7 +5,7 @@ import '/data/hives/roles/std.dart';
 import '/pages/welcome/components/welcome.dart';
 import '/pages/welcome/role/card.dart';
 import '/pages/welcome/role/controller.dart';
-import '/service.dart';
+import '/services/app_globe.dart';
 
 class WelcomeRolePage extends StatelessWidget {
   WelcomeRolePage({Key? key}) : super(key: key);
@@ -30,8 +30,7 @@ class WelcomeRolePage extends StatelessWidget {
 
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
-        child: Obx(() =>
-            Text('请选择您欲登录的学生角色', style: a.theme.value.textTheme.headline6)),
+        child: Obx(() => Text('请选择您欲登录的学生角色', style: a.textTheme().headline6)),
       );
 
   Widget get list => Obx(() => ListView(
