@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/messenger.dart';
 import '/pages/welcome/components/welcome.dart';
 import '/pages/welcome/controller.dart';
 import '/pages/welcome/login/form.dart';
 import '/services/app_globe.dart';
+import '/utils.dart';
 
 class WelcomeLoginPage extends StatelessWidget {
   WelcomeLoginPage({Key? key}) : super(key: key);
@@ -57,7 +57,7 @@ class WelcomeLoginPage extends StatelessWidget {
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
 
   Widget get aboutButton => OutlinedButton(
-        onPressed: () => Messenger.snackBar('正在开发中哦'),
+        onPressed: () => snack('正在开发中哦'),
         style:
             OutlinedButton.styleFrom(padding: buttonEdge, shape: buttonShape),
         child: const Text('了解详情'),

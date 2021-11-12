@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '/data/apis/accounts/login/std.dart';
 import '/data/apis/exception/bad_respond.dart';
 import '/data/hives/accounts/accounts.dart';
-import '/messenger.dart';
 import '/services/session.dart';
+import '/utils.dart';
 
 const loginFormControllerName = 'WelcomeLoginForm';
 
@@ -24,16 +24,16 @@ class LoginFormController extends GetxController {
       throw LoginFormControllerValidateFailed();
     }
 
-    Messenger.process();
+    process();
     key.currentState!.save();
 
     try {
       await s.loginWithAssignedAccount(APIAccountsLoginReq(phone, password));
     } on APIBadRespondException catch (e) {
-      Messenger.snackBar(e.message, feedback: e.panic);
+      snack(e.message, feedback: e.panic);
       rethrow;
     } finally {
-      Messenger.completeProcess();
+      complete();
     }
   }
 

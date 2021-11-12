@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/messenger.dart';
 import '/pages/home/achievement/std.dart';
 import '/services/app_globe.dart';
+import '/utils.dart';
 
 class ACHVPSubjectCardComponent extends StatelessWidget {
   final Rx<ACHVPSubjectCardData> d;
@@ -38,7 +38,7 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
             children: [
               Text(d.value.name, style: headline3),
               ElevatedButton(
-                  onPressed: () => Messenger.snackBar('还未完成哦'),
+                  onPressed: () => snack('还未完成哦'),
                   style: ButtonStyle(
                     textStyle: MaterialStateProperty.all(
                         const TextStyle(fontWeight: FontWeight.bold)),

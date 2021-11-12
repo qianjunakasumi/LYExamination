@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/messenger.dart';
 import '/pages/home/controller.dart';
 import '/services/session.dart';
+import '/utils.dart';
 import 'achievement/achievement.dart';
 
 class HomeLayout extends StatelessWidget {
@@ -29,7 +29,7 @@ class HomeLayout extends StatelessWidget {
       case 0:
         break;
       case 1:
-        Messenger.snackBar('还未完成哦');
+        snack('还未完成哦');
         break;
     }
   }
