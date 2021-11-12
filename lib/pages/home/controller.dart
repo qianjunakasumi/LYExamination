@@ -13,17 +13,13 @@ import '/services/session.dart';
 import 'achievement/std.dart';
 
 class HomeController extends GetxController {
-  HomeController();
-
-  factory HomeController.rise() => HomeController()..run();
-
   final SessionService s = Get.find();
 
   Rx<String> id = ''.obs;
   Rx<String> name = '龙岩考试正在为您查询中，请喝口茶~'.obs;
   Rx<DateTime> date = DateTime(0, 0, 0).obs;
   Rx<String> points = '000'.obs;
-  Rx<String> rankings = '1'.obs;
+  Rx<String> rankings = '0'.obs;
   Rx<String> averagePoints = '000'.obs;
   Rx<String> mostPoints = '000'.obs;
   RxMap<String, Rx<ACHVPSubjectCardData>> subjectsPoints =

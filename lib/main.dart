@@ -23,8 +23,7 @@ class LYExaminationApp extends StatelessWidget {
     ]);
     Get.put(SessionService());
     Get.put(AppGlobeService()).setSystemUI();
-
-    Get.lazyPut(() => HomeController.rise());
+    Get.lazyPut(() => HomeController()..run());
 
     WidgetsBinding.instance!.addObserver(AppWidgetsObserver());
 
