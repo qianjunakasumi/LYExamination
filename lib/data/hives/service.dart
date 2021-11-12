@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lyexamination/data/hives/hives.dart';
-import 'package:lyexamination/data/hives/roles/std.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '/data/hives/hives.dart';
+import '/data/hives/roles/std.dart';
 
 class HiveService extends GetxService {
   Future<HiveService> init() async {

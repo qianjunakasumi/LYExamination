@@ -1,5 +1,5 @@
-import 'package:lyexamination/data/apis/accounts/roles/get/std.dart';
-import 'package:lyexamination/data/apis/apis.dart';
+import '/data/apis/accounts/roles/get/std.dart';
+import '/data/apis/apis.dart';
 
 class APIACCNTsRolesGet extends APIs with HTTPGet {
   final APIACCNTsRolesGetReq req;

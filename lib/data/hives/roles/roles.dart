@@ -1,6 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lyexamination/data/hives/hives.dart';
-import 'package:lyexamination/data/hives/roles/std.dart';
+
+import '/data/hives/hives.dart';
+import '/data/hives/roles/std.dart';
 
 Box<HiveRole> _hive() => Hive.box(hiveBoxRoles);
 

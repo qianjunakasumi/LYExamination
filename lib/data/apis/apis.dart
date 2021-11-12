@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart' as network;
 import 'package:get/get.dart';
-import 'package:lyexamination/data/apis/exception/bad_status.dart';
+
+import '/data/apis/exception/bad_status.dart';
 
 class APIs {
   final network.Dio http = Get.find();

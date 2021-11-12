@@ -1,5 +1,5 @@
-import 'package:lyexamination/data/apis/achievements/get/std.dart';
-import 'package:lyexamination/data/apis/apis.dart';
+import '/data/apis/achievements/get/std.dart';
+import '/data/apis/apis.dart';
 
 class APIAchievementsGet extends APIs with HTTPGet {
   final APIAchievementsGetReq req;

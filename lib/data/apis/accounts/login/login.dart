@@ -1,6 +1,6 @@
-import 'package:lyexamination/data/apis/accounts/login/std.dart';
-import 'package:lyexamination/data/apis/apis.dart';
-import 'package:lyexamination/data/apis/exception/bad_respond.dart';
+import '/data/apis/accounts/login/std.dart';
+import '/data/apis/apis.dart';
+import '/data/apis/exception/bad_respond.dart';
 
 class APIAccountsLogin extends APIs with HTTPPost {
   final APIAccountsLoginReq req;

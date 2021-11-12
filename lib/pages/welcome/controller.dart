@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:lyexamination/data/apis/exception/bad_respond.dart';
-import 'package:lyexamination/pages/welcome/login/controller.dart';
-import 'package:lyexamination/pages/welcome/role/controller.dart';
+
+import '/data/apis/exception/bad_respond.dart';
+import '/pages/welcome/login/controller.dart';
+import '/pages/welcome/role/controller.dart';
 
 class WelcomeController extends GetxController {
   final lc = Get.put(LoginFormController(), tag: loginFormControllerName);

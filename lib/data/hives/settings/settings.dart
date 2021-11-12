@@ -1,6 +1,7 @@
 import 'package:hive_flutter/adapters.dart';
-import 'package:lyexamination/data/hives/hives.dart';
-import 'package:lyexamination/data/hives/roles/std.dart';
+
+import '/data/hives/hives.dart';
+import '/data/hives/roles/std.dart';
 
 Box<dynamic> get box => Hive.box(hiveBoxSettings);
 

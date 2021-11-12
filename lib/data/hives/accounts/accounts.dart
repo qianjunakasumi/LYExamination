@@ -1,5 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lyexamination/data/hives/hives.dart';
+
+import '/data/hives/hives.dart';
 
 String hiveAccountsGetPassword(String phone) =>
     Hive.box(hiveBoxAccounts).get(phone);

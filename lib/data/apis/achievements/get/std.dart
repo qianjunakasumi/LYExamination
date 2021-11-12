@@ -1,4 +1,4 @@
-import 'package:lyexamination/data/apis/util.dart';
+import '/data/apis/util.dart';
 
 class APIAchievementsGetReq {
   final int offset;

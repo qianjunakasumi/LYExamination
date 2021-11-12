@@ -1,5 +1,5 @@
-import 'package:lyexamination/data/apis/achievements/points/std.dart';
-import 'package:lyexamination/data/apis/apis.dart';
+import '/data/apis/achievements/points/std.dart';
+import '/data/apis/apis.dart';
 
 class APIACHVsPoints extends APIs with HTTPPost {
   final APIACHVsPointsReq req;

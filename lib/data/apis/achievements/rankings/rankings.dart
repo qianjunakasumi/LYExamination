@@ -1,6 +1,7 @@
 import 'package:html/parser.dart' as html show parse;
-import 'package:lyexamination/data/apis/achievements/rankings/std.dart';
-import 'package:lyexamination/data/apis/apis.dart';
+
+import '/data/apis/achievements/rankings/std.dart';
+import '/data/apis/apis.dart';
 
 class APIACHVsRankings extends APIs with HTTPGet {
   final APIACHVsRankingsReq req;

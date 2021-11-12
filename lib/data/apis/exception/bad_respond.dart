@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:lyexamination/data/apis/exception/api.dart';
+
+import '/data/apis/exception/api.dart';
 
 class APIBadRespondException extends APIException implements Exception {
   final String message;

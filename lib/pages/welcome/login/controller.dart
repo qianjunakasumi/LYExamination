@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:lyexamination/data/apis/accounts/login/std.dart';
-import 'package:lyexamination/data/apis/exception/bad_respond.dart';
-import 'package:lyexamination/data/hives/accounts/accounts.dart';
-import 'package:lyexamination/messenger.dart';
-import 'package:lyexamination/services/session.dart';
+
+import '/data/apis/accounts/login/std.dart';
+import '/data/apis/exception/bad_respond.dart';
+import '/data/hives/accounts/accounts.dart';
+import '/messenger.dart';
+import '/services/session.dart';
 
 const loginFormControllerName = 'WelcomeLoginForm';
 

@@ -1,5 +1,6 @@
 import 'package:html/dom.dart';
-import 'package:lyexamination/data/apis/util.dart';
+
+import '/data/apis/util.dart';
 
 class APIACHVsRankingsReq {
   final String id;

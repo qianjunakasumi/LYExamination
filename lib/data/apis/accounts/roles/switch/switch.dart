@@ -1,5 +1,5 @@
-import 'package:lyexamination/data/apis/accounts/roles/switch/std.dart';
-import 'package:lyexamination/data/apis/apis.dart';
+import '/data/apis/accounts/roles/switch/std.dart';
+import '/data/apis/apis.dart';
 
 class APIACCNTsRolesSwitch extends APIs with HTTPPost {
   final APIACCNTsRolesSwitchReq req;
