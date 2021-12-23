@@ -40,6 +40,7 @@ dependencies:
   dio_http2_adapter: ^2.0.0
   html: ^0.15.0
   dotted_border: ^2.0.0+1
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_test:
