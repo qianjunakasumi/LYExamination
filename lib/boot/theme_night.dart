@@ -11,6 +11,7 @@ ThemeData get nightTheme => ThemeData.dark().copyWith(
         elevation: 0,
       ),
       primaryColor: const Color(0xDD36CFC9),
+      scaffoldBackgroundColor: Colors.black,
     );
 
 TextTheme get nightTextTheme => ThemeData.dark().textTheme.copyWith(

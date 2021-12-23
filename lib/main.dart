@@ -54,5 +54,6 @@ class AppWidgetsObserver with WidgetsBindingObserver {
   void didChangePlatformBrightness() {
     final AppGlobeService a = Get.find();
     a.changeTheme();
+    Get.forceAppUpdate();
   }
 }

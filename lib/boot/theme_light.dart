@@ -11,6 +11,7 @@ ThemeData get lightTheme => ThemeData.light().copyWith(
         elevation: 0,
       ),
       primaryColor: const Color(0xFF36CFC9),
+      scaffoldBackgroundColor: Colors.white,
     );
 
 TextTheme get lightTextTheme => ThemeData.light().textTheme.copyWith(
