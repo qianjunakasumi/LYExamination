@@ -31,7 +31,8 @@ class APIACHVsPointsRsp {
           d['zongfenpingjunfen'].toString(),
           d['zuigaofen'].toString(),
           dynamicToTypeList<APIACHVsPointsRSData>(
-              d['geke'], (dd) => APIACHVsPointsRSData.fromJSON(dd, z)),
+              (d['geke'] as List<dynamic>).sublist(1),
+              (dd) => APIACHVsPointsRSData.fromJSON(dd, z)),
           d['kaoshirenshu'],
         );
 }
