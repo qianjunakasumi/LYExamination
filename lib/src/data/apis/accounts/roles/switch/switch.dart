@@ -6,11 +6,14 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
+import '/src/data/apis/accounts/roles/switch/std.dart';
+import '/src/data/apis/apis.dart';
 
-import '/src/app.dart';
+class APIACCNTsRolesSwitch extends APIs with HTTPPost {
+  final APIACCNTsRolesSwitchReq req;
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp.run());
+  static const url = '/Home/User/switchStudent';
+
+  APIACCNTsRolesSwitch(this.req)
+      : super(url, {'num': req.id, 'name': req.name});
 }

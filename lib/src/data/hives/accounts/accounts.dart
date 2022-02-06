@@ -6,11 +6,14 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-import '/src/app.dart';
+import '/src/data/hives/hives.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp.run());
-}
+String hiveAccountsGetPassword(String phone) =>
+    Hive.box(hiveBoxAccounts).get(phone);
+
+Future<void> hiveAccountsAddA(String phone, String password) =>
+    Hive.box(hiveBoxAccounts).put(phone, password);
+
+void hiveAccountsGetAll() {}

@@ -6,11 +6,15 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-import '/src/app.dart';
+import '/src/data/hives/hives.dart';
+import '/src/data/hives/roles/std.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp.run());
-}
+Box<HiveRole> _hive() => Hive.box(hiveBoxRoles);
+
+bool hiveRolesIsEmpty() => _hive().isEmpty;
+
+HiveRole hiveRolesGetA(String id) => _hive().get(id)!;
+
+Future<void> hiveRolesAddA(String id, HiveRole d) => _hive().put(id, d);

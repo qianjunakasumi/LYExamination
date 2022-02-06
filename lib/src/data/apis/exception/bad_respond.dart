@@ -6,11 +6,17 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
-import '/src/app.dart';
+import '/src/data/apis/exception/api.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp.run());
+class APIBadRespondException extends APIException implements Exception {
+  final String message;
+  final String testament;
+
+  final bool panic;
+
+  const APIBadRespondException(Response rsp, this.message,
+      {this.panic = false, this.testament = ''})
+      : super(rsp);
 }

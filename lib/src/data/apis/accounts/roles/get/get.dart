@@ -6,11 +6,19 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
+import '/src/data/apis/accounts/roles/get/std.dart';
+import '/src/data/apis/apis.dart';
 
-import '/src/app.dart';
+class APIACCNTsRolesGet extends APIs with HTTPGet {
+  final APIACCNTsRolesGetReq req;
+  late final APIACCNTsRolesGetRsp rsp;
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp.run());
+  static const url = '/Home/User/ajax_SelectStudent_upCallback';
+
+  APIACCNTsRolesGet(this.req) : super(url, {'size': req.length});
+
+  @override
+  void parse() {
+    rsp = APIACCNTsRolesGetRsp.fromJSON(httpRSP.data);
+  }
 }

@@ -6,11 +6,20 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
+import '/src/data/apis/achievements/points/std.dart';
+import '/src/data/apis/apis.dart';
 
-import '/src/app.dart';
+class APIACHVsPoints extends APIs with HTTPPost {
+  final APIACHVsPointsReq req;
+  late final APIACHVsPointsRsp rsp;
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(await LYExaminationApp.run());
+  static const url = '/Home/Newscore/ajaxxqscore';
+
+  APIACHVsPoints(this.req)
+      : super(url, {'item_id': req.id, 'leixing': req.zone});
+
+  @override
+  void parse() {
+    rsp = APIACHVsPointsRsp.fromJSON(httpRSP.data, req.zone);
+  }
 }
