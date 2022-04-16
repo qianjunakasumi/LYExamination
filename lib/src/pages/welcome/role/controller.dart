@@ -8,13 +8,13 @@
 
 import 'package:get/get.dart';
 
+import '/src/atoms/utils/list2list.dart';
 import '/src/data/apis/accounts/roles/get/get.dart';
 import '/src/data/apis/accounts/roles/get/std.dart';
 import '/src/data/hives/roles/roles.dart';
 import '/src/data/hives/roles/std.dart';
 import '/src/data/hives/settings/settings.dart';
 import '/src/services/session.dart';
-import '/src/utils.dart';
 
 class RoleListController extends GetxController {
   final SessionService s = Get.find();

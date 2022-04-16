@@ -6,7 +6,7 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import '/src/data/apis/util.dart';
+import '/src/atoms/utils/list2list.dart';
 
 class APIACHVsPointsReq {
   final String id;
@@ -30,9 +30,10 @@ class APIACHVsPointsRsp {
           d['my_allscore'].toString(),
           d['zongfenpingjunfen'].toString(),
           d['zuigaofen'].toString(),
-          dynamicToTypeList<APIACHVsPointsRSData>(
-              (d['geke'] as List<dynamic>).sublist(1),
-              (dd) => APIACHVsPointsRSData.fromJSON(dd, z)),
+          dynamicList2List<APIACHVsPointsRSData>(
+            (d['geke'] as List<dynamic>).sublist(1),
+            (dd) => APIACHVsPointsRSData.fromJSON(dd, z),
+          ),
           d['kaoshirenshu'],
         );
 }

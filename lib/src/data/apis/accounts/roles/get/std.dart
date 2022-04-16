@@ -6,7 +6,7 @@
 //       License, v. 2.0. If a copy of the MPL was not distributed with this
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import '/src/data/apis/util.dart';
+import '/src/atoms/utils/list2list.dart';
 
 class APIACCNTsRolesGetReq {
   final int length;
@@ -23,8 +23,10 @@ class APIACCNTsRolesGetRsp {
   APIACCNTsRolesGetRsp.fromJSON(Map<String, dynamic> d)
       : this(
           d['count'],
-          dynamicToTypeList<APIACCNTsRolesGetRRData>(
-              d['rows'], (dd) => APIACCNTsRolesGetRRData.fromJSON(dd)),
+          dynamicList2List<APIACCNTsRolesGetRRData>(
+            d['rows'],
+            (dd) => APIACCNTsRolesGetRRData.fromJSON(dd),
+          ),
         );
 }
 

@@ -8,7 +8,7 @@
 
 import 'package:html/dom.dart';
 
-import '/src/data/apis/util.dart';
+import '/src/atoms/utils/list2list.dart';
 
 class APIACHVsRankingsReq {
   final String id;
@@ -36,7 +36,7 @@ class APIACHVsRankingsRsp {
                   'body > div > div.big > div > div.con__top.column.box-shadow > div > span:nth-child(7)')!
               .innerHtml
               .substring(5),
-          dynamicToTypeList<APIACHVsRankingsRSRData>(
+          list2List<Element, APIACHVsRankingsRSRData>(
               d.querySelectorAll(
                   'body > div > div.big > div > div.con-item.box-shadow.column > div.con__table > table > tbody > tr')
                 ..removeAt(0), // 删除总分行
