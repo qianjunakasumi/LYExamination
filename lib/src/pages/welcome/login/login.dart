@@ -9,17 +9,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/atoms/controller/snackbar.dart';
 import '/src/pages/welcome/components/welcome.dart';
 import '/src/pages/welcome/controller.dart';
 import '/src/pages/welcome/login/form.dart';
 import '/src/services/app_globe.dart';
-import '/src/utils.dart';
 
 class WelcomeLoginPage extends StatelessWidget {
   WelcomeLoginPage({Key? key}) : super(key: key);
 
   final AppGlobeService a = Get.find();
   final WelcomeController w = Get.put(WelcomeController());
+  final s = Get.put(SnackbarCTR());
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class WelcomeLoginPage extends StatelessWidget {
       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
 
   Widget get aboutButton => OutlinedButton(
-        onPressed: () => snack('正在开发中哦'),
+        onPressed: () => s.create('正在开发中哦'),
         style:
             OutlinedButton.styleFrom(padding: buttonEdge, shape: buttonShape),
         child: const Text('了解详情'),

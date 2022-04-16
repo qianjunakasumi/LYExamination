@@ -9,12 +9,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '/src/atoms/controller/snackbar.dart';
 import '/src/atoms/controller/processing.dart';
 import '/src/data/apis/accounts/login/std.dart';
 import '/src/data/apis/exception/bad_respond.dart';
 import '/src/data/hives/accounts/accounts.dart';
 import '/src/services/session.dart';
-import '/src/utils.dart';
 
 const loginFormControllerName = 'WelcomeLoginForm';
 
@@ -24,6 +24,7 @@ class LoginFormController extends GetxController {
   final key = GlobalKey<FormState>();
 
   final SessionService s = Get.find();
+  final sn = Get.put(SnackbarCTR());
 
   late String phone;
   late String password;
@@ -40,7 +41,7 @@ class LoginFormController extends GetxController {
     try {
       await s.loginWithAssignedAccount(APIAccountsLoginReq(phone, password));
     } on APIBadRespondException catch (e) {
-      snack(e.message, feedback: e.panic);
+      sn.createWithFeedback(e.message);
       rethrow;
     } finally {
       p.close();

@@ -9,15 +9,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/atoms/controller/snackbar.dart';
 import '/src/pages/home/controller.dart';
 import '/src/services/session.dart';
-import '/src/utils.dart';
 import 'achievement/achievement.dart';
 
 class HomeLayout extends StatelessWidget {
   HomeLayout({Key? key}) : super(key: key);
 
   final HomeController h = Get.find();
+  final s = Get.put(SnackbarCTR());
 
   String? status(SessionStatus s) {
     switch (s) {
@@ -37,7 +38,7 @@ class HomeLayout extends StatelessWidget {
       case 0:
         break;
       case 1:
-        snack('还未完成哦');
+        s.create('还未完成哦');
         break;
     }
   }
