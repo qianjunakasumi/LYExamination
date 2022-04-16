@@ -9,6 +9,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '/src/atoms/controller/processing.dart';
 import '/src/data/apis/accounts/login/std.dart';
 import '/src/data/apis/exception/bad_respond.dart';
 import '/src/data/hives/accounts/accounts.dart';
@@ -32,7 +33,8 @@ class LoginFormController extends GetxController {
       throw LoginFormControllerValidateFailed();
     }
 
-    process();
+    final p = Get.put(ProcessingCTR());
+    p.create();
     key.currentState!.save();
 
     try {
@@ -41,7 +43,7 @@ class LoginFormController extends GetxController {
       snack(e.message, feedback: e.panic);
       rethrow;
     } finally {
-      complete();
+      p.close();
     }
   }
 

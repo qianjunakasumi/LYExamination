@@ -35,17 +35,3 @@ void snack(String content, {bool feedback = false}) {
   }
   ScaffoldMessenger.of(Get.context!).showSnackBar(b);
 }
-
-void process() {
-  Get.dialog(
-    const Center(
-      child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
-    ),
-    barrierDismissible: false,
-  );
-}
-
-void complete() {
-  Get.back();
-}
