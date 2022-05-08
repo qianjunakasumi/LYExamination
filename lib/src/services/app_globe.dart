@@ -10,23 +10,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '/src/boot/theme_light.dart';
 import '/src/boot/theme_night.dart';
 
 class AppGlobeService extends GetxService {
   final Rx<ThemeData> theme = platformTheme.obs;
   final Rx<TextTheme> textTheme = platformTextTheme.obs;
 
-  static ThemeData get platformTheme =>
-      Get.isPlatformDarkMode ? nightTheme : lightTheme;
+  static ThemeData get platformTheme => nightTheme;
 
-  static TextTheme get platformTextTheme =>
-      Get.isPlatformDarkMode ? nightTextTheme : lightTextTheme;
+  static TextTheme get platformTextTheme => nightTextTheme;
 
   Future<void> setSystemUI() async {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    SystemChrome.setSystemUIOverlayStyle(
-        Get.isPlatformDarkMode ? nightUI : lightUI);
+    SystemChrome.setSystemUIOverlayStyle(nightUI);
   }
 
   Future<void> changeTheme() async {

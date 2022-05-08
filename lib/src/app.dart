@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '/src/boot/pages.dart';
-import '/src/boot/theme_light.dart';
 import '/src/boot/theme_night.dart';
 import '/src/data/apis/service.dart';
 import '/src/data/hives/roles/roles.dart';
@@ -45,7 +44,7 @@ class LYExaminationApp extends StatelessWidget {
     return GetMaterialApp(
       title: '龙岩考试',
       initialRoute: route,
-      theme: lightTheme,
+      theme: nightTheme,
       darkTheme: nightTheme,
       getPages: pages,
     );
