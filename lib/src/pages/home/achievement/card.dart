@@ -9,12 +9,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/atoms/controller/snackbar.dart';
 import '/src/pages/home/achievement/std.dart';
 import '/src/services/app_globe.dart';
-import '/src/utils.dart';
 
 class ACHVPSubjectCardComponent extends StatelessWidget {
   final Rx<ACHVPSubjectCardData> d;
+
+  final s = Get.put(SnackbarCTR());
 
   ACHVPSubjectCardComponent(this.d, {Key? key}) : super(key: key);
 
@@ -46,25 +48,29 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
             children: [
               Text(d.value.name, style: headline3),
               ElevatedButton(
-                  onPressed: () => snack('还未完成哦'),
-                  style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
-                        const TextStyle(fontWeight: FontWeight.bold)),
-                    foregroundColor:
-                        MaterialStateProperty.all(const Color(0xFF36CFC9)),
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    elevation: MaterialStateProperty.all(0),
-                    padding: MaterialStateProperty.all(
-                      const EdgeInsets.only(
-                          top: 8, left: 16, right: 16, bottom: 8),
-                    ),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32),
-                      ),
+                onPressed: () => s.create('还未完成哦'),
+                style: ButtonStyle(
+                  textStyle: MaterialStateProperty.all(
+                      const TextStyle(fontWeight: FontWeight.bold)),
+                  foregroundColor:
+                      MaterialStateProperty.all(const Color(0xFF36CFC9)),
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  elevation: MaterialStateProperty.all(0),
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.only(
+                        top: 8, left: 16, right: 16, bottom: 8),
+                  ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32),
                     ),
                   ),
-                  child: const Text('查看详情')),
+                ),
+                child: const Text(
+                  '查看详情',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 16),
