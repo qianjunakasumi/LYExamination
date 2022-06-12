@@ -9,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/src/boot/theme_night.dart';
+import '/src/boot/theme.dart';
 import '/src/pages/home/achievement/card.dart';
 import '/src/pages/home/controller.dart';
 

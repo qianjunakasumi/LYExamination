@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 
-import '/src/boot/theme_night.dart';
+import '/src/boot/theme.dart';
 
 const welcomeComponentHeroName = 'WelcomeComponent';
 
