@@ -28,7 +28,7 @@ class LYExaminationApp extends StatelessWidget {
     Get.put(AppGlobeService()).setSystemUI();
     Get.lazyPut(() => HomeController()..run());
 
-    WidgetsBinding.instance!.addObserver(AppWidgetsObserver());
+    WidgetsBinding.instance.addObserver(AppWidgetsObserver());
 
     return !hiveRolesIsEmpty()
         ? const LYExaminationApp()
