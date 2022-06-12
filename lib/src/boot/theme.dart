@@ -12,7 +12,9 @@ import 'package:flutter/services.dart';
 const _titleColor = Color.fromRGBO(255, 255, 255, 0.85);
 const _primaryColor = Color.fromRGBO(255, 255, 255, 0.65);
 
-ThemeData get appTheme => ThemeData.dark().copyWith(
+final _theme = ThemeData(useMaterial3: true, brightness: Brightness.dark);
+
+ThemeData get appTheme => _theme.copyWith(
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xcc303030),
         foregroundColor: _titleColor,
@@ -22,7 +24,7 @@ ThemeData get appTheme => ThemeData.dark().copyWith(
       scaffoldBackgroundColor: Colors.black,
     );
 
-TextTheme get appTextTheme => ThemeData.dark().textTheme.copyWith(
+TextTheme get appTextTheme => _theme.textTheme.copyWith(
       headline2: const TextStyle(
         color: _primaryColor,
         fontSize: 46,

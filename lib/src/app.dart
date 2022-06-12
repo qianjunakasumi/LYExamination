@@ -45,7 +45,6 @@ class LYExaminationApp extends StatelessWidget {
       title: '龙岩考试',
       initialRoute: route,
       theme: appTheme,
-      darkTheme: appTheme,
       getPages: pages,
     );
   }
