@@ -28,8 +28,6 @@ class LYExaminationApp extends StatelessWidget {
     Get.put(AppGlobeService()).setSystemUI();
     Get.lazyPut(() => HomeController()..run());
 
-    WidgetsBinding.instance.addObserver(AppWidgetsObserver());
-
     return !hiveRolesIsEmpty()
         ? const LYExaminationApp()
         : const LYExaminationApp(route: '/welcome/login');
@@ -48,14 +46,5 @@ class LYExaminationApp extends StatelessWidget {
       darkTheme: nightTheme,
       getPages: pages,
     );
-  }
-}
-
-class AppWidgetsObserver with WidgetsBindingObserver {
-  @override
-  void didChangePlatformBrightness() {
-    final AppGlobeService a = Get.find();
-    a.changeTheme();
-    Get.forceAppUpdate();
   }
 }
