@@ -42,12 +42,12 @@ class CardComponent extends StatelessWidget {
   Widget get info => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(d.name, style: nightTextTheme.headline4),
+          Text(d.name, style: appTextTheme.headline4),
           const SizedBox(height: 8),
           Text('${d.school}  ${d.grade}（${d.classNum}）班',
-              style: nightTextTheme.headline6),
+              style: appTextTheme.headline6),
           const SizedBox(height: 8),
-          Text('学号：${d.id}', style: nightTextTheme.headline6),
+          Text('学号：${d.id}', style: appTextTheme.headline6),
         ],
       );
 }

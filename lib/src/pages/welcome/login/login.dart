@@ -40,7 +40,7 @@ class WelcomeLoginPage extends StatelessWidget {
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
         child: Text('请使用您的\u9F99\u5CA9\u5BB6\u6821帐号登录',
-            style: nightTextTheme.headline6),
+            style: appTextTheme.headline6),
       );
 
   Widget get form => Container(

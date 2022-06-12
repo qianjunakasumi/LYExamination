@@ -24,9 +24,9 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle headline2 = nightTextTheme.headline2!.copyWith(color: fixed);
-    TextStyle headline3 = nightTextTheme.headline3!.copyWith(color: fixed);
-    TextStyle headline6 = nightTextTheme.headline6!.copyWith(
+    TextStyle headline2 = appTextTheme.headline2!.copyWith(color: fixed);
+    TextStyle headline3 = appTextTheme.headline3!.copyWith(color: fixed);
+    TextStyle headline6 = appTextTheme.headline6!.copyWith(
       color: fixed,
       fontWeight: FontWeight.bold,
     );

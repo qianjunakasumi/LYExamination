@@ -37,7 +37,7 @@ class HomeAchievementPage extends StatelessWidget {
             children: [
               info,
               const SizedBox(height: 24),
-              Text('学科', style: nightTextTheme.headline5),
+              Text('学科', style: appTextTheme.headline5),
               const SizedBox(height: 16),
               Obx(() => Column(
                     children: [
@@ -52,7 +52,7 @@ class HomeAchievementPage extends StatelessWidget {
         Center(
           child: Text('·    你已看完所有的啦    ·',
               style:
-                  nightTextTheme.headline6!.copyWith(color: Colors.grey[400])),
+                  appTextTheme.headline6!.copyWith(color: Colors.grey[400])),
         ),
         const SizedBox(height: 24),
       ],
@@ -61,7 +61,7 @@ class HomeAchievementPage extends StatelessWidget {
 
   Widget get name => Container(
         margin: const EdgeInsets.all(16),
-        child: Obx(() => Text(h.name(), style: nightTextTheme.headline5)),
+        child: Obx(() => Text(h.name(), style: appTextTheme.headline5)),
       );
 
   Widget get quick => Container(
@@ -73,7 +73,7 @@ class HomeAchievementPage extends StatelessWidget {
               children: [
                 const Text('总\n分'),
                 const SizedBox(width: 16),
-                Obx(() => Text(h.points(), style: nightTextTheme.headline4)),
+                Obx(() => Text(h.points(), style: appTextTheme.headline4)),
               ],
             ),
             const SizedBox(height: 8),
@@ -81,7 +81,7 @@ class HomeAchievementPage extends StatelessWidget {
               children: [
                 const Text('年段\n名次'),
                 const SizedBox(width: 16),
-                Obx(() => Text(h.rankings(), style: nightTextTheme.headline4)),
+                Obx(() => Text(h.rankings(), style: appTextTheme.headline4)),
               ],
             ),
           ],

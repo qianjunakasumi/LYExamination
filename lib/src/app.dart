@@ -21,7 +21,7 @@ import '/src/services/session.dart';
 class LYExaminationApp extends StatelessWidget {
   static Future<LYExaminationApp> run() async {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    SystemChrome.setSystemUIOverlayStyle(nightUI);
+    SystemChrome.setSystemUIOverlayStyle(appUI);
 
     await Future.wait([
       Get.putAsync(() => APIService().init()),
@@ -44,8 +44,8 @@ class LYExaminationApp extends StatelessWidget {
     return GetMaterialApp(
       title: '龙岩考试',
       initialRoute: route,
-      theme: nightTheme,
-      darkTheme: nightTheme,
+      theme: appTheme,
+      darkTheme: appTheme,
       getPages: pages,
     );
   }

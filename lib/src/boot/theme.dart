@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 const _titleColor = Color.fromRGBO(255, 255, 255, 0.85);
 const _primaryColor = Color.fromRGBO(255, 255, 255, 0.65);
 
-ThemeData get nightTheme => ThemeData.dark().copyWith(
+ThemeData get appTheme => ThemeData.dark().copyWith(
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xcc303030),
         foregroundColor: _titleColor,
@@ -22,7 +22,7 @@ ThemeData get nightTheme => ThemeData.dark().copyWith(
       scaffoldBackgroundColor: Colors.black,
     );
 
-TextTheme get nightTextTheme => ThemeData.dark().textTheme.copyWith(
+TextTheme get appTextTheme => ThemeData.dark().textTheme.copyWith(
       headline2: const TextStyle(
         color: _primaryColor,
         fontSize: 46,
@@ -47,7 +47,7 @@ TextTheme get nightTextTheme => ThemeData.dark().textTheme.copyWith(
       ),
     );
 
-const nightUI = SystemUiOverlayStyle(
+const appUI = SystemUiOverlayStyle(
   systemNavigationBarColor: Colors.transparent,
   systemNavigationBarDividerColor: Colors.transparent,
   systemNavigationBarIconBrightness: Brightness.light,

@@ -37,7 +37,7 @@ class WelcomeRolePage extends StatelessWidget {
 
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
-        child: Text('请选择您欲登录的学生角色', style: nightTextTheme.headline6),
+        child: Text('请选择您欲登录的学生角色', style: appTextTheme.headline6),
       );
 
   Widget get list => Obx(() => ListView(
