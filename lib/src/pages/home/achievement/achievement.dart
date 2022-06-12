@@ -9,14 +9,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/boot/theme_night.dart';
 import '/src/pages/home/achievement/card.dart';
 import '/src/pages/home/controller.dart';
-import '/src/services/app_globe.dart';
 
 class HomeAchievementPage extends StatelessWidget {
   HomeAchievementPage({Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find();
   final HomeController h = Get.find();
 
   @override
@@ -38,7 +37,7 @@ class HomeAchievementPage extends StatelessWidget {
             children: [
               info,
               const SizedBox(height: 24),
-              Obx(() => Text('学科', style: a.textTheme().headline5)),
+              Text('学科', style: nightTextTheme.headline5),
               const SizedBox(height: 16),
               Obx(() => Column(
                     children: [
@@ -50,13 +49,11 @@ class HomeAchievementPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        Obx(() => Center(
-              child: Text('·    你已看完所有的啦    ·',
-                  style: a
-                      .textTheme()
-                      .headline6!
-                      .copyWith(color: Colors.grey[400])),
-            )),
+        Center(
+          child: Text('·    你已看完所有的啦    ·',
+              style:
+                  nightTextTheme.headline6!.copyWith(color: Colors.grey[400])),
+        ),
         const SizedBox(height: 24),
       ],
     );
@@ -64,7 +61,7 @@ class HomeAchievementPage extends StatelessWidget {
 
   Widget get name => Container(
         margin: const EdgeInsets.all(16),
-        child: Obx(() => Text(h.name(), style: a.textTheme().headline5)),
+        child: Obx(() => Text(h.name(), style: nightTextTheme.headline5)),
       );
 
   Widget get quick => Container(
@@ -76,7 +73,7 @@ class HomeAchievementPage extends StatelessWidget {
               children: [
                 const Text('总\n分'),
                 const SizedBox(width: 16),
-                Obx(() => Text(h.points(), style: a.textTheme().headline4)),
+                Obx(() => Text(h.points(), style: nightTextTheme.headline4)),
               ],
             ),
             const SizedBox(height: 8),
@@ -84,7 +81,7 @@ class HomeAchievementPage extends StatelessWidget {
               children: [
                 const Text('年段\n名次'),
                 const SizedBox(width: 16),
-                Obx(() => Text(h.rankings(), style: a.textTheme().headline4)),
+                Obx(() => Text(h.rankings(), style: nightTextTheme.headline4)),
               ],
             ),
           ],
@@ -97,7 +94,7 @@ class HomeAchievementPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Get.theme.primaryColor,
+                //color: Get.theme.primaryColor,
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),
               child: Row(
@@ -124,7 +121,7 @@ class HomeAchievementPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Get.theme.primaryColor,
+                //color: Get.theme.primaryColor,
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),
               child: Row(

@@ -7,16 +7,13 @@
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '/src/services/app_globe.dart';
+import '/src/boot/theme_night.dart';
 
 const welcomeComponentHeroName = 'WelcomeComponent';
 
 class WelcomeComponent extends StatelessWidget {
-  WelcomeComponent({Key? key}) : super(key: key);
-
-  final AppGlobeService a = Get.find();
+  const WelcomeComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +37,6 @@ class WelcomeComponent extends StatelessWidget {
 
   Widget get welcome => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
-        child: Obx(() => Text('欢迎使用龙岩考试', style: a.textTheme().headline3)),
+        child: Text('欢迎使用龙岩考试', style: nightTextTheme.headline3),
       );
 }

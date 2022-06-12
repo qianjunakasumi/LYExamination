@@ -9,16 +9,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/boot/theme_night.dart';
 import '/src/data/hives/roles/std.dart';
 import '/src/pages/welcome/role/controller.dart';
-import '/src/services/app_globe.dart';
 
 class CardComponent extends StatelessWidget {
   final HiveRole d;
 
   CardComponent(this.d, {Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find();
   final RoleListController r = Get.find();
 
   @override
@@ -43,12 +42,12 @@ class CardComponent extends StatelessWidget {
   Widget get info => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(d.name, style: a.textTheme().headline4),
+          Text(d.name, style: nightTextTheme.headline4),
           const SizedBox(height: 8),
           Text('${d.school}  ${d.grade}（${d.classNum}）班',
-              style: a.textTheme().headline6),
+              style: nightTextTheme.headline6),
           const SizedBox(height: 8),
-          Text('学号：${d.id}', style: a.textTheme().headline6),
+          Text('学号：${d.id}', style: nightTextTheme.headline6),
         ],
       );
 }

@@ -10,15 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '/src/atoms/controller/snackbar.dart';
+import '/src/boot/theme_night.dart';
 import '/src/pages/welcome/components/welcome.dart';
 import '/src/pages/welcome/controller.dart';
 import '/src/pages/welcome/login/form.dart';
-import '/src/services/app_globe.dart';
 
 class WelcomeLoginPage extends StatelessWidget {
   WelcomeLoginPage({Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find();
   final WelcomeController w = Get.put(WelcomeController());
   final s = Get.put(SnackbarCTR());
 
@@ -29,7 +28,7 @@ class WelcomeLoginPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SafeArea(child: SizedBox(height: 32)),
-          WelcomeComponent(),
+          const WelcomeComponent(),
           tip,
           form,
           buttons,
@@ -40,8 +39,8 @@ class WelcomeLoginPage extends StatelessWidget {
 
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16),
-        child: Obx(() => Text('请使用您的\u9F99\u5CA9\u5BB6\u6821帐号登录',
-            style: a.textTheme().headline6)),
+        child: Text('请使用您的\u9F99\u5CA9\u5BB6\u6821帐号登录',
+            style: nightTextTheme.headline6),
       );
 
   Widget get form => Container(

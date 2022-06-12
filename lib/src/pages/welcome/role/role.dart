@@ -9,16 +9,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '/src/boot/theme_night.dart';
 import '/src/data/hives/roles/std.dart';
 import '/src/pages/welcome/components/welcome.dart';
 import '/src/pages/welcome/role/card.dart';
 import '/src/pages/welcome/role/controller.dart';
-import '/src/services/app_globe.dart';
 
 class WelcomeRolePage extends StatelessWidget {
   WelcomeRolePage({Key? key}) : super(key: key);
 
-  final AppGlobeService a = Get.find();
   final RoleListController r = Get.find();
 
   @override
@@ -28,7 +27,7 @@ class WelcomeRolePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SafeArea(child: SizedBox(height: 32)),
-          WelcomeComponent(),
+          const WelcomeComponent(),
           tip,
           Expanded(child: list),
         ],
@@ -38,7 +37,7 @@ class WelcomeRolePage extends StatelessWidget {
 
   Widget get tip => Container(
         margin: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
-        child: Obx(() => Text('请选择您欲登录的学生角色', style: a.textTheme().headline6)),
+        child: Text('请选择您欲登录的学生角色', style: nightTextTheme.headline6),
       );
 
   Widget get list => Obx(() => ListView(

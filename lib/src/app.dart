@@ -7,6 +7,7 @@
 //       file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '/src/boot/pages.dart';
@@ -15,17 +16,18 @@ import '/src/data/apis/service.dart';
 import '/src/data/hives/roles/roles.dart';
 import '/src/data/hives/service.dart';
 import '/src/pages/home/controller.dart';
-import '/src/services/app_globe.dart';
 import '/src/services/session.dart';
 
 class LYExaminationApp extends StatelessWidget {
   static Future<LYExaminationApp> run() async {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(nightUI);
+
     await Future.wait([
       Get.putAsync(() => APIService().init()),
       Get.putAsync(() => HiveService().init()),
     ]);
     Get.put(SessionService());
-    Get.put(AppGlobeService()).setSystemUI();
     Get.lazyPut(() => HomeController()..run());
 
     return !hiveRolesIsEmpty()

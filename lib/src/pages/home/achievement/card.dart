@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '/src/atoms/controller/snackbar.dart';
+import '/src/boot/theme_night.dart';
 import '/src/pages/home/achievement/std.dart';
-import '/src/services/app_globe.dart';
 
 class ACHVPSubjectCardComponent extends StatelessWidget {
   final Rx<ACHVPSubjectCardData> d;
@@ -22,22 +22,20 @@ class ACHVPSubjectCardComponent extends StatelessWidget {
 
   static Color fixed = Colors.white.withOpacity(0.85);
 
-  final AppGlobeService a = Get.find();
-
   @override
   Widget build(BuildContext context) {
-    TextStyle headline2 = a.textTheme().headline2!.copyWith(color: fixed);
-    TextStyle headline3 = a.textTheme().headline3!.copyWith(color: fixed);
-    TextStyle headline6 = a.textTheme().headline6!.copyWith(
-          color: fixed,
-          fontWeight: FontWeight.bold,
-        );
+    TextStyle headline2 = nightTextTheme.headline2!.copyWith(color: fixed);
+    TextStyle headline3 = nightTextTheme.headline3!.copyWith(color: fixed);
+    TextStyle headline6 = nightTextTheme.headline6!.copyWith(
+      color: fixed,
+      fontWeight: FontWeight.bold,
+    );
 
     return Container(
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: Get.theme.primaryColor,
+        //color: Get.theme.primaryColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
